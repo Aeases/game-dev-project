@@ -1,12 +1,36 @@
 using JetBrains.Annotations;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.AI;
 
-public class Enemy : MonoBehaviour
+public class Enemy : Shooter
 {
-    public float health = 100f;
     public GameObject damageTextPrefab;
     public DmgText dmgText;
+
+    private NavMeshAgent _agent;
+    private Transform _player;
+    public LayerMask whatIsGround, whatIsPlayer;
+
+
+    // Rushing
+    public Vector3 towerPoint;
+    bool walkPointSet;
+    public float walkPointRange;
+
+    // Attacking
+    public float attackDelay;
+
+    public float sightRange, attackRange;
+    public bool playerInSightRange, playerInAttackRange;
+
+    private bool alreadyAttacked;
+
+    private void Awake()
+    {
+        _player = GameObject.Find("Player").transform;
+        _agent = GetComponent<NavMeshAgent>();
+    } 
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -18,10 +42,50 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
+        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+
+        if (!playerInSightRange && !playerInAttackRange) Rushing();
+        if (playerInSightRange && !playerInAttackRange) Chase();
+        if (playerInSightRange && playerInAttackRange) Attack();
+
         if(health <= 0)
         {
             Destroy(gameObject);
         }
+    }
+
+    private void Rushing()
+    {
+        _agent.SetDestination(towerPoint);
+
+        Vector3 distanceToWalkPoint = transform.position - towerPoint;
+
+        
+    }
+
+    private void Attack()
+    {
+        transform.LookAt(_player);
+
+        if (!alreadyAttacked)
+        {
+            
+            shoot(1);
+            
+            alreadyAttacked = true;
+            Invoke(nameof(ResetAttack), attackDelay);
+        }
+    }
+
+    private void Chase()
+    {
+        _agent.SetDestination(_player.position);
+    }
+
+    private void ResetAttack()
+    {
+        alreadyAttacked = false;
     }
 
 

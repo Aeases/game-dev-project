@@ -3,15 +3,13 @@ using UnityEngine;
 using UnityEngine.InputSystem.XR;
 using System.Collections.Generic;
 
-public class PlayerControl : MonoBehaviour
+public class PlayerControl : Shooter
 {
-    public GameObject shootPos;
     public LayerMask groundLayer;
     public Camera mainCamera;
     public GameObject[] bulletPrefab = new GameObject[5];// 0 for fire, 1 for water, 2 for elec, 3 for grass 
     public float speed = 5f;
     private Vector3 moveInput;
-    public GameObject currentBulletPrefab;
     private int shootPattern = 0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -27,9 +25,12 @@ public class PlayerControl : MonoBehaviour
         float z = Input.GetAxis("Vertical");
         moveInput = new Vector3(x, 0, z).normalized;
 
+        mainCamera.transform.position = new Vector3(transform.position.x, mainCamera.transform.position.y, transform.position.z); 
+        
+
         // Move in world space (XZ plane)
         Vector3 move = moveInput * speed * Time.deltaTime;
-        transform.Translate(move);
+        transform.Translate(move, Space.World);
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             shoot(shootPattern);
@@ -54,53 +55,6 @@ public class PlayerControl : MonoBehaviour
                 transform.rotation = Quaternion.Euler(0f, lookRotation.eulerAngles.y, 0f);
             }
         }
-    }
-    void shoot(int pattern)
-    {
-
-        // ShootPattern 1 for fire, 2 for water, 3 for
-        switch (pattern)
-        {
-            case 0:
-                Instantiate(currentBulletPrefab, shootPos.transform.position, shootPos.transform.rotation);
-                break;
-            case 1:
-                for (int i = 0; i < 4; i++)
-                {
-                    float offsetAngle = 45f + i * 90f;  // Angle: 45°, 135°, 225°, 315°
-                    Quaternion bulletRot = shootPos.transform.rotation * Quaternion.Euler(0f, offsetAngle, 0f);
-                    Instantiate(currentBulletPrefab, shootPos.transform.position, bulletRot);
-                }
-                break;
-            case 2:
-                for (int i = 0; i < 2; i++)
-                {
-                    float offsetAngle = -45f + i * 90f;  // Angle: -45°, 45°
-                    Quaternion bulletRot = shootPos.transform.rotation * Quaternion.Euler(0f, offsetAngle, 0f);
-                    Instantiate(currentBulletPrefab, shootPos.transform.position, bulletRot);
-                }
-                break;
-            case 3:
-                for (int i = 0; i < 4; i++)
-                {
-                    float offsetAngle = i * 90f;  // Angle: 90 180 270 360
-                    Quaternion bulletRot = shootPos.transform.rotation * Quaternion.Euler(0f, offsetAngle, 0f);
-                    Instantiate(currentBulletPrefab, shootPos.transform.position, bulletRot);
-                }
-                break;
-            case 4:
-                int numBullets = 3;
-                float spacing = 5f;  // Distance between each bullet in the chain (adjust as needed)
-                Vector3 forward = shootPos.transform.forward;
-                for (int i = 0; i < numBullets; i++)
-                {
-                    Vector3 spawnPos = shootPos.transform.position + forward * (i * spacing);
-                    Instantiate(currentBulletPrefab, spawnPos, shootPos.transform.rotation);
-                }
-                break;
-
-        }
-
     }
 
     private void OnTriggerEnter(Collider other)
