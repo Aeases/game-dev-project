@@ -8,11 +8,11 @@ public class PlayerControl : MonoBehaviour
     public GameObject shootPos;
     public LayerMask groundLayer;
     public Camera mainCamera;
-    public GameObject[] bulletPrefab = new GameObject[3];// 0 for normal; 1 for fire; 2 for water
+    public GameObject[] bulletPrefab = new GameObject[5];// 0 for fire, 1 for water, 2 for elec, 3 for grass 
     public float speed = 5f;
     private Vector3 moveInput;
     public GameObject currentBulletPrefab;
-    private int shootPattern = 0; 
+    private int shootPattern = 0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -34,7 +34,7 @@ public class PlayerControl : MonoBehaviour
         {
             shoot(shootPattern);
         }
-        
+
     }
 
     void RotateToMouse()
@@ -57,7 +57,7 @@ public class PlayerControl : MonoBehaviour
     }
     void shoot(int pattern)
     {
-        
+
         // ShootPattern 1 for fire, 2 for water, 3 for
         switch (pattern)
         {
@@ -75,7 +75,7 @@ public class PlayerControl : MonoBehaviour
             case 2:
                 for (int i = 0; i < 2; i++)
                 {
-                    float offsetAngle = 45f + i * 90f;  // Angle: 45°, 135°, 225°, 315°
+                    float offsetAngle = -45f + i * 90f;  // Angle: -45°, 45°
                     Quaternion bulletRot = shootPos.transform.rotation * Quaternion.Euler(0f, offsetAngle, 0f);
                     Instantiate(currentBulletPrefab, shootPos.transform.position, bulletRot);
                 }
@@ -83,13 +83,24 @@ public class PlayerControl : MonoBehaviour
             case 3:
                 for (int i = 0; i < 4; i++)
                 {
-                    float offsetAngle = i * 90f;  // Angle: 45°, 135°, 225°, 315°
+                    float offsetAngle = i * 90f;  // Angle: 90 180 270 360
                     Quaternion bulletRot = shootPos.transform.rotation * Quaternion.Euler(0f, offsetAngle, 0f);
                     Instantiate(currentBulletPrefab, shootPos.transform.position, bulletRot);
                 }
                 break;
+            case 4:
+                int numBullets = 3;
+                float spacing = 5f;  // Distance between each bullet in the chain (adjust as needed)
+                Vector3 forward = shootPos.transform.forward;
+                for (int i = 0; i < numBullets; i++)
+                {
+                    Vector3 spawnPos = shootPos.transform.position + forward * (i * spacing);
+                    Instantiate(currentBulletPrefab, spawnPos, shootPos.transform.rotation);
+                }
+                break;
+
         }
-        
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -99,14 +110,25 @@ public class PlayerControl : MonoBehaviour
         {
             currentBulletPrefab = bulletPrefab[1];
             shootPattern = 1;
-            Debug.Log("Changed to fire");
-        } else if (other.CompareTag("WaterPlat"))
+            Debug.Log("Changed to Fire");
+        }
+        else if (other.CompareTag("WaterPlat"))
         {
             currentBulletPrefab = bulletPrefab[2];
             shootPattern = 2;
-            Debug.Log("Changed to water");
+            Debug.Log("Changed to Water");
+        }
+        else if (other.CompareTag("ElectricityPlat"))
+        {
+            currentBulletPrefab = bulletPrefab[3];
+            shootPattern = 4;
+            Debug.Log("Changed to Elec");
+        }
+        else if (other.CompareTag("GrassPlat"))
+        {
+            currentBulletPrefab = bulletPrefab[4];
+            shootPattern = 3;
+            Debug.Log("Changed to Grass");
         }
     }
-
-
 }

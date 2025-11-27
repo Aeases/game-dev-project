@@ -32,10 +32,11 @@ public class Enemy : MonoBehaviour
         {
             Destroy(other.gameObject);
         }
-        if (other.gameObject.CompareTag("FireBullet"))
+        if (other.gameObject.CompareTag("FireBullet") || other.gameObject.CompareTag("GrassBullet") || other.gameObject.CompareTag("ElectricityBullet"))
         {
             Destroy(other.gameObject);
         }
+        
         if (other.gameObject.CompareTag("WaterBullet"))
         {
             Destroy(other.gameObject);

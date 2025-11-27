@@ -10,7 +10,6 @@ public class bullet : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.AddForce(transform.forward * speed, ForceMode.VelocityChange);
-
     }
 
     // Update is called once per frame
