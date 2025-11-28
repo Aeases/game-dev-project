@@ -31,6 +31,8 @@ public class Enemy : Shooter
     public string[] elementTypes = new string[4];
     public string currentElement;
 
+    private WaveController waveController = null;
+
     private void Awake()
     {
         _player = GameObject.Find("Player").transform;
@@ -41,7 +43,7 @@ public class Enemy : Shooter
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        waveController = GetComponentInParent<WaveController>();
     }
 
     // Update is called once per frame
@@ -57,6 +59,9 @@ public class Enemy : Shooter
         if(health <= 0)
         {
             Destroy(gameObject);
+            if (waveController != null) {
+                waveController.EnemyKilled(); // Decrements remainingEnemies by one
+            }
         }
     }
 
