@@ -10,7 +10,6 @@ public class PlayerControl : Shooter
     public GameObject[] bulletPrefab = new GameObject[5];// 0 for fire, 1 for water, 2 for elec, 3 for grass 
     public float speed = 5f;
     private Vector3 moveInput;
-    private int shootPattern = 0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

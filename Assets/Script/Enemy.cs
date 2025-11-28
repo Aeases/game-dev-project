@@ -92,23 +92,34 @@ public class Enemy : Shooter
     private void OnTriggerEnter(Collider other)
     {
         int damage = 10;
-        if (other.gameObject.CompareTag("Bullet"))
+
+        var bulletCol = other.GetComponent<bullet>();
+
+        if (bulletCol != null)
         {
-            Destroy(other.gameObject);
+            if (bulletCol.isFriendly == true)
+            {
+                if (other.gameObject.CompareTag("Bullet"))
+                {
+                    Destroy(other.gameObject);
+                }
+                if (other.gameObject.CompareTag("FireBullet") || other.gameObject.CompareTag("GrassBullet") || other.gameObject.CompareTag("ElectricityBullet"))
+                {
+                    Destroy(other.gameObject);
+                }
+                
+                if (other.gameObject.CompareTag("WaterBullet"))
+                {
+                    Destroy(other.gameObject);
+                    damage = 15;
+                }
+
+                health -= damage;
+                dmgText.SetDamage(damage);
+                Instantiate(damageTextPrefab, transform.position + Vector3.up * 1f, Quaternion.identity);
+                        
+                }
         }
-        if (other.gameObject.CompareTag("FireBullet") || other.gameObject.CompareTag("GrassBullet") || other.gameObject.CompareTag("ElectricityBullet"))
-        {
-            Destroy(other.gameObject);
-        }
-        
-        if (other.gameObject.CompareTag("WaterBullet"))
-        {
-            Destroy(other.gameObject);
-            damage = 15;
-        }
-        health -= damage;
-        dmgText.SetDamage(damage);
-        Instantiate(damageTextPrefab, transform.position + Vector3.up * 1f, Quaternion.identity);
     }
 
 }
