@@ -5,7 +5,8 @@ public class bullet : MonoBehaviour
     private Rigidbody rb;
     public GameObject player;
     public bool isFriendly;
-    public float speed = 5;
+    public float speed = 2;
+    public float existTime = 10f; 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -16,7 +17,9 @@ public class bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-     
+
+            
+
     }
     
 }

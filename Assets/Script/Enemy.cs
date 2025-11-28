@@ -1,5 +1,7 @@
 using JetBrains.Annotations;
+using NUnit.Framework;
 using System.Runtime.CompilerServices;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -25,6 +27,9 @@ public class Enemy : Shooter
     public bool playerInSightRange, playerInAttackRange;
 
     private bool alreadyAttacked;
+
+    public string[] elementTypes = new string[4];
+    public string currentElement;
 
     private void Awake()
     {
@@ -91,33 +96,59 @@ public class Enemy : Shooter
 
     private void OnTriggerEnter(Collider other)
     {
-        int damage = 10;
-
+  
         var bulletCol = other.GetComponent<bullet>();
 
         if (bulletCol != null)
         {
             if (bulletCol.isFriendly == true)
             {
-                if (other.gameObject.CompareTag("Bullet"))
+                Destroy(other.gameObject);
+                float damage = 10f;
+                switch (currentElement) // Elemental Reaction
                 {
-                    Destroy(other.gameObject);
+                    case "Fire":
+                        if (other.gameObject.CompareTag("WaterBullet"))
+                        {
+                            damage = 15f;
+                        }
+                        if (other.gameObject.CompareTag("GrassBullet"))
+                        {
+                            damage = 5f;
+                        }
+                        break;
+                    case "Water":
+                        if (other.gameObject.CompareTag("ElectricityBullet"))
+                        {
+                            damage = 15f;
+                        }
+                        if (other.gameObject.CompareTag("FireBullet"))
+                        {
+                            damage = 5f;
+                        }
+                        break;
+                    case "Grass":
+                        if (other.gameObject.CompareTag("FireBullet"))
+                        {
+                            damage = 15f;
+                        }
+                        if (other.gameObject.CompareTag("ElectricityBullet"))
+                        {
+                            damage = 5f;
+                        }
+                        break;
+                    case "Electricity":
+                        if (other.gameObject.CompareTag("GrassBullet"))
+                        {
+                            damage = 15f;
+                        }
+                        if (other.gameObject.CompareTag("WaterBullet"))
+                        {
+                            damage = 5f;
+                        }
+                        break;
                 }
-                if (other.gameObject.CompareTag("FireBullet") || other.gameObject.CompareTag("GrassBullet") || other.gameObject.CompareTag("ElectricityBullet"))
-                {
-                    Destroy(other.gameObject);
-                }
-                
-                if (other.gameObject.CompareTag("WaterBullet"))
-                {
-                    Destroy(other.gameObject);
-                    damage = 15;
-                }
-
                 health -= damage;
-                dmgText.SetDamage(damage);
-                Instantiate(damageTextPrefab, transform.position + Vector3.up * 1f, Quaternion.identity);
-                        
                 }
         }
     }
