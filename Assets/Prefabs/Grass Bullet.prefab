@@ -150,4 +150,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  speed: 50
+  isFriendly: 0
+  speed: 10
+  existTime: 0

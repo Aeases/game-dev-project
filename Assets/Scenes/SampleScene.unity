@@ -261,8 +261,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  currentBulletPrefab: {fileID: 5368792039324490253, guid: 6c32e4e8e268cb64bb2c5e894ff578b2, type: 3}
   damageTextPrefab: {fileID: 16971662}
   dmgText: {fileID: 16971664}
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 0
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 0
+  towerPoint: {x: 0, y: 0, z: 0}
+  walkPointRange: 0
+  attackDelay: 0
+  sightRange: 0
+  attackRange: 0
+  playerInSightRange: 0
+  playerInAttackRange: 0
+  elementTypes:
+  - Fire
+  - Water
+  - Grass
+  - 'Electricity '
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -1141,7 +1160,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27211385c17763d4dbe13f1f76224257, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootPos: {fileID: 799558400}
+  health: 100
+  currentBulletPrefab: {fileID: 5368792039324490253, guid: 6c32e4e8e268cb64bb2c5e894ff578b2, type: 3}
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -1153,7 +1173,9 @@ MonoBehaviour:
   - {fileID: 5368792039324490253, guid: 2bc68b14609a6734299280f2263ed18f, type: 3}
   - {fileID: 5368792039324490253, guid: 8ea10e5617d9c824cb896742f20b511f, type: 3}
   speed: 5
-  currentBulletPrefab: {fileID: 5368792039324490253, guid: 6c32e4e8e268cb64bb2c5e894ff578b2, type: 3}
+  dashPower: 25
+  dashDuration: 0.15
+  dashCoolDown: 0.8
 --- !u!65 &1253581840
 BoxCollider:
   m_ObjectHideFlags: 0

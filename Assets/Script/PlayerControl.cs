@@ -2,14 +2,26 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 public class PlayerControl : Shooter
 {
+    [Header("Reference")]
     public LayerMask groundLayer;
     public Camera mainCamera;
-    public GameObject[] bulletPrefab = new GameObject[5];// 0 for fire, 1 for water, 2 for elec, 3 for grass 
+    [Header("Bullets")]
+    public GameObject[] bulletPrefab = new GameObject[5];// 0 for normal, 1 for fire, 2 for water, 3 for elec, 4 for grass 
+    [Header("Movement")]
     public float speed = 5f;
     private Vector3 moveInput;
+    [Header("Dash")]
+    public float dashPower = 25f;
+    public float dashDuration = 0.15f;
+    public float dashCoolDown = 0.8f;
+    private bool isDashing = false;
+    private float dashTimer = 0f;
+    private float coolDownTimer = 0f;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -20,21 +32,49 @@ public class PlayerControl : Shooter
     void Update()
     {
         RotateToMouse();
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
-        moveInput = new Vector3(x, 0, z).normalized;
+        PlayerMovementAndDash();
+        HandleShooting();
+        mainCamera.transform.position = new Vector3(transform.position.x, mainCamera.transform.position.y, transform.position.z); // Camera follows player (top-down)
+    }
 
-        mainCamera.transform.position = new Vector3(transform.position.x, mainCamera.transform.position.y, transform.position.z); 
-        
+    void PlayerMovementAndDash()
+    {
+        if (coolDownTimer > 0f) // Calculating CD
+        {
+            coolDownTimer -= Time.deltaTime;
+        }
+        if (Input.GetKeyDown(KeyCode.LeftShift) && coolDownTimer <= 0)
+        {
+            isDashing = true;
+            dashTimer = dashDuration; 
+            coolDownTimer = dashCoolDown; // Reset the CD Timer
+        }
+        if (isDashing)
+        {
+            Vector3 dashMovement = transform.forward * dashPower * Time.deltaTime;
+            transform.Translate(dashMovement, Space.World);
 
-        // Move in world space (XZ plane)
-        Vector3 move = moveInput * speed * Time.deltaTime;
-        transform.Translate(move, Space.World);
+            dashTimer -= Time.deltaTime; // Duration of dashing
+            if (dashTimer <= 0f)
+            {
+                isDashing = false;
+            }
+        } else
+        {
+            // Move in world space (XZ plane)
+            float x = Input.GetAxis("Horizontal");
+            float z = Input.GetAxis("Vertical");
+            moveInput = new Vector3(x, 0, z).normalized;
+            Vector3 move = moveInput * speed * Time.deltaTime;
+            transform.Translate(move, Space.World);
+        }
+    }
+    void HandleShooting()
+    {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             shoot(shootPattern);
         }
-
     }
 
     void RotateToMouse()
