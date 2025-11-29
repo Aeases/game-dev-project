@@ -21,6 +21,7 @@ public class PlayerControl : Shooter
     private bool isDashing = false;
     private float dashTimer = 0f;
     private float coolDownTimer = 0f;
+    private Vector3 dashDirection; 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -45,13 +46,21 @@ public class PlayerControl : Shooter
         }
         if (Input.GetKeyDown(KeyCode.LeftShift) && coolDownTimer <= 0)
         {
+            Vector3 currentMovementInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
+            if(currentMovementInput.x != 0 || currentMovementInput.z != 0) // Check is player is moving or not
+            {
+                dashDirection = currentMovementInput;  // If Y then dash to moving direction
+            } else
+            {
+                dashDirection = transform.forward; // If N then dash to where player is facing at 
+            }
             isDashing = true;
             dashTimer = dashDuration; 
             coolDownTimer = dashCoolDown; // Reset the CD Timer
         }
         if (isDashing)
         {
-            Vector3 dashMovement = transform.forward * dashPower * Time.deltaTime;
+            Vector3 dashMovement = dashDirection * dashPower * Time.deltaTime;
             transform.Translate(dashMovement, Space.World);
 
             dashTimer -= Time.deltaTime; // Duration of dashing

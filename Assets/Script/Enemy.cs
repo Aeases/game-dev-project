@@ -49,6 +49,14 @@ public class Enemy : Shooter
     // Update is called once per frame
     void Update()
     {
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+            if (waveController != null)
+            {
+                waveController.EnemyKilled(); // Decrements remainingEnemies by one
+            }
+        }
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
@@ -56,13 +64,7 @@ public class Enemy : Shooter
         if (playerInSightRange && !playerInAttackRange) Chase();
         if (playerInSightRange && playerInAttackRange) Attack();
 
-        if(health <= 0)
-        {
-            Destroy(gameObject);
-            if (waveController != null) {
-                waveController.EnemyKilled(); // Decrements remainingEnemies by one
-            }
-        }
+        
     }
 
     private void Rushing()
