@@ -21,6 +21,7 @@ public class PlayerControl : Shooter
     private bool isDashing = false;
     private float dashTimer = 0f;
     private float coolDownTimer = 0f;
+    public int playerSouls = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
