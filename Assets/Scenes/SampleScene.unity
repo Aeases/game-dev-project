@@ -174,7 +174,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -262,14 +262,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   currentBulletPrefab: {fileID: 5368792039324490253, guid: 6c32e4e8e268cb64bb2c5e894ff578b2, type: 3}
+  electricCooldown: 0.5
   damageTextPrefab: {fileID: 16971662}
   dmgText: {fileID: 16971664}
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   whatIsPlayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   towerPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 0
   attackDelay: 0
@@ -282,6 +283,7 @@ MonoBehaviour:
   - Water
   - Grass
   - 'Electricity '
+  currentElement: Fire
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -1162,6 +1164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   currentBulletPrefab: {fileID: 5368792039324490253, guid: 6c32e4e8e268cb64bb2c5e894ff578b2, type: 3}
+  electricCooldown: 0.5
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -1173,7 +1176,7 @@ MonoBehaviour:
   - {fileID: 5368792039324490253, guid: 2bc68b14609a6734299280f2263ed18f, type: 3}
   - {fileID: 5368792039324490253, guid: 8ea10e5617d9c824cb896742f20b511f, type: 3}
   speed: 5
-  dashPower: 25
+  dashPower: 36.2
   dashDuration: 0.15
   dashCoolDown: 0.8
 --- !u!65 &1253581840
