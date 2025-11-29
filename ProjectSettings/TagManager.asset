@@ -15,6 +15,7 @@ TagManager:
   - GrassBullet
   - GrassPlat
   - Grass Bullet
+  - Shop
   layers:
   - Default
   - TransparentFX

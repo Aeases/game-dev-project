@@ -47,6 +47,10 @@ public class PlayerControl : Shooter
         if (Input.GetKeyDown(KeyCode.LeftShift) && coolDownTimer <= 0)
         {
             Vector3 currentMovementInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
+
+
+
+
             if(currentMovementInput.x != 0 || currentMovementInput.z != 0) // Check is player is moving or not
             {
                 dashDirection = currentMovementInput;  // If Y then dash to moving direction
