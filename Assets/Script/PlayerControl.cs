@@ -21,7 +21,9 @@ public class PlayerControl : Shooter
     private bool isDashing = false;
     private float dashTimer = 0f;
     private float coolDownTimer = 0f;
-    private Vector3 dashDirection; 
+    private Vector3 dashDirection;
+    [Header("Shop")]
+    public GameObject pressE;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -111,6 +113,9 @@ public class PlayerControl : Shooter
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("Shop")){
+            pressE.gameObject.SetActive(true);
+        }
         // bulletPrefab 0 for normal; 1 for fire; 2 for water
         if (other.CompareTag("FirePlat"))
         {
@@ -136,5 +141,9 @@ public class PlayerControl : Shooter
             shootPattern = 3;
             Debug.Log("Changed to Grass");
         }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        pressE.gameObject.SetActive(false);
     }
 }
