@@ -5,37 +5,45 @@ using System.Collections.Generic;
 using TMPro;
 public class Shop : MonoBehaviour
 {
-    public int coin = 1000;
-    public int health = 100;
-    public float healthRegen = 0f;
-    public int attack = 10;
-    public int speed = 5;
+    private PlayerControl p;
 
     public TextMeshProUGUI coinText;
     public TextMeshProUGUI healthText;
     public TextMeshProUGUI healthRegenText;
     public TextMeshProUGUI attackText;
     public TextMeshProUGUI speedText;
+
+    private void Awake()
+    {
+        p = PlayerControl.Instance;
+        if (p == null)
+        {
+            Debug.LogError("PlayerControl.Instance is missing");
+        }
+    }
     void Start()
     {
-        coin = PlayerPrefs.GetInt("Coin", 1000);
-        health = PlayerPrefs.GetInt("Health", 100);
-        healthRegen = PlayerPrefs.GetFloat("HealthRegenText", 0f);
-        attack = PlayerPrefs.GetInt("Attack", 10);
-        speed = PlayerPrefs.GetInt("Speed", 5);
+        p.coin = PlayerPrefs.GetInt("Coin", 1000);
+        p.health = PlayerPrefs.GetFloat("Health", 100f);
+        p.healthRegen = PlayerPrefs.GetFloat("HealthRegen", 0);
+        p.attack = PlayerPrefs.GetInt("Attack", 10);
+        p.speed = PlayerPrefs.GetInt("Speed", 5);
 
         UpdateUI();
     }
 
+    
+
     public void buyHealth()
     {
-        if (coin >= 100)
+        if (p.coin >= 100)
         {
-            coin -= 100;
-            coinText.text = coin.ToString();
+            p.coin -= 100;
+            coinText.text = p.coin.ToString();
 
-            health += 10;
-            healthText.text = health.ToString();
+            p.health += 10;
+            healthText.text = p.health.ToString();
+            SaveAll();
             UpdateUI();
         }
         else
@@ -45,13 +53,14 @@ public class Shop : MonoBehaviour
     }
     public void buyHealthRegen()
     {
-        if (coin >= 100)
+        if (p.coin >= 100)
         {
-            coin -= 100;
-            coinText.text = coin.ToString();
+            p.coin -= 100;
+            coinText.text = p.coin.ToString();
 
-            healthRegen += 0.2f;
-            healthText.text = healthRegen.ToString();
+            p.healthRegen += 0.2f;
+            healthText.text = p.healthRegen.ToString();
+            SaveAll();
             UpdateUI();
         }
         else
@@ -61,13 +70,14 @@ public class Shop : MonoBehaviour
     }
     public void buyAttack()
     {
-        if (coin >= 100)
+        if (p.coin >= 100)
         {
-            coin -= 100;
-            coinText.text = coin.ToString();
+            p.coin -= 100;
+            coinText.text = p.coin.ToString();
 
-            attack += 2;
-            attackText.text = attack.ToString();
+            p.attack += 2;
+            attackText.text = p.attack.ToString();
+            SaveAll();
             UpdateUI();
         }
         else
@@ -77,13 +87,14 @@ public class Shop : MonoBehaviour
     }
     public void buySpeed()
     {
-        if (coin >= 100)
+        if (p.coin >= 100)
         {
-            coin -= 100;
-            coinText.text = coin.ToString();
+            p.coin -= 100;
+            coinText.text = p.coin.ToString();
 
-            speed += 3;
-            speedText.text = speed.ToString();
+            p.speed += 3;
+            speedText.text = p.speed.ToString();
+            SaveAll();
             UpdateUI();
         }
         else
@@ -102,20 +113,31 @@ public class Shop : MonoBehaviour
     public void ResetAllData()  //for testing 
     {
         PlayerPrefs.DeleteAll(); 
-        coin = 1000;
-        health = 100;
-        healthRegen = 0f;
-        attack = 10;
-        speed = 5;
+        p.coin = 1000;
+        p.health = 100f;
+        p.healthRegen = 0f;
+        p.attack = 10;
+        p.speed = 5;
+        SaveAll();
         UpdateUI();
     }
 
     public void UpdateUI()
     {
-        coinText.text = coin.ToString();
-        healthText.text = health.ToString();
-        healthRegenText.text = healthRegen.ToString();
-        attackText.text = attack.ToString();
-        speedText.text = speed.ToString();
+        coinText.text = p.coin.ToString();
+        healthText.text = p.health.ToString();
+        healthRegenText.text = p.healthRegen.ToString();
+        attackText.text = p.attack.ToString();
+        speedText.text = p.speed.ToString();
+    }
+    
+    public void SaveAll()
+    {
+        PlayerPrefs.SetInt("Coin", p.coin);
+        PlayerPrefs.SetFloat("Health", p.health);
+        PlayerPrefs.SetFloat("HealthRegen", p.healthRegen);
+        PlayerPrefs.SetInt("Attack", p.attack);
+        PlayerPrefs.SetInt("Speed", p.speed);
+        PlayerPrefs.Save();
     }
 }

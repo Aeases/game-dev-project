@@ -12,7 +12,6 @@ public class PlayerControl : Shooter
     [Header("Bullets")]
     public GameObject[] bulletPrefab = new GameObject[5];// 0 for normal, 1 for fire, 2 for water, 3 for elec, 4 for grass 
     [Header("Movement")]
-    public float speed = 5f;
     private Vector3 moveInput;
     [Header("Dash")]
     public float dashPower = 25f;
@@ -24,7 +23,16 @@ public class PlayerControl : Shooter
     private Vector3 dashDirection;
     [Header("Shop")]
     public GameObject pressE;
-
+    [Header("PlayerStats")]
+    public float healthRegen = 0f;
+    public int attack = 10;
+    public int speed = 5;
+    public static PlayerControl Instance;
+    public int coin = 1000;
+    private void Awake()
+    {
+        Instance = this;  
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
