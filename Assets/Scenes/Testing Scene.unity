@@ -153,7 +153,7 @@ GameObject:
   - component: {fileID: 280822552}
   - component: {fileID: 280822556}
   - component: {fileID: 280822557}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -889,6 +889,67 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &862620698
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -1474244038802064428, guid: 2a9c1434425d0a147b153a56b316726d, type: 3}
+      propertyPath: detectionRange
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3192797053631170640, guid: 2a9c1434425d0a147b153a56b316726d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -9.479288
+      objectReference: {fileID: 0}
+    - target: {fileID: 3192797053631170640, guid: 2a9c1434425d0a147b153a56b316726d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3192797053631170640, guid: 2a9c1434425d0a147b153a56b316726d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.302171
+      objectReference: {fileID: 0}
+    - target: {fileID: 3192797053631170640, guid: 2a9c1434425d0a147b153a56b316726d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3192797053631170640, guid: 2a9c1434425d0a147b153a56b316726d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3192797053631170640, guid: 2a9c1434425d0a147b153a56b316726d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3192797053631170640, guid: 2a9c1434425d0a147b153a56b316726d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3192797053631170640, guid: 2a9c1434425d0a147b153a56b316726d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3192797053631170640, guid: 2a9c1434425d0a147b153a56b316726d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3192797053631170640, guid: 2a9c1434425d0a147b153a56b316726d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3297520852687257783, guid: 2a9c1434425d0a147b153a56b316726d, type: 3}
+      propertyPath: m_Name
+      value: Tower
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2a9c1434425d0a147b153a56b316726d, type: 3}
 --- !u!1 &995373349
 GameObject:
   m_ObjectHideFlags: 0
@@ -1155,6 +1216,7 @@ MonoBehaviour:
   dashPower: 25
   dashDuration: 0.15
   dashCoolDown: 0.8
+  playerSouls: 0
 --- !u!65 &1253581840
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1718,3 +1780,4 @@ SceneRoots:
   - {fileID: 1092991366}
   - {fileID: 1341665256}
   - {fileID: 1413505028}
+  - {fileID: 862620698}

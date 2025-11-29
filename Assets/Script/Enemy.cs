@@ -78,7 +78,9 @@ public class Enemy : Shooter
 
     private void Attack()
     {
-        transform.LookAt(_player);
+        Vector3 targetPos = _player.position;
+        targetPos.y = transform.position.y; // lock y-axis 
+        transform.LookAt(targetPos);
 
         if (!alreadyAttacked)
         {
