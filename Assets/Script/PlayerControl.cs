@@ -4,6 +4,7 @@ using UnityEngine.InputSystem.XR;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using Unity.VisualScripting;
+using System.Collections;
 
 public class PlayerControl : Shooter
 {
@@ -27,8 +28,11 @@ public class PlayerControl : Shooter
     public GameObject eat;
     [Header("PlayerStats")]
     public float healthRegen = 0f;
+    public float healthRegenInterval = 2f; // Regen every 2s
     public static PlayerControl Instance;
     public int coin = 1000;
+    public float maxHealth;
+    private Coroutine healthRegenOverTime;
     private void Awake()
     {
         Instance = this;  
@@ -36,9 +40,11 @@ public class PlayerControl : Shooter
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        health = 100f;
+        maxHealth = 100f;
+        health = maxHealth;
         speed = 5;
         attack = 10;
+        healthRegenOverTime = StartCoroutine(healthRegeneration());
     }
 
     // Update is called once per frame
@@ -145,6 +151,7 @@ public class PlayerControl : Shooter
                 Destroy(other.gameObject);
                 eat.gameObject.SetActive(false);
                 changeFire();
+                
             }
         }
         if (other.CompareTag("WaterSoul"))
@@ -155,6 +162,7 @@ public class PlayerControl : Shooter
                 Destroy(other.gameObject);
                 eat.gameObject.SetActive(false);
                 changeWater();
+                
             }
         }
         if (other.CompareTag("ElecSoul"))
@@ -165,6 +173,7 @@ public class PlayerControl : Shooter
                 Destroy(other.gameObject);
                 eat.gameObject.SetActive(false);
                 changeElectricty();
+               
             }
         }
         if (other.CompareTag("GrassSoul"))
@@ -175,6 +184,7 @@ public class PlayerControl : Shooter
                 Destroy(other.gameObject);
                 eat.gameObject.SetActive(false);
                 changeGrass();
+          
             }
         }
     }
@@ -184,31 +194,50 @@ public class PlayerControl : Shooter
         eat.gameObject.SetActive(false);
     }
 
-    public void changeFire()
+    private void changeFire()
     {
         currentBulletPrefab = bulletPrefab[1];
         shootPattern = 1;
         Debug.Log("Changed to Fire");
     }
 
-    public void changeWater()
+    private void changeWater()
     {
         currentBulletPrefab = bulletPrefab[2];
         shootPattern = 2;
         Debug.Log("Changed to Water");
     }
 
-    public void changeGrass()
+    private void changeGrass()
     {
         currentBulletPrefab = bulletPrefab[4];
         shootPattern = 3;
         Debug.Log("Changed to Grass");
     }
 
-    public void changeElectricty()
+    private void changeElectricty()
     {
         currentBulletPrefab = bulletPrefab[3];
         shootPattern = 4;
         Debug.Log("Changed to Electricity");
     }
+    public void addCoin()
+    {
+        coin += 10;
+    }
+
+    private IEnumerator healthRegeneration()
+    {
+        WaitForSeconds wait = new WaitForSeconds(healthRegenInterval);
+        while (true)
+        {
+            if (health <= maxHealth)
+            {
+                health += healthRegen;
+                health = Mathf.Clamp(health, 0f, maxHealth);
+            }
+            yield return wait;
+        }
+    }
+
 }

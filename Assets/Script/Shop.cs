@@ -25,6 +25,7 @@ public class Shop : MonoBehaviour
     {
         p.coin = PlayerPrefs.GetInt("Coin", 1000);
         p.health = PlayerPrefs.GetFloat("Health", 100f);
+        p.maxHealth = PlayerPrefs.GetFloat("maxHealth", 100f);
         p.healthRegen = PlayerPrefs.GetFloat("HealthRegen", 0);
         p.attack = PlayerPrefs.GetInt("Attack", 10);
         p.speed = PlayerPrefs.GetInt("Speed", 5);
@@ -41,6 +42,7 @@ public class Shop : MonoBehaviour
             p.coin -= 100;
             coinText.text = p.coin.ToString();
 
+            p.maxHealth += 10;
             p.health += 10;
             healthText.text = p.health.ToString();
             SaveAll();
@@ -115,6 +117,7 @@ public class Shop : MonoBehaviour
         PlayerPrefs.DeleteAll(); 
         p.coin = 1000;
         p.health = 100f;
+        p.maxHealth = 100f;
         p.healthRegen = 0f;
         p.attack = 10;
         p.speed = 5;
@@ -125,7 +128,7 @@ public class Shop : MonoBehaviour
     public void UpdateUI()
     {
         coinText.text = p.coin.ToString();
-        healthText.text = p.health.ToString();
+        healthText.text = p.maxHealth.ToString(); 
         healthRegenText.text = p.healthRegen.ToString();
         attackText.text = p.attack.ToString();
         speedText.text = p.speed.ToString();
@@ -135,6 +138,7 @@ public class Shop : MonoBehaviour
     {
         PlayerPrefs.SetInt("Coin", p.coin);
         PlayerPrefs.SetFloat("Health", p.health);
+        PlayerPrefs.SetFloat("maxHealth", p.maxHealth);
         PlayerPrefs.SetFloat("HealthRegen", p.healthRegen);
         PlayerPrefs.SetInt("Attack", p.attack);
         PlayerPrefs.SetInt("Speed", p.speed);

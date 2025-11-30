@@ -171,22 +171,23 @@ public class Enemy : Shooter
         private void die() //drop soul
         {
             Destroy(gameObject);
-        switch (currentElement)
-        {
-            case "Fire":
-                Instantiate(soulType[0], (transform.position - new Vector3(0, 1, 0)), transform.rotation);
-                break;
-            case "Water":
-                Instantiate(soulType[1], (transform.position - new Vector3(0, 1, 0)), transform.rotation);
-                break;
-            case "Grass":
-                Instantiate(soulType[2], (transform.position - new Vector3(0, 1, 0)), transform.rotation);
-                break;
-            case "Electricity":
-                Instantiate(soulType[3], (transform.position - new Vector3(0, 1, 0)), transform.rotation);
-                break;
-            default:
-                break;
+            PlayerControl.Instance.addCoin();
+            switch (currentElement)
+            {
+                case "Fire":
+                    Instantiate(soulType[0], (transform.position - new Vector3(0, 1, 0)), transform.rotation);
+                    break;
+                case "Water":
+                    Instantiate(soulType[1], (transform.position - new Vector3(0, 1, 0)), transform.rotation);
+                    break;
+                case "Grass":
+                    Instantiate(soulType[2], (transform.position - new Vector3(0, 1, 0)), transform.rotation);
+                    break;
+                case "Electricity":
+                    Instantiate(soulType[3], (transform.position - new Vector3(0, 1, 0)), transform.rotation);
+                    break;
+                default:
+                    break;
+            }
         }
-    }
 }
