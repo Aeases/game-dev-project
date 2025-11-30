@@ -2,13 +2,16 @@
 
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEditor.UI;
 using UnityEngine;
 
 public class Shooter : MonoBehaviour
 {
 
-    public float health = 100f;
+    public float health;
+    public int speed;
+    public int attack;
     public GameObject currentBulletPrefab;
     protected int shootPattern = 0;
     public float electricCooldown = 0.5f;   // Cooldown (avoid spamming)       

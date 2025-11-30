@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using NUnit.Framework;
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
@@ -32,7 +33,7 @@ public class Enemy : Shooter
     public string currentElement;
 
     private WaveController waveController = null;
-
+    public GameObject[] soulType = new GameObject[4];
     private void Awake()
     {
         _player = GameObject.Find("Player").transform;
@@ -43,6 +44,9 @@ public class Enemy : Shooter
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        health = 100f;
+        attack = 5;
+        speed = 4;
         waveController = GetComponentInParent<WaveController>();
     }
 
@@ -51,7 +55,7 @@ public class Enemy : Shooter
     {
         if (health <= 0)
         {
-            Destroy(gameObject);
+            die();
             if (waveController != null)
             {
                 waveController.EnemyKilled(); // Decrements remainingEnemies by one
@@ -162,4 +166,25 @@ public class Enemy : Shooter
         }
     }
 
+        private void die() //drop soul
+        {
+            Destroy(gameObject);
+        switch (currentElement)
+        {
+            case "Fire":
+                Instantiate(soulType[0], (transform.position - new Vector3(0, 1, 0)), transform.rotation);
+                break;
+            case "Water":
+                Instantiate(soulType[1], (transform.position - new Vector3(0, 1, 0)), transform.rotation);
+                break;
+            case "Grass":
+                Instantiate(soulType[2], (transform.position - new Vector3(0, 1, 0)), transform.rotation);
+                break;
+            case "Electricity":
+                Instantiate(soulType[3], (transform.position - new Vector3(0, 1, 0)), transform.rotation);
+                break;
+            default:
+                break;
+        }
+    }
 }

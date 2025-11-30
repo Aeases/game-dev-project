@@ -16,6 +16,10 @@ TagManager:
   - GrassPlat
   - Grass Bullet
   - Shop
+  - FireSoul
+  - WaterSoul
+  - GrassSoul
+  - ElecSoul
   layers:
   - Default
   - TransparentFX

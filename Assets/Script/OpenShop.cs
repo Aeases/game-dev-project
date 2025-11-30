@@ -1,8 +1,10 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class OpenShop : MonoBehaviour
 {
-    public GameObject shopUI;
+    [SerializeField] private GameObject shopUI;
+    public static bool isShopOpen { get; private set; } = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -12,9 +14,21 @@ public class OpenShop : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            shopUI.gameObject.SetActive(true);
+        if (Input.GetKeyDown(KeyCode.E) && PlayerControl.Instance.shop.activeInHierarchy) {
+            openShop();
         }   
+    }
+    void openShop()
+    {
+        shopUI.gameObject.SetActive(true);
+        Time.timeScale = 0f;
+        isShopOpen = true;
+    }
+    
+    public void closeShop()
+    {
+        shopUI.gameObject.SetActive(false);
+        Time.timeScale = 1f;
+        isShopOpen = false;
     }
 }

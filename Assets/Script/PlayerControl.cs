@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem.XR;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using Unity.VisualScripting;
 
 public class PlayerControl : Shooter
 {
@@ -21,12 +22,11 @@ public class PlayerControl : Shooter
     private float dashTimer = 0f;
     private float coolDownTimer = 0f;
     private Vector3 dashDirection;
-    [Header("Shop")]
-    public GameObject pressE;
+    [Header("InteractionMsg")]
+    public GameObject shop;
+    public GameObject eat;
     [Header("PlayerStats")]
     public float healthRegen = 0f;
-    public int attack = 10;
-    public int speed = 5;
     public static PlayerControl Instance;
     public int coin = 1000;
     private void Awake()
@@ -36,12 +36,18 @@ public class PlayerControl : Shooter
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        health = 100f;
+        speed = 5;
+        attack = 10;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (OpenShop.isShopOpen)
+        {
+            return;
+        }
         RotateToMouse();
         PlayerMovementAndDash();
         HandleShooting();
@@ -121,37 +127,88 @@ public class PlayerControl : Shooter
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Shop")){
-            pressE.gameObject.SetActive(true);
-        }
-        // bulletPrefab 0 for normal; 1 for fire; 2 for water
-        if (other.CompareTag("FirePlat"))
+        if (other.CompareTag("Shop"))
         {
-            currentBulletPrefab = bulletPrefab[1];
-            shootPattern = 1;
-            Debug.Log("Changed to Fire");
+            shop.gameObject.SetActive(true);
         }
-        else if (other.CompareTag("WaterPlat"))
+    }
+
+    private void OnTriggerStay(Collider other) // Eat to switch 
+    {
+        // bulletPrefab 0 for normal; 1 for fire; 2 for water, 3 for electricity, 4 for grass
+        // Below for eating to switch
+        if (other.CompareTag("FireSoul"))
         {
-            currentBulletPrefab = bulletPrefab[2];
-            shootPattern = 2;
-            Debug.Log("Changed to Water");
+            eat.gameObject.SetActive(true);
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                Destroy(other.gameObject);
+                eat.gameObject.SetActive(false);
+                changeFire();
+            }
         }
-        else if (other.CompareTag("ElectricityPlat"))
+        if (other.CompareTag("WaterSoul"))
         {
-            currentBulletPrefab = bulletPrefab[3];
-            shootPattern = 4;
-            Debug.Log("Changed to Elec");
+            eat.gameObject.SetActive(true);
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                Destroy(other.gameObject);
+                eat.gameObject.SetActive(false);
+                changeWater();
+            }
         }
-        else if (other.CompareTag("GrassPlat"))
+        if (other.CompareTag("ElecSoul"))
         {
-            currentBulletPrefab = bulletPrefab[4];
-            shootPattern = 3;
-            Debug.Log("Changed to Grass");
+            eat.gameObject.SetActive(true);
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                Destroy(other.gameObject);
+                eat.gameObject.SetActive(false);
+                changeElectricty();
+            }
+        }
+        if (other.CompareTag("GrassSoul"))
+        {
+            eat.gameObject.SetActive(true);
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                Destroy(other.gameObject);
+                eat.gameObject.SetActive(false);
+                changeGrass();
+            }
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        pressE.gameObject.SetActive(false);
+        shop.gameObject.SetActive(false);
+        eat.gameObject.SetActive(false);
+    }
+
+    public void changeFire()
+    {
+        currentBulletPrefab = bulletPrefab[1];
+        shootPattern = 1;
+        Debug.Log("Changed to Fire");
+    }
+
+    public void changeWater()
+    {
+        currentBulletPrefab = bulletPrefab[2];
+        shootPattern = 2;
+        Debug.Log("Changed to Water");
+    }
+
+    public void changeGrass()
+    {
+        currentBulletPrefab = bulletPrefab[4];
+        shootPattern = 3;
+        Debug.Log("Changed to Grass");
+    }
+
+    public void changeElectricty()
+    {
+        currentBulletPrefab = bulletPrefab[3];
+        shootPattern = 4;
+        Debug.Log("Changed to Electricity");
     }
 }
