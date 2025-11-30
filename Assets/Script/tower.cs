@@ -1,4 +1,6 @@
 using UnityEngine;
+using TMPro;
+using System.Collections;
 
 public class tower : Shooter
 {
@@ -23,81 +25,122 @@ public class tower : Shooter
 
     private bool playerInRange = false; // Track if player is near tower
     private PlayerControl nearbyPlayer = null; // Reference to nearby player
-    public int towerCost = 100; // Cost to buy tower
-    public int upgradeCost = 80; // Cost to upgrade tower per level
+    public int towerCost; // Cost to buy tower
+    public int upgradeCost; // Cost to upgrade tower per level
+
+    public GameObject buy;
+    public TextMeshProUGUI bText;
+
+    public GameObject upgrade;
+    public TextMeshProUGUI gText;
+
+    public GameObject insufficient;
+    public TextMeshProUGUI iText;
+
+    public GameObject maximum;
+    public TextMeshProUGUI mText;
+    private bool showingInsufficient = false;
 
     void Start()
     {
         isBuilt = false; // Tower starts unbuilt/empty
         enabled = true; // Enable to check for player interaction even when not built
+        HideAllPopups();
     }
 
     void Update()
     {
-        CheckPlayerInRange(); // Check if player is within interaction range
+        CheckPlayerInRange();
 
-        /*if (!isBuilt) // If not built, check for purchase
+        // ===== NOT BUILT =====
+        if (!isBuilt)
         {
-            if (playerInRange && Input.GetKeyDown(KeyCode.E))
+            if (playerInRange && !showingInsufficient)
             {
-                if (nearbyPlayer != null)
+                HideAllPopups();
+                ShowBuyPopup();
+
+                if (Input.GetKeyDown(KeyCode.E) && nearbyPlayer != null)
                 {
-                    int playerSouls = nearbyPlayer.playerSouls;
-                    if (playerSouls >= towerCost)
+                    if (nearbyPlayer.coin >= towerCost)
                     {
-                        if (BuyTower(towerCost))
-                        {
-                            nearbyPlayer.playerSouls -= towerCost;
-                        }
+                        nearbyPlayer.coin -= towerCost;
+                        isBuilt = true;
+                        HideAllPopups();
+                    }
+                    else
+                    {
+                        if (!showingInsufficient)
+                            StartCoroutine(ShowInsufficientForSeconds(1f));
                     }
                 }
             }
+            else if (!playerInRange && !showingInsufficient)
+            {
+                HideAllPopups();
+            }
+
             return;
-        }*/
-        if (!isBuilt) // If not built, check for purchase
-        {
-            if (playerInRange && Input.GetKeyDown(KeyCode.E)) //without souls yet
-            {
-                BuyTower(towerCost);
-            }
         }
 
-        // Check for upgrade when tower is built
-        /*if (isBuilt && playerInRange && Input.GetKeyDown(KeyCode.E))
+        // ===== BUILT =====
+        if (playerInRange && !showingInsufficient)
         {
-            if (nearbyPlayer != null)
+            if (currentLevel >= 3)
             {
-                int playerSouls = nearbyPlayer.playerSouls;
-                if (playerSouls >= upgradeCost && currentLevel < 3)
+                HideAllPopups();
+                ShowMaximumPopup();
+            }
+            else
+            {
+                HideAllPopups();
+                ShowUpgradePopup();
+            }
+
+            if (Input.GetKeyDown(KeyCode.E) && nearbyPlayer != null)
+            {
+                if (currentLevel >= 3)
                 {
-                    if (UpgradeLevel())
-                    {
-                        nearbyPlayer.playerSouls -= upgradeCost;
-                    }
+                    HideAllPopups();
+                    ShowMaximumPopup();
+                    Invoke(nameof(HideMaximumPopup), 2f);
+                    return;
+                }
+
+                if (nearbyPlayer.coin >= upgradeCost)
+                {
+                    nearbyPlayer.coin -= upgradeCost;
+                    currentLevel++;
+                    HideAllPopups();
+                }
+                else
+                {
+                    if (!showingInsufficient)
+                        StartCoroutine(ShowInsufficientForSeconds(1f));
                 }
             }
-        }*/
-        if (isBuilt && playerInRange && Input.GetKeyDown(KeyCode.E)) //without souls yet
+        }
+        else if (!playerInRange && !showingInsufficient)
         {
-            UpgradeLevel();
+            HideAllPopups();
         }
 
-        //attack logic
+        // ===== ATTACK LOGIC =====
         enemyInDetectionRange = Physics.CheckSphere(transform.position, detectionRange, whatIsEnemy);
         enemyInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsEnemy);
 
         if (isBuilt && (enemyInDetectionRange || enemyInAttackRange))
         {
             FindNearestEnemy();
-            
+
             if (currentTarget != null)
             {
                 RotateTowardTarget();
-                if (enemyInAttackRange) Attack();
+                if (enemyInAttackRange)
+                    Attack();
             }
         }
     }
-
     private void FindNearestEnemy()
     {
         Collider[] enemies = Physics.OverlapSphere(transform.position, detectionRange, whatIsEnemy);
@@ -215,5 +258,64 @@ public class tower : Shooter
         Gizmos.DrawWireSphere(transform.position, detectionRange); // Draw detection range
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange); // Draw attack range
+    }
+    private void ShowBuyPopup()
+    {
+        buy.SetActive(true);
+        bText.text = "Press E to Buy Tower (" + towerCost + " Souls)";
+    }
+
+    private void HideBuyPopup()
+    {
+        buy.SetActive(false);
+    }
+
+    private void ShowUpgradePopup()
+    {
+        upgrade.SetActive(true);
+        gText.text = "Press E to Upgrade Tower (" + upgradeCost + " Souls)";
+    }
+
+    private void HideUpgradePopup()
+    {
+        upgrade.SetActive(false);
+    }
+
+    private void ShowInsufficientPopup()
+    {
+        insufficient.SetActive(true);
+        iText.text = "Not enough souls!";
+    }
+
+    private void HideInsufficientPopup()
+    {
+        insufficient.SetActive(false);
+    }
+
+    private void ShowMaximumPopup()
+    {
+        maximum.SetActive(true);
+        mText.text = "Tower is at MAX level!";
+    }
+
+    private void HideMaximumPopup()
+    {
+        maximum.SetActive(false);
+    }
+    private void HideAllPopups()
+    {
+        HideBuyPopup();
+        HideUpgradePopup();
+        HideInsufficientPopup();
+        HideMaximumPopup();
+    }
+    private IEnumerator ShowInsufficientForSeconds(float sec)
+    {
+        showingInsufficient = true;
+        HideAllPopups();
+        ShowInsufficientPopup();
+        yield return new WaitForSeconds(sec);
+        HideInsufficientPopup();
+        showingInsufficient = false;
     }
 }
