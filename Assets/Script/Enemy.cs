@@ -117,51 +117,53 @@ public class Enemy : Shooter
             if (bulletCol.isFriendly == true)
             {
                 Destroy(other.gameObject);
-                float damage = 10f;
+                float baseDamage = PlayerControl.Instance.attack;
+                float finalDamage = baseDamage;
                 switch (currentElement) // Elemental Reaction
                 {
                     case "Fire":
                         if (other.gameObject.CompareTag("WaterBullet"))
                         {
-                            damage = 15f;
+                            finalDamage = baseDamage * 1.3f;
                         }
                         if (other.gameObject.CompareTag("GrassBullet"))
                         {
-                            damage = 5f;
+                            finalDamage = baseDamage * 0.7f;
                         }
                         break;
                     case "Water":
                         if (other.gameObject.CompareTag("ElectricityBullet"))
                         {
-                            damage = 15f;
+                            finalDamage = baseDamage * 1.3f;
                         }
+                        ;
                         if (other.gameObject.CompareTag("FireBullet"))
                         {
-                            damage = 5f;
+                            finalDamage = baseDamage * 0.7f;
                         }
                         break;
                     case "Grass":
                         if (other.gameObject.CompareTag("FireBullet"))
                         {
-                            damage = 15f;
+                            finalDamage = baseDamage * 1.3f;
                         }
                         if (other.gameObject.CompareTag("ElectricityBullet"))
                         {
-                            damage = 5f;
+                            finalDamage = baseDamage * 0.7f;
                         }
                         break;
                     case "Electricity":
                         if (other.gameObject.CompareTag("GrassBullet"))
                         {
-                            damage = 15f;
+                            finalDamage = baseDamage * 1.3f;
                         }
                         if (other.gameObject.CompareTag("WaterBullet"))
                         {
-                            damage = 5f;
+                            finalDamage = baseDamage * 0.7f;
                         }
                         break;
                 }
-                health -= damage;
+                health -= finalDamage;
                 }
         }
     }
