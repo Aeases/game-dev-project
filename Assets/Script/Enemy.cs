@@ -19,7 +19,7 @@ public class Enemy : Shooter
     public LayerMask whatIsGround, whatIsPlayer;
     public Vector3 normalscale = Vector3.one;
     public Vector3 enlargedscale = Vector3.one * 5f;
-    public int enlargeframes = 30;
+    public int enlargeframes = 50;
     public float intervalseconds = 1f;
     private Vector3 targetScale;
     // Rushing
