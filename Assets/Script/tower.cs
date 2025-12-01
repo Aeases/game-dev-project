@@ -181,7 +181,7 @@ public class tower : Shooter
 
         if (!alreadyAttacked)
         {
-            shoot(0); // Use pattern 0 for normal bullets
+            shoot(elementType.Normal);
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), attackDelay);
         }
