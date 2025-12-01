@@ -33,6 +33,10 @@ public class PlayerControl : Shooter
     public static PlayerControl Instance;
     public int coin = 1000;
     private CharacterController characterController;
+    public float shrinkScale = 0.7f;
+    public float normalScale = 1f;
+    public float shrinkSpeed = 5f;
+    private Vector3 targetScale;
     private Coroutine healthRegenOverTime;
     [Header("HealthBar")]
     public HealthBar healthBar;
@@ -43,6 +47,7 @@ public class PlayerControl : Shooter
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected override void Start()
     {  
+        targetScale = Vector3.one * normalScale; // set initial size
         base.Start(); // This sets health to max health, and loads initial element bullet
         healthRegenOverTime = StartCoroutine(healthRegeneration());
         characterController = GetComponent<CharacterController>();
@@ -118,7 +123,13 @@ void PlayerMovement()
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             bossShoot();
+            targetScale = Vector3.one * shrinkScale;
         }
+        else
+        {
+            targetScale = Vector3.one * normalScale;
+        }
+        transform.localScale = Vector3.Lerp(transform.localScale, targetScale, Time.deltaTime * shrinkSpeed);
     }
 
     void RotateToMouse()
