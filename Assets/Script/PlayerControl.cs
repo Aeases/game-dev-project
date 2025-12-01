@@ -109,7 +109,7 @@ void PlayerMovement()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            shoot();
+            bossShoot();
         }
     }
 
