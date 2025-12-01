@@ -45,8 +45,7 @@ public class Shop : MonoBehaviour
             p.maxHealth += 10;
             p.health += 10;
             healthText.text = p.health.ToString();
-            SaveAll();
-            UpdateUI();
+
         }
         else
         {
@@ -62,8 +61,8 @@ public class Shop : MonoBehaviour
 
             p.healthRegen += 0.2f;
             healthText.text = p.healthRegen.ToString();
-            SaveAll();
-            UpdateUI();
+
+  
         }
         else
         {
@@ -79,8 +78,7 @@ public class Shop : MonoBehaviour
 
             p.attack += 2;
             attackText.text = p.attack.ToString();
-            SaveAll();
-            UpdateUI();
+
         }
         else
         {
@@ -96,8 +94,8 @@ public class Shop : MonoBehaviour
 
             p.speed += 3;
             speedText.text = p.speed.ToString();
-            SaveAll();
-            UpdateUI();
+
+
         }
         else
         {
@@ -110,6 +108,8 @@ public class Shop : MonoBehaviour
         {
             ResetAllData(); // for testing 
         }
+        SaveAll();
+        UpdateUI();
     }
 
     public void ResetAllData()  //for testing 
@@ -121,8 +121,6 @@ public class Shop : MonoBehaviour
         p.healthRegen = 0f;
         p.attack = 10;
         p.speed = 5;
-        SaveAll();
-        UpdateUI();
     }
 
     public void UpdateUI()
@@ -145,6 +143,7 @@ public class Shop : MonoBehaviour
         PlayerPrefs.Save();
     }
 
+    
    
 
 }

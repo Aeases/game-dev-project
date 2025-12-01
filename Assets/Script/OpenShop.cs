@@ -20,6 +20,7 @@ public class OpenShop : MonoBehaviour
     }
     void openShop()
     {
+        Destroy(gameObject);
         shopUI.gameObject.SetActive(true);
         Time.timeScale = 0f;
         isShopOpen = true;
