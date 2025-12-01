@@ -16,8 +16,8 @@ public class PlayerControl : Shooter
     [Header("Movement")]
     private Vector3 moveInput;
     [Header("Dash")]
-    public float dashPower = 25f;
-    public float dashDuration = 0.15f;
+    public float dashSpeed = 1f;
+    public float dashTime = 1f;
     public float dashCoolDown = 0.8f;
     private bool isDashing = false;
     private float dashTimer = 0f;
@@ -32,7 +32,7 @@ public class PlayerControl : Shooter
     public static PlayerControl Instance;
     public int coin = 1000;
     public float maxHealth = 100f;
-    private Rigidbody rb;
+    private CharacterController characterController;
     private Coroutine healthRegenOverTime;
     private void Awake()
     {
@@ -50,6 +50,7 @@ public class PlayerControl : Shooter
         speed = 5;
         attack = 10;
         healthRegenOverTime = StartCoroutine(healthRegeneration());
+        characterController = GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
@@ -61,9 +62,53 @@ public class PlayerControl : Shooter
         }
         RotateToMouse();
         HandleShooting();
+        PlayerMovement();
         mainCamera.transform.position = new Vector3(transform.position.x, mainCamera.transform.position.y, transform.position.z); // Camera follows player (top-down)
     }
 
+void PlayerMovement()
+{
+    Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+    characterController.Move(move * Time.deltaTime * speed);
+
+    // Update cooldown timer
+    if (coolDownTimer > 0)
+    {
+        coolDownTimer -= Time.deltaTime;
+    }
+
+    if (Input.GetKeyDown(KeyCode.LeftShift) && coolDownTimer <= 0)
+    {
+        coolDownTimer = dashCoolDown;
+        dashTimer = dashCoolDown; // Reset dash timer
+        StartCoroutine(Dash());
+    }
+
+    if (isDashing == true)
+    {
+        dashTimer -= Time.deltaTime; // Duration of dashing
+        if (dashTimer <= 0f)
+        {
+            isDashing = false;
+        }
+    }
+}
+    IEnumerator Dash()
+    {
+        {
+            float startTime = Time.time;
+            isDashing = true;
+            // Vector3 dashDirection = transform.forward; (if we want to change it so it faces the mouse to dash)
+            Vector3 currentMovementInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
+            while (Time.time < startTime + dashTime)
+            {
+                characterController.Move(currentMovementInput * dashSpeed * Time.deltaTime);
+                mainCamera.transform.position = new Vector3(transform.position.x, mainCamera.transform.position.y, transform.position.z);
+                yield return null;
+            }
+        }
+    }
+    
     
     void HandleShooting()
     {
