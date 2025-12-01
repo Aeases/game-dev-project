@@ -16,8 +16,8 @@ public class PlayerControl : Shooter
     [Header("Movement")]
     private Vector3 moveInput;
     [Header("Dash")]
-    public float dashPower = 25f;
-    public float dashDuration = 0.15f;
+    public float dashSpeed = 1f;
+    public float dashTime = 1f;
     public float dashCoolDown = 0.8f;
     private bool isDashing = false;
     private float dashTimer = 0f;
@@ -31,6 +31,8 @@ public class PlayerControl : Shooter
     public float healthRegenInterval = 2f; // Regen every 2s
     public static PlayerControl Instance;
     public int coin = 1000;
+    public float maxHealth = 100f;
+    private CharacterController characterController;
     private Coroutine healthRegenOverTime;
     [Header("HealthBar")]
     public HealthBar healthBar;
@@ -43,6 +45,7 @@ public class PlayerControl : Shooter
     {  
         base.Start(); // This sets health to max health, and loads initial element bullet
         healthRegenOverTime = StartCoroutine(healthRegeneration());
+        characterController = GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
@@ -53,57 +56,55 @@ public class PlayerControl : Shooter
             return;
         }
         RotateToMouse();
-        PlayerMovementAndDash();
         HandleShooting();
+        PlayerMovement();
         mainCamera.transform.position = new Vector3(transform.position.x, mainCamera.transform.position.y, transform.position.z); // Camera follows player (top-down)
-        healthBar.setMaxHealth(maxHealth);
-        healthBar.setHealth(currentHealth);
     }
 
-    void PlayerMovementAndDash()
+void PlayerMovement()
+{
+    Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+    characterController.Move(move * Time.deltaTime * speed);
+
+    // Update cooldown timer
+    if (coolDownTimer > 0)
     {
-        if (coolDownTimer > 0f) // Calculating CD
+        coolDownTimer -= Time.deltaTime;
+    }
+
+    if (Input.GetKeyDown(KeyCode.LeftShift) && coolDownTimer <= 0)
+    {
+        coolDownTimer = dashCoolDown;
+        dashTimer = dashCoolDown; // Reset dash timer
+        StartCoroutine(Dash());
+    }
+
+    if (isDashing == true)
+    {
+        dashTimer -= Time.deltaTime; // Duration of dashing
+        if (dashTimer <= 0f)
         {
-            coolDownTimer -= Time.deltaTime;
-        }
-        if (Input.GetKeyDown(KeyCode.LeftShift) && coolDownTimer <= 0)
-        {
-            Vector3 currentMovementInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
-
-
-
-
-            if(currentMovementInput.x != 0 || currentMovementInput.z != 0) // Check is player is moving or not
-            {
-                dashDirection = currentMovementInput;  // If Y then dash to moving direction
-            } else
-            {
-                dashDirection = transform.forward; // If N then dash to where player is facing at 
-            }
-            isDashing = true;
-            dashTimer = dashDuration; 
-            coolDownTimer = dashCoolDown; // Reset the CD Timer
-        }
-        if (isDashing)
-        {
-            Vector3 dashMovement = dashDirection * dashPower * Time.deltaTime;
-            transform.Translate(dashMovement, Space.World);
-
-            dashTimer -= Time.deltaTime; // Duration of dashing
-            if (dashTimer <= 0f)
-            {
-                isDashing = false;
-            }
-        } else
-        {
-            // Move in world space (XZ plane)
-            float x = Input.GetAxis("Horizontal");
-            float z = Input.GetAxis("Vertical");
-            moveInput = new Vector3(x, 0, z).normalized;
-            Vector3 move = moveInput * speed * Time.deltaTime;
-            transform.Translate(move, Space.World);
+            isDashing = false;
         }
     }
+}
+    IEnumerator Dash()
+    {
+        {
+            float startTime = Time.time;
+            isDashing = true;
+            // Vector3 dashDirection = transform.forward; (if we want to change it so it faces the mouse to dash)
+            Vector3 currentMovementInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
+            while (Time.time < startTime + dashTime)
+            {
+                characterController.Move(currentMovementInput * dashSpeed * Time.deltaTime);
+                mainCamera.transform.position = new Vector3(transform.position.x, mainCamera.transform.position.y, transform.position.z);
+                yield return null;
+            }
+        }
+    }
+    
+    
     void HandleShooting()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
