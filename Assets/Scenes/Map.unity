@@ -4397,7 +4397,7 @@ GameObject:
   - component: {fileID: 675869560}
   - component: {fileID: 675869559}
   - component: {fileID: 675869558}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5000,27 +5000,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waves:
-  - enemies:
-    - enemy: {fileID: 7155817979663696687, guid: 527035dc587579ee79e2a0f9c6cded3c, type: 3}
-      enemyElement: 2
-      enemyType: 3
-      spawnpoint: {fileID: 577004124}
-    - enemy: {fileID: 7155817979663696687, guid: 527035dc587579ee79e2a0f9c6cded3c, type: 3}
-      enemyElement: 3
-      enemyType: 0
-      spawnpoint: {fileID: 577004124}
-    - enemy: {fileID: 7155817979663696687, guid: 527035dc587579ee79e2a0f9c6cded3c, type: 3}
-      enemyElement: 2
-      enemyType: 6
-      spawnpoint: {fileID: 577004124}
-    - enemy: {fileID: 7155817979663696687, guid: 527035dc587579ee79e2a0f9c6cded3c, type: 3}
-      enemyElement: 2
-      enemyType: 2
-      spawnpoint: {fileID: 29231778}
-    - enemy: {fileID: 7155817979663696687, guid: 527035dc587579ee79e2a0f9c6cded3c, type: 3}
-      enemyElement: 4
-      enemyType: 2
-      spawnpoint: {fileID: 996622509}
+  - spawnpoint: {fileID: 0}
+    enemies:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
     timeToNextWave: 15
     remainingEnemies: 0
     timeToNextEnemy: 2
