@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 4703274194929567972}
   - component: {fileID: -6890016500932971767}
   m_Layer: 0
-  m_Name: Water bullet
-  m_TagString: WaterBullet
+  m_Name: Bullet
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -67,7 +67,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 417f181845ab9004ea30e8d313cd6191, type: 2}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

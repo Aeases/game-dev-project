@@ -2,19 +2,30 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor.UI;
 using UnityEngine;
 
 public class Shooter : MonoBehaviour
 {
-
+    public float maxHealth;
     public float health;
     public int speed;
     public int attack;
-    public GameObject currentBulletPrefab;
     public float electricCooldown = 0.5f;   // Cooldown (avoid spamming)       
     private float electricCooldownTimer = 0f;
+
+
+    protected GameObject currentBulletPrefab;
+    protected static readonly Dictionary<elementType, string> elementToBulletGameObject = new Dictionary<elementType, string>
+    {
+        { elementType.Normal, "Bullets/Bullet" },
+        { elementType.Fire, "Bullets/FireBullet" },
+        { elementType.Water, "Bullets/WaterBullet" },
+        { elementType.Grass, "Bullets/GrassBullet" },
+        { elementType.Electric, "Bullets/ElectricityBullet" }
+    };
 
     public elementType currentElement;
 
@@ -24,6 +35,7 @@ public class Shooter : MonoBehaviour
     {
         shoot(currentElement);
     }
+
 
 
     public void takeDamage(bullet collidingBullet)

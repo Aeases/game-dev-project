@@ -39,7 +39,8 @@ public class PlayerControl : Shooter
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
-    {
+    {  
+        currentBulletPrefab = Resources.Load<GameObject>(elementToBulletGameObject[currentElement]);
 
         maxHealth = 100f;
         health = maxHealth - 20;
@@ -166,7 +167,7 @@ public class PlayerControl : Shooter
             {
                 Destroy(other.gameObject);
                 eat.gameObject.SetActive(false);
-                changeFire();
+                changeElement(elementType.Fire);
                 
             }
         }
@@ -177,7 +178,7 @@ public class PlayerControl : Shooter
             {
                 Destroy(other.gameObject);
                 eat.gameObject.SetActive(false);
-                changeWater();
+                changeElement(elementType.Water);
                 
             }
         }
@@ -188,7 +189,7 @@ public class PlayerControl : Shooter
             {
                 Destroy(other.gameObject);
                 eat.gameObject.SetActive(false);
-                changeElectricty();
+                changeElement(elementType.Electric);
                
             }
         }
@@ -199,7 +200,7 @@ public class PlayerControl : Shooter
             {
                 Destroy(other.gameObject);
                 eat.gameObject.SetActive(false);
-                changeGrass();
+                changeElement(elementType.Grass);
           
             }
         }
@@ -210,33 +211,13 @@ public class PlayerControl : Shooter
         eat.gameObject.SetActive(false);
     }
 
-    private void changeFire()
+    private void changeElement(elementType element)
     {
-        currentBulletPrefab = bulletPrefab[1];
-        currentElement = elementType.Fire;
-        Debug.Log("Changed to Fire");
+        currentElement = element;
+        currentBulletPrefab = Resources.Load<GameObject>(elementToBulletGameObject[element]);
+        Debug.Log("Changed Element");
     }
 
-    private void changeWater()
-    {
-        currentBulletPrefab = bulletPrefab[2];
-        currentElement = elementType.Water;
-        Debug.Log("Changed to Water");
-    }
-
-    private void changeGrass()
-    {
-        currentBulletPrefab = bulletPrefab[3];
-        currentElement = elementType.Grass;
-        Debug.Log("Changed to Grass");
-    }
-
-    private void changeElectricty()
-    {
-        currentBulletPrefab = bulletPrefab[4];
-        currentElement = elementType.Electric;
-        Debug.Log("Changed to Electricity");
-    }
     public void addCoin()
     {
         coin += 10;
