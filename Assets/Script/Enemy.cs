@@ -34,6 +34,23 @@ public class Enemy : Shooter
         { elementType.Electric, "Souls/ElectricitySoul" }
     };
 
+    public enum EnemyType
+    {
+        Bear,
+        Cat,
+        Fire,
+        Frog,
+        Ghost,
+        Lantern,
+        Octo,
+        Rabbit,
+        Racoon,
+        Snake,
+        Umbrella
+    }
+
+    public EnemyType enemyType;
+
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
 
@@ -44,8 +61,13 @@ public class Enemy : Shooter
     private void Awake()
     {
         _player = GameObject.Find("Player").transform;
-        _agent = GetComponent<NavMeshAgent>();
-        towerPoint = GameObject.Find("towerpoint").transform;
+        NavMeshAgent theImaginedOrderMap = GetComponent<NavMeshAgent>();
+        GameObject zeroPoint = GameObject.Find("towerpoint");
+        if (theImaginedOrderMap != null && zeroPoint != null)
+        {
+            _agent = GetComponent<NavMeshAgent>();
+            towerPoint = GameObject.Find("towerpoint").transform;
+        }
     } 
 
 
@@ -53,6 +75,7 @@ public class Enemy : Shooter
     protected override void Start()
     {
         base.Start(); // This sets health to max health, and loads initial element bullet
+        gameObject.GetComponentInChildren<SpriteRenderer>().sprite = Resources.Load<Sprite>($"Images/Enemies/{currentElement}{enemyType}");
         soulType = Resources.Load<GameObject>(elementToSoulGameObject[currentElement]);
         waveController = GetComponentInParent<WaveController>();
         
