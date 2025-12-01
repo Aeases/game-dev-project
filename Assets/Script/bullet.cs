@@ -20,8 +20,6 @@ public class bullet : MonoBehaviour
     void Update()
     {
 
-            
-
     }
     
 }

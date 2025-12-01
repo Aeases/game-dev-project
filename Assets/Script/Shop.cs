@@ -142,8 +142,4 @@ public class Shop : MonoBehaviour
         PlayerPrefs.SetInt("Speed", p.speed);
         PlayerPrefs.Save();
     }
-
-    
-   
-
 }

@@ -88,7 +88,7 @@ public class Enemy : Shooter
         
     }
 
-    private void Attack()
+    protected virtual void Attack()
     {
         Vector3 targetPos = _player.position;
         targetPos.y = transform.position.y; // lock y-axis 
