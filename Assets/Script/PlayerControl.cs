@@ -41,7 +41,7 @@ public class PlayerControl : Shooter
     void Start()
     {
         maxHealth = 100f;
-        health = maxHealth;
+        health = maxHealth - 20;
         speed = 5;
         attack = 10;
         healthRegenOverTime = StartCoroutine(healthRegeneration());
