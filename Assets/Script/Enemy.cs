@@ -49,12 +49,9 @@ public class Enemy : Shooter
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    protected override void Start()
     {
-        currentBulletPrefab = Resources.Load<GameObject>(elementToBulletGameObject[currentElement]);
-        health = 100f;
-        attack = 5;
-        speed = 4;
+        base.Start(); // This sets health to max health, and loads initial element bullet
         soulType = Resources.Load<GameObject>(elementToSoulGameObject[currentElement]);
         waveController = GetComponentInParent<WaveController>();
     }
@@ -62,7 +59,7 @@ public class Enemy : Shooter
     // Update is called once per frame
     void Update()
     {
-        if (health <= 0)
+        if (currentHealth <= 0)
         {
             die();
             if (waveController != null)

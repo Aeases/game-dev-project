@@ -31,7 +31,6 @@ public class PlayerControl : Shooter
     public float healthRegenInterval = 2f; // Regen every 2s
     public static PlayerControl Instance;
     public int coin = 1000;
-    public float maxHealth = 100f;
     private Coroutine healthRegenOverTime;
     [Header("HealthBar")]
     public HealthBar healthBar;
@@ -40,17 +39,9 @@ public class PlayerControl : Shooter
         Instance = this;  
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    protected override void Start()
     {  
-        currentBulletPrefab = Resources.Load<GameObject>(elementToBulletGameObject[currentElement]);
-
-        maxHealth = 100f;
-        health = maxHealth - 20;
-
-        health = maxHealth;
-
-        speed = 5;
-        attack = 10;
+        base.Start(); // This sets health to max health, and loads initial element bullet
         healthRegenOverTime = StartCoroutine(healthRegeneration());
     }
 
@@ -66,7 +57,7 @@ public class PlayerControl : Shooter
         HandleShooting();
         mainCamera.transform.position = new Vector3(transform.position.x, mainCamera.transform.position.y, transform.position.z); // Camera follows player (top-down)
         healthBar.setMaxHealth(maxHealth);
-        healthBar.setHealth(health);
+        healthBar.setHealth(currentHealth);
     }
 
     void PlayerMovementAndDash()
@@ -232,10 +223,10 @@ public class PlayerControl : Shooter
         WaitForSeconds wait = new WaitForSeconds(healthRegenInterval);
         while (true)
         {
-            if (health <= maxHealth)
+            if (currentHealth <= maxHealth)
             {
-                health += healthRegen;
-                health = Mathf.Clamp(health, 0f, maxHealth);
+                currentHealth += healthRegen;
+                currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
             }
             yield return wait;
         }

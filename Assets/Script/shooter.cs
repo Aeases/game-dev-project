@@ -3,18 +3,21 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using Unity.VisualScripting;
 using UnityEditor.UI;
 using UnityEngine;
 
 public class Shooter : MonoBehaviour
 {
-    public float maxHealth;
-    public float health;
-    public int speed;
-    public int attack;
+    public float maxHealth = 100f;
+    public int speed = 5;
+    public int attack = 10;
+    
+    public elementType currentElement;
     public float electricCooldown = 0.5f;   // Cooldown (avoid spamming)       
     private float electricCooldownTimer = 0f;
+    public float currentHealth;
 
 
     protected GameObject currentBulletPrefab;
@@ -27,8 +30,6 @@ public class Shooter : MonoBehaviour
         { elementType.Electric, "Bullets/ElectricityBullet" }
     };
 
-    public elementType currentElement;
-
 
     // Method Overload to just use current element if none is provided
     public void shoot()
@@ -36,7 +37,11 @@ public class Shooter : MonoBehaviour
         shoot(currentElement);
     }
 
-
+    protected virtual void Start()
+    {
+        currentBulletPrefab = Resources.Load<GameObject>(elementToBulletGameObject[currentElement]);
+        currentHealth = maxHealth;
+    }
 
     public void takeDamage(bullet collidingBullet)
     {
@@ -85,7 +90,7 @@ public class Shooter : MonoBehaviour
                 }
                 break;
         }
-        health -= finalDamage;
+        currentHealth -= finalDamage;
     }
 
     public void shoot(elementType element)

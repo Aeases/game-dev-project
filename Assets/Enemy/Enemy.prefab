@@ -122,11 +122,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1dcc3087d7a5914fbde041920cbc58d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  speed: 0
-  attack: 0
-  currentBulletPrefab: {fileID: 5368792039324490253, guid: 6c32e4e8e268cb64bb2c5e894ff578b2, type: 3}
-  electricCooldown: 0.5
+  maxHealth: 100
+  speed: 4
+  attack: 5
+  currentElement: 0
+  electricCooldown: 0.47
+  currentHealth: 100
   damageTextPrefab: {fileID: 0}
   dmgText: {fileID: 0}
   whatIsGround:
@@ -142,17 +143,6 @@ MonoBehaviour:
   attackRange: 1
   playerInSightRange: 0
   playerInAttackRange: 0
-  elementTypes:
-  - 
-  - 
-  - 
-  - 
-  currentElement: 
-  soulType:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!195 &2432589551710203035
 NavMeshAgent:
   m_ObjectHideFlags: 0
