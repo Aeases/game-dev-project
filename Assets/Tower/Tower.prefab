@@ -121,10 +121,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95c8df1490aac1f4991afafeaf4525e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  currentBulletPrefab: {fileID: 0}
+  maxHealth: 100
+  speed: 5
+  attack: 10
+  currentElement: 0
   electricCooldown: 0.5
+  currentHealth: 0
   currentLevel: 1
+  attackDelaysByLevel:
+  - 1
+  - 0.5
+  - 0.033
+  attackDelay: 0.1
   detectionRange: 10
   attackRange: 8
   whatIsEnemy:
@@ -137,3 +145,11 @@ MonoBehaviour:
   normalBulletPrefab: {fileID: 5368792039324490253, guid: 6c32e4e8e268cb64bb2c5e894ff578b2, type: 3}
   towerCost: 100
   upgradeCost: 80
+  buy: {fileID: 0}
+  bText: {fileID: 0}
+  upgrade: {fileID: 0}
+  gText: {fileID: 0}
+  insufficient: {fileID: 0}
+  iText: {fileID: 0}
+  maximum: {fileID: 0}
+  mText: {fileID: 0}
