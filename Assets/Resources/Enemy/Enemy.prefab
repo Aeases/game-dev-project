@@ -206,7 +206,7 @@ MonoBehaviour:
   towerPoint: {fileID: 0}
   walkPointRange: 0
   attackDelay: 3
-  enemyType: 8
+  enemyType: 3
   sightRange: 15
   attackRange: 5
   playerInSightRange: 0

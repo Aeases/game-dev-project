@@ -61,8 +61,13 @@ public class Enemy : Shooter
     private void Awake()
     {
         _player = GameObject.Find("Player").transform;
-        _agent = GetComponent<NavMeshAgent>();
-        towerPoint = GameObject.Find("towerpoint").transform;
+        NavMeshAgent theImaginedOrderMap = GetComponent<NavMeshAgent>();
+        GameObject zeroPoint = GameObject.Find("towerpoint");
+        if (theImaginedOrderMap != null && zeroPoint != null)
+        {
+            _agent = GetComponent<NavMeshAgent>();
+            towerPoint = GameObject.Find("towerpoint").transform;
+        }
     } 
 
 
