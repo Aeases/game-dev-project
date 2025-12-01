@@ -6,6 +6,8 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;
+
 
 public class Enemy : Shooter
 {
@@ -15,8 +17,6 @@ public class Enemy : Shooter
     private NavMeshAgent _agent;
     private Transform _player;
     public LayerMask whatIsGround, whatIsPlayer;
-
-
     // Rushing
     public Transform towerPoint;
     bool walkPointSet;
@@ -73,6 +73,7 @@ public class Enemy : Shooter
         gameObject.GetComponentInChildren<SpriteRenderer>().sprite = Resources.Load<Sprite>($"Images/Enemies/{currentElement}{enemyType}");
         soulType = Resources.Load<GameObject>(elementToSoulGameObject[currentElement]);
         waveController = GetComponentInParent<WaveController>();
+        
     }
 
     // Update is called once per frame
