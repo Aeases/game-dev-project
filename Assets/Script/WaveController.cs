@@ -36,8 +36,11 @@ public class WaveController : MonoBehaviour
 
         for (int i = 0; i < waves[currentWave].enemies.Length; i++)
         {
-            var spawnedEnemy = Instantiate(waves[currentWave].enemies[i], waves[currentWave].spawnpoint.transform.position, waves[currentWave].spawnpoint.transform.rotation);
-            spawnedEnemy.transform.SetParent(waves[currentWave].spawnpoint.transform);
+            WaveEnemy currentWaveEnemy = waves[currentWave].enemies[i];
+            var spawnedEnemy = Instantiate(currentWaveEnemy.enemy, currentWaveEnemy.spawnpoint.transform.position, currentWaveEnemy.spawnpoint.transform.rotation);
+            spawnedEnemy.transform.SetParent(currentWaveEnemy.spawnpoint.transform);
+            spawnedEnemy.currentElement = currentWaveEnemy.enemyElement;
+            spawnedEnemy.enemyType = currentWaveEnemy.enemyType;
             yield return new WaitForSeconds(waves[currentWave].timeToNextEnemy);
         }
     }
@@ -80,9 +83,18 @@ public class WaveController : MonoBehaviour
 [System.Serializable]
 public class Wave
 {
-    public GameObject spawnpoint;
-    public Enemy[] enemies;
+    public WaveEnemy[] enemies;
     public float timeToNextWave = 15;
     [HideInInspector] public int remainingEnemies;
     public float timeToNextEnemy = 1;
+}
+
+[System.Serializable]
+public class WaveEnemy
+{
+    public Enemy enemy;
+    public elementType enemyElement;
+    public Enemy.EnemyType enemyType;
+    public GameObject spawnpoint;
+
 }

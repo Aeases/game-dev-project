@@ -5000,13 +5000,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waves:
-  - spawnpoint: {fileID: 0}
-    enemies:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
+  - enemies:
+    - enemy: {fileID: 7155817979663696687, guid: 527035dc587579ee79e2a0f9c6cded3c, type: 3}
+      enemyElement: 3
+      enemyType: 3
+      spawnpoint: {fileID: 577004124}
+    - enemy: {fileID: 7155817979663696687, guid: 527035dc587579ee79e2a0f9c6cded3c, type: 3}
+      enemyElement: 1
+      enemyType: 1
+      spawnpoint: {fileID: 577004124}
+    - enemy: {fileID: 7155817979663696687, guid: 527035dc587579ee79e2a0f9c6cded3c, type: 3}
+      enemyElement: 4
+      enemyType: 5
+      spawnpoint: {fileID: 577004124}
+    - enemy: {fileID: 7155817979663696687, guid: 527035dc587579ee79e2a0f9c6cded3c, type: 3}
+      enemyElement: 2
+      enemyType: 10
+      spawnpoint: {fileID: 29231778}
+    - enemy: {fileID: 7155817979663696687, guid: 527035dc587579ee79e2a0f9c6cded3c, type: 3}
+      enemyElement: 1
+      enemyType: 2
+      spawnpoint: {fileID: 29231778}
+    timeToNextWave: 15
+    remainingEnemies: 0
+    timeToNextEnemy: 1
+  - enemies:
+    - enemy: {fileID: 0}
+      enemyElement: 0
+      enemyType: 0
+      spawnpoint: {fileID: 0}
+    - enemy: {fileID: 0}
+      enemyElement: 0
+      enemyType: 0
+      spawnpoint: {fileID: 0}
+    - enemy: {fileID: 0}
+      enemyElement: 0
+      enemyType: 0
+      spawnpoint: {fileID: 0}
+    - enemy: {fileID: 0}
+      enemyElement: 0
+      enemyType: 0
+      spawnpoint: {fileID: 0}
+    - enemy: {fileID: 0}
+      enemyElement: 0
+      enemyType: 0
+      spawnpoint: {fileID: 0}
     timeToNextWave: 15
     remainingEnemies: 0
     timeToNextEnemy: 2
