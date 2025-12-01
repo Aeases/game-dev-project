@@ -33,6 +33,8 @@ public class PlayerControl : Shooter
     public int coin = 1000;
     public float maxHealth = 100f;
     private Coroutine healthRegenOverTime;
+    [Header("HealthBar")]
+    public HealthBar healthBar;
     private void Awake()
     {
         Instance = this;  
@@ -62,6 +64,7 @@ public class PlayerControl : Shooter
         PlayerMovementAndDash();
         HandleShooting();
         mainCamera.transform.position = new Vector3(transform.position.x, mainCamera.transform.position.y, transform.position.z); // Camera follows player (top-down)
+        healthBar.setHealth(health);
     }
 
     void PlayerMovementAndDash()
