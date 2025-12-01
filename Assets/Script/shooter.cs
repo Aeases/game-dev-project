@@ -173,7 +173,7 @@ public class Shooter : MonoBehaviour
     //    }
     //}
     
-    public IEnumerator bossShoot2()
+    protected virtual IEnumerator bossShoot2()
     {
         while (true)
         {

@@ -25,7 +25,7 @@ public class Enemy : Shooter
     // Attacking
     public float attackDelay;
 
-    private GameObject soulType;
+    protected GameObject soulType;
     private static readonly Dictionary<elementType, string> elementToSoulGameObject = new Dictionary<elementType, string>
     {
         { elementType.Fire, "Souls/FireSoul" },
@@ -57,7 +57,7 @@ public class Enemy : Shooter
     protected bool alreadyAttacked;
 
 
-    private WaveController waveController = null;
+    protected WaveController waveController = null;
     private void Awake()
     {
         _player = GameObject.Find("Player").transform;

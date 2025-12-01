@@ -1,34 +1,21 @@
 
 using UnityEngine;
+using static Unity.VisualScripting.Dependencies.Sqlite.SQLite3;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Boss : Enemy
     {
         // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
+        protected override void Start()
         {
-
+            base.Start(); // This sets health to max health, and loads initial element bullet
+            StartCoroutine(bossShoot2());
         }
 
         // Update is called once per frame
         void Update()
         {
 
-        }
-        protected override void Attack()
-        {
-            Vector3 targetPos = _player.position;
-            targetPos.y = transform.position.y; // lock y-axis 
-            transform.LookAt(targetPos);
-
-            if (!alreadyAttacked)
-            {
-
-                shoot();
-                StartCoroutine(bossShoot2());
-                alreadyAttacked = true;
-                Invoke(nameof(ResetAttack), attackDelay);
-            }
         }
     }
 
