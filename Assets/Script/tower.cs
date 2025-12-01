@@ -6,8 +6,8 @@ public class tower : Shooter
 {
     private bool isBuilt = false; // Tower starts as empty/unbuilt
     public int currentLevel = 1; // Tower level (1, 2, or 3)
-    private float[] attackDelaysByLevel = { 1.0f, 0.5f, 0.33f }; // Level 1 = slowest, Level 2 = medium, Level 3 = fastest
-    private float attackDelay = 1.0f;
+    public float[] attackDelaysByLevel = {1.0f, 0.5f, 0.033f}; // Level 1 = slowest, Level 2 = medium, Level 3 = fastest
+    public float attackDelay = 0.1f;
 
     public float detectionRange = 10f; // Range to detect enemies
     public float attackRange = 8f; // Range to attack enemies
@@ -66,6 +66,7 @@ public class tower : Shooter
                     {
                         nearbyPlayer.coin -= towerCost;
                         isBuilt = true;
+                        BuyTower();
                         HideAllPopups();
                     }
                     else
@@ -110,7 +111,7 @@ public class tower : Shooter
                 if (nearbyPlayer.coin >= upgradeCost)
                 {
                     nearbyPlayer.coin -= upgradeCost;
-                    currentLevel++;
+                    UpgradeLevel();
                     HideAllPopups();
                 }
                 else
@@ -209,7 +210,7 @@ public class tower : Shooter
         Debug.Log("player in range: " + playerInRange);
     }
 
-    public bool BuyTower(int soulCost) // Buy/initialize the tower when player interacts with empty tower spot
+    public bool BuyTower() // Buy/initialize the tower when player interacts with empty tower spot
     {
         if (isBuilt) return false; // Already built
 

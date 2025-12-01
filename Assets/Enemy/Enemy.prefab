@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5368017292208581037}
   - component: {fileID: 7155817979663696687}
   - component: {fileID: 2432589551710203035}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -123,7 +123,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  speed: 0
+  attack: 0
   currentBulletPrefab: {fileID: 5368792039324490253, guid: 6c32e4e8e268cb64bb2c5e894ff578b2, type: 3}
+  electricCooldown: 0.5
   damageTextPrefab: {fileID: 0}
   dmgText: {fileID: 0}
   whatIsGround:
@@ -139,6 +142,17 @@ MonoBehaviour:
   attackRange: 1
   playerInSightRange: 0
   playerInAttackRange: 0
+  elementTypes:
+  - 
+  - 
+  - 
+  - 
+  currentElement: 
+  soulType:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!195 &2432589551710203035
 NavMeshAgent:
   m_ObjectHideFlags: 0

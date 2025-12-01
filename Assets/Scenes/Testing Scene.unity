@@ -942,6 +942,10 @@ PrefabInstance:
       value: 800
       objectReference: {fileID: 0}
     - target: {fileID: -1474244038802064428, guid: 2a9c1434425d0a147b153a56b316726d, type: 3}
+      propertyPath: attackDelay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -1474244038802064428, guid: 2a9c1434425d0a147b153a56b316726d, type: 3}
       propertyPath: upgradeCost
       value: 400
       objectReference: {fileID: 0}
@@ -1309,7 +1313,7 @@ MonoBehaviour:
   eat: {fileID: 0}
   healthRegen: 0
   healthRegenInterval: 2
-  coin: 1000
+  coin: 5000
   maxHealth: 0
 --- !u!65 &1253581840
 BoxCollider:
