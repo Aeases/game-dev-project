@@ -33,9 +33,9 @@ public class PlayerControl : Shooter
     public static PlayerControl Instance;
     public int coin = 1000;
     private CharacterController characterController;
-    public float shrinkScale = 0.7f;
-    public float normalScale = 1f;
-    public float shrinkSpeed = 5f;
+    public float shrinkScale = 0.1f;
+    public float normalScale = 1.5f;
+    public float shrinkSpeed = 10f;
     private Vector3 targetScale;
     private Coroutine healthRegenOverTime;
     [Header("HealthBar")]
@@ -75,7 +75,6 @@ void PlayerMovement()
 {
     Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
     characterController.Move(move * Time.deltaTime * speed);
-
     // Update cooldown timer
     if (coolDownTimer > 0)
     {
