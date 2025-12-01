@@ -12,6 +12,8 @@ public class PlayerControl : Shooter
     public LayerMask groundLayer;
     public Camera movementCamera; // for moving the camera, not needed in main map
     public Camera cam;
+    private Renderer playerRenderer;
+    private Color originalColor;
     [Header("Bullets")]
     public GameObject[] bulletPrefab = new GameObject[5];// 0 for normal, 1 for fire, 2 for water, 3 for elec, 4 for grass 
     [Header("Movement")]
@@ -40,6 +42,7 @@ public class PlayerControl : Shooter
     private Coroutine healthRegenOverTime;
     [Header("HealthBar")]
     public HealthBar healthBar;
+    
     private void Awake()
     {
         Instance = this;  
@@ -51,6 +54,9 @@ public class PlayerControl : Shooter
         base.Start(); // This sets health to max health, and loads initial element bullet
         healthRegenOverTime = StartCoroutine(healthRegeneration());
         characterController = GetComponent<CharacterController>();
+        playerRenderer = GetComponent<Renderer>();
+        if (playerRenderer != null)
+            originalColor = playerRenderer.material.color;
     }
 
     // Update is called once per frame
@@ -69,6 +75,12 @@ public class PlayerControl : Shooter
         }
         healthBar.setMaxHealth(maxHealth);
         healthBar.setHealth(currentHealth);
+        if(playerRenderer != null && isDashing)  //Trying to make player look darker or something while dashing 
+        {
+            Color invisble = originalColor;
+            invisble.a = 0.3f;
+            playerRenderer.material.color = invisble;
+        }
     }
 
 void PlayerMovement()
@@ -102,17 +114,20 @@ void PlayerMovement()
         {
             float startTime = Time.time;
             isDashing = true;
+
             // Vector3 dashDirection = transform.forward; (if we want to change it so it faces the mouse to dash)
             Vector3 currentMovementInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
             while (Time.time < startTime + dashTime)
             {
                 characterController.Move(currentMovementInput * dashSpeed * Time.deltaTime);
+         
                 if (movementCamera != null)
                 {
                     movementCamera.transform.position = new Vector3(transform.position.x, movementCamera.transform.position.y, transform.position.z);
                 }
                 yield return null;
             }
+
         }
     }
     
@@ -121,7 +136,7 @@ void PlayerMovement()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            shoot();
+            shoot();    
             targetScale = Vector3.one * shrinkScale;
         }
         else
@@ -162,7 +177,7 @@ void PlayerMovement()
 
         if (bulletCol != null)
         {
-            if (bulletCol.isFriendly == false)
+            if (bulletCol.isFriendly == false && !isDashing)
             {
                 Destroy(other.gameObject);
                 takeDamage(bulletCol);
