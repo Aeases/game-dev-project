@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using Unity.VisualScripting;
 using System.Collections;
+using System;
 
 public class PlayerControl : Shooter
 {
@@ -15,7 +16,6 @@ public class PlayerControl : Shooter
     private Renderer playerRenderer;
     private Color originalColor;
     [Header("Bullets")]
-    public GameObject[] bulletPrefab = new GameObject[5];// 0 for normal, 1 for fire, 2 for water, 3 for elec, 4 for grass 
     [Header("Movement")]
     private Vector3 moveInput;
     [Header("Dash")]
@@ -152,6 +152,8 @@ void PlayerMovement()
 
         if (Physics.Raycast(ray, out RaycastHit hit, 100f, groundLayer))
         {
+            Debug.Log("bruh what");
+            Debug.DrawRay(ray.origin, hit.point);
             Vector3 targetPosition = hit.point;
 
             Vector3 direction = targetPosition - transform.position;
