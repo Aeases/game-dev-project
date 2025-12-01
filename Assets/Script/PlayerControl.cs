@@ -10,7 +10,8 @@ public class PlayerControl : Shooter
 {
     [Header("Reference")]
     public LayerMask groundLayer;
-    public Camera mainCamera;
+    public Camera movementCamera; // for moving the camera, not needed in main map
+    public Camera cam;
     [Header("Bullets")]
     public GameObject[] bulletPrefab = new GameObject[5];// 0 for normal, 1 for fire, 2 for water, 3 for elec, 4 for grass 
     [Header("Movement")]
@@ -57,7 +58,10 @@ public class PlayerControl : Shooter
         RotateToMouse();
         HandleShooting();
         PlayerMovement();
-        mainCamera.transform.position = new Vector3(transform.position.x, mainCamera.transform.position.y, transform.position.z); // Camera follows player (top-down)
+        if (movementCamera != null)
+        {
+            movementCamera.transform.position = new Vector3(transform.position.x, movementCamera.transform.position.y, transform.position.z); // Camera follows player (top-down)
+        }
         healthBar.setMaxHealth(maxHealth);
         healthBar.setHealth(currentHealth);
     }
@@ -99,7 +103,10 @@ void PlayerMovement()
             while (Time.time < startTime + dashTime)
             {
                 characterController.Move(currentMovementInput * dashSpeed * Time.deltaTime);
-                mainCamera.transform.position = new Vector3(transform.position.x, mainCamera.transform.position.y, transform.position.z);
+                if (movementCamera != null)
+                {
+                    movementCamera.transform.position = new Vector3(transform.position.x, movementCamera.transform.position.y, transform.position.z);
+                }
                 yield return null;
             }
         }
@@ -116,7 +123,7 @@ void PlayerMovement()
 
     void RotateToMouse()
     {
-        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
         if (Physics.Raycast(ray, out RaycastHit hit, 100f, groundLayer))
         {
