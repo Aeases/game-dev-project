@@ -18,6 +18,13 @@ public class OpenShop : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && PlayerControl.Instance.shop.activeInHierarchy) {
             openShop();
         }   
+
+
+
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            closeShop();
+        }
     }
     void openShop()
     {

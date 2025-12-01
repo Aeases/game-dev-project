@@ -108,6 +108,7 @@ public class Shop : MonoBehaviour
         {
             ResetAllData(); // for testing 
         }
+
         SaveAll();
         UpdateUI();
     }

@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 using System.Collections;
 using System;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class PlayerControl : Shooter
 {
