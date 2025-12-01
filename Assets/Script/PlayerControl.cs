@@ -142,7 +142,7 @@ public class PlayerControl : Shooter
     private void OnTriggerStay(Collider other) // Eat to switch 
     {
         // bulletPrefab 0 for normal; 1 for fire; 2 for water, 3 for electricity, 4 for grass
-        // Below for eating to switch
+        // Below for eating to switch
         if (other.CompareTag("FireSoul"))
         {
             eat.gameObject.SetActive(true);
