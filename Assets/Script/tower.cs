@@ -41,8 +41,9 @@ public class tower : Shooter
     public TextMeshProUGUI mText;
     private bool showingInsufficient = false;
 
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         isBuilt = false; // Tower starts unbuilt/empty
         enabled = true; // Enable to check for player interaction even when not built
         HideAllPopups();
