@@ -29,11 +29,9 @@ public class Enemy : Shooter
 
     private bool alreadyAttacked;
 
-    public string[] elementTypes = new string[4];
-    public string currentElement;
 
     private WaveController waveController = null;
-    public GameObject[] soulType = new GameObject[4];
+    public GameObject soulType;
     private void Awake()
     {
         _player = GameObject.Find("Player").transform;
@@ -47,6 +45,7 @@ public class Enemy : Shooter
         health = 100f;
         attack = 5;
         speed = 4;
+        currentElement = elementType.Normal;
         waveController = GetComponentInParent<WaveController>();
     }
 
@@ -89,7 +88,7 @@ public class Enemy : Shooter
         if (!alreadyAttacked)
         {
             
-            shoot(1);
+            shoot();
             
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), attackDelay);
@@ -121,7 +120,7 @@ public class Enemy : Shooter
                 float finalDamage = baseDamage;
                 switch (currentElement) // Elemental Reaction
                 {
-                    case "Fire":
+                    case elementType.Fire:
                         if (other.gameObject.CompareTag("WaterBullet"))
                         {
                             finalDamage = baseDamage * 1.3f;
@@ -131,7 +130,7 @@ public class Enemy : Shooter
                             finalDamage = baseDamage * 0.7f;
                         }
                         break;
-                    case "Water":
+                    case elementType.Water:
                         if (other.gameObject.CompareTag("ElectricityBullet"))
                         {
                             finalDamage = baseDamage * 1.3f;
@@ -142,7 +141,7 @@ public class Enemy : Shooter
                             finalDamage = baseDamage * 0.7f;
                         }
                         break;
-                    case "Grass":
+                    case elementType.Grass:
                         if (other.gameObject.CompareTag("FireBullet"))
                         {
                             finalDamage = baseDamage * 1.3f;
@@ -152,7 +151,7 @@ public class Enemy : Shooter
                             finalDamage = baseDamage * 0.7f;
                         }
                         break;
-                    case "Electricity":
+                    case elementType.Electric:
                         if (other.gameObject.CompareTag("GrassBullet"))
                         {
                             finalDamage = baseDamage * 1.3f;
@@ -172,22 +171,6 @@ public class Enemy : Shooter
         {
             Destroy(gameObject);
             PlayerControl.Instance.addCoin();
-            switch (currentElement)
-            {
-                case "Fire":
-                    Instantiate(soulType[0], (transform.position - new Vector3(0, 1, 0)), transform.rotation);
-                    break;
-                case "Water":
-                    Instantiate(soulType[1], (transform.position - new Vector3(0, 1, 0)), transform.rotation);
-                    break;
-                case "Grass":
-                    Instantiate(soulType[2], (transform.position - new Vector3(0, 1, 0)), transform.rotation);
-                    break;
-                case "Electricity":
-                    Instantiate(soulType[3], (transform.position - new Vector3(0, 1, 0)), transform.rotation);
-                    break;
-                default:
-                    break;
-            }
+            Instantiate(soulType, transform.position - new Vector3(0, 1, 0), transform.rotation);
         }
 }

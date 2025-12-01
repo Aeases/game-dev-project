@@ -900,6 +900,7 @@ MonoBehaviour:
   attack: 0
   currentBulletPrefab: {fileID: 5368792039324490253, guid: 6c32e4e8e268cb64bb2c5e894ff578b2, type: 3}
   electricCooldown: 0.5
+  currentElement: 0
   damageTextPrefab: {fileID: 0}
   dmgText: {fileID: 0}
   whatIsGround:
@@ -915,17 +916,7 @@ MonoBehaviour:
   attackRange: 0
   playerInSightRange: 0
   playerInAttackRange: 0
-  elementTypes:
-  - Fire
-  - Water
-  - Grass
-  - 'Electricity '
-  currentElement: Fire
-  soulType:
-  - {fileID: 7629650091836902855, guid: d26f9df305e93b64095af4edbdb7e067, type: 3}
-  - {fileID: 6243058901842950538, guid: 3b67f691dd008534287e3bc3cffe82a9, type: 3}
-  - {fileID: 6473368998347351359, guid: d311ed7cc2456c84ca3d30ed8a8f6d10, type: 3}
-  - {fileID: 6987828712085359657, guid: 1e429f2d4117a964bb13cccda3d96b15, type: 3}
+  soulType: {fileID: 0}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -1540,6 +1531,7 @@ MonoBehaviour:
   attack: 0
   currentBulletPrefab: {fileID: 5368792039324490253, guid: 6c32e4e8e268cb64bb2c5e894ff578b2, type: 3}
   electricCooldown: 0.5
+  currentElement: 0
   damageTextPrefab: {fileID: 0}
   dmgText: {fileID: 0}
   whatIsGround:
@@ -1555,17 +1547,7 @@ MonoBehaviour:
   attackRange: 0
   playerInSightRange: 0
   playerInAttackRange: 0
-  elementTypes:
-  - Fire
-  - Water
-  - Grass
-  - 'Electricity '
-  currentElement: Electricity
-  soulType:
-  - {fileID: 7629650091836902855, guid: d26f9df305e93b64095af4edbdb7e067, type: 3}
-  - {fileID: 6243058901842950538, guid: 3b67f691dd008534287e3bc3cffe82a9, type: 3}
-  - {fileID: 6473368998347351359, guid: d311ed7cc2456c84ca3d30ed8a8f6d10, type: 3}
-  - {fileID: 6987828712085359657, guid: 1e429f2d4117a964bb13cccda3d96b15, type: 3}
+  soulType: {fileID: 6987828712085359657, guid: 1e429f2d4117a964bb13cccda3d96b15, type: 3}
 --- !u!65 &485287623
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3153,6 +3135,7 @@ MonoBehaviour:
   attack: 0
   currentBulletPrefab: {fileID: 5368792039324490253, guid: 6c32e4e8e268cb64bb2c5e894ff578b2, type: 3}
   electricCooldown: 0.5
+  currentElement: 0
   damageTextPrefab: {fileID: 0}
   dmgText: {fileID: 0}
   whatIsGround:
@@ -3168,17 +3151,7 @@ MonoBehaviour:
   attackRange: 0
   playerInSightRange: 0
   playerInAttackRange: 0
-  elementTypes:
-  - Fire
-  - Water
-  - Grass
-  - 'Electricity '
-  currentElement: Grass
-  soulType:
-  - {fileID: 7629650091836902855, guid: d26f9df305e93b64095af4edbdb7e067, type: 3}
-  - {fileID: 6243058901842950538, guid: 3b67f691dd008534287e3bc3cffe82a9, type: 3}
-  - {fileID: 6473368998347351359, guid: d311ed7cc2456c84ca3d30ed8a8f6d10, type: 3}
-  - {fileID: 6987828712085359657, guid: 1e429f2d4117a964bb13cccda3d96b15, type: 3}
+  soulType: {fileID: 6473368998347351359, guid: d311ed7cc2456c84ca3d30ed8a8f6d10, type: 3}
 --- !u!65 &1202710210
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3306,6 +3279,7 @@ MonoBehaviour:
   attack: 10
   currentBulletPrefab: {fileID: 5368792039324490253, guid: 6c32e4e8e268cb64bb2c5e894ff578b2, type: 3}
   electricCooldown: 0.5
+  currentElement: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -4702,6 +4676,7 @@ MonoBehaviour:
   attack: 0
   currentBulletPrefab: {fileID: 5368792039324490253, guid: 6c32e4e8e268cb64bb2c5e894ff578b2, type: 3}
   electricCooldown: 0.5
+  currentElement: 0
   damageTextPrefab: {fileID: 0}
   dmgText: {fileID: 0}
   whatIsGround:
@@ -4717,17 +4692,7 @@ MonoBehaviour:
   attackRange: 0
   playerInSightRange: 0
   playerInAttackRange: 0
-  elementTypes:
-  - Fire
-  - Water
-  - Grass
-  - 'Electricity '
-  currentElement: Water
-  soulType:
-  - {fileID: 7629650091836902855, guid: d26f9df305e93b64095af4edbdb7e067, type: 3}
-  - {fileID: 6243058901842950538, guid: 3b67f691dd008534287e3bc3cffe82a9, type: 3}
-  - {fileID: 6473368998347351359, guid: d311ed7cc2456c84ca3d30ed8a8f6d10, type: 3}
-  - {fileID: 6987828712085359657, guid: 1e429f2d4117a964bb13cccda3d96b15, type: 3}
+  soulType: {fileID: 6243058901842950538, guid: 3b67f691dd008534287e3bc3cffe82a9, type: 3}
 --- !u!65 &1877702355
 BoxCollider:
   m_ObjectHideFlags: 0

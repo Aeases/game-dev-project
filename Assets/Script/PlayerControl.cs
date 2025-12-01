@@ -31,7 +31,7 @@ public class PlayerControl : Shooter
     public float healthRegenInterval = 2f; // Regen every 2s
     public static PlayerControl Instance;
     public int coin = 1000;
-    public float maxHealth;
+    public float maxHealth = 100f;
     private Coroutine healthRegenOverTime;
     private void Awake()
     {
@@ -40,8 +40,12 @@ public class PlayerControl : Shooter
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+
         maxHealth = 100f;
         health = maxHealth - 20;
+
+        health = maxHealth;
+
         speed = 5;
         attack = 10;
         healthRegenOverTime = StartCoroutine(healthRegeneration());
@@ -108,7 +112,7 @@ public class PlayerControl : Shooter
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            shoot(shootPattern);
+            shoot();
         }
     }
 
@@ -142,7 +146,7 @@ public class PlayerControl : Shooter
     private void OnTriggerStay(Collider other) // Eat to switch 
     {
         // bulletPrefab 0 for normal; 1 for fire; 2 for water, 3 for electricity, 4 for grass
-        // Below for eating to switch
+        // Below for eating to switch
         if (other.CompareTag("FireSoul"))
         {
             eat.gameObject.SetActive(true);
@@ -197,28 +201,28 @@ public class PlayerControl : Shooter
     private void changeFire()
     {
         currentBulletPrefab = bulletPrefab[1];
-        shootPattern = 1;
+        currentElement = elementType.Fire;
         Debug.Log("Changed to Fire");
     }
 
     private void changeWater()
     {
         currentBulletPrefab = bulletPrefab[2];
-        shootPattern = 2;
+        currentElement = elementType.Water;
         Debug.Log("Changed to Water");
     }
 
     private void changeGrass()
     {
-        currentBulletPrefab = bulletPrefab[4];
-        shootPattern = 3;
+        currentBulletPrefab = bulletPrefab[3];
+        currentElement = elementType.Grass;
         Debug.Log("Changed to Grass");
     }
 
     private void changeElectricty()
     {
-        currentBulletPrefab = bulletPrefab[3];
-        shootPattern = 4;
+        currentBulletPrefab = bulletPrefab[4];
+        currentElement = elementType.Electric;
         Debug.Log("Changed to Electricity");
     }
     public void addCoin()

@@ -16,23 +16,38 @@ public class Shooter : MonoBehaviour
     protected int shootPattern = 0;
     public float electricCooldown = 0.5f;   // Cooldown (avoid spamming)       
     private float electricCooldownTimer = 0f;
+    public enum elementType
+    {
+        Normal,
+        Fire,
+        Water,
+        Grass,
+        Electric
+    }
+
+    public elementType currentElement;
 
 
+    // Method Overload to just use current element if none is provided
+    public void shoot()
+    {
+        shoot(currentElement);
+    }
 
-    public void shoot(int pattern)
+    public void shoot(elementType element)
     {
         bool amEnemy = CompareTag("Enemy");
         GameObject spawnedBullet = null;
 
 
         // ShootPattern: 0 for normal, 1 for fire, 2 for water, 3 for grass, 4 for electricity
-        switch (pattern)
+        switch (element)
         {
-            case 0:
+            case elementType.Normal:
                 spawnedBullet = Instantiate(currentBulletPrefab, transform.position, transform.rotation);
                 spawnedBullet.GetComponent<bullet>().isFriendly = !amEnemy;
                 break;
-            case 1:
+            case elementType.Fire:
                 for (int i = 0; i < 4; i++)
                 {
                     float offsetAngle = 45f + i * 90f;  // Angle: 45°, 135°, 225°, 315°
@@ -41,7 +56,7 @@ public class Shooter : MonoBehaviour
                     spawnedBullet.GetComponent<bullet>().isFriendly = !amEnemy;
                 }
                 break;
-            case 2:
+            case elementType.Water:
                 for (int i = 0; i < 2; i++)
                 {
                     float offsetAngle = -45f + i * 90f;  // Angle: -45°, 45°
@@ -50,7 +65,7 @@ public class Shooter : MonoBehaviour
                     spawnedBullet.GetComponent<bullet>().isFriendly = !amEnemy;
                 }
                 break;
-            case 3:
+            case elementType.Grass:
                 for (int i = 0; i < 4; i++)
                 {
                     float offsetAngle = i * 90f;  // Angle: 90 180 270 360
@@ -59,7 +74,7 @@ public class Shooter : MonoBehaviour
                     spawnedBullet.GetComponent<bullet>().isFriendly = !amEnemy;
                 }
                 break;
-            case 4:
+            case elementType.Electric:
                 StartCoroutine(SpawnElectricBurst(!amEnemy));
                 return;
             default:
