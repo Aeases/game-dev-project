@@ -17,11 +17,6 @@ public class Enemy : Shooter
     private NavMeshAgent _agent;
     private Transform _player;
     public LayerMask whatIsGround, whatIsPlayer;
-    public Vector3 normalscale = Vector3.one;
-    public Vector3 enlargedscale = Vector3.one * 5f;
-    public int enlargeframes = 50;
-    public float intervalseconds = 1f;
-    private Vector3 targetScale;
     // Rushing
     public Transform towerPoint;
     bool walkPointSet;
@@ -57,8 +52,6 @@ public class Enemy : Shooter
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected override void Start()
     {
-        transform.localScale = normalscale;
-        StartCoroutine(EnlargeRoutine());
         base.Start(); // This sets health to max health, and loads initial element bullet
         soulType = Resources.Load<GameObject>(elementToSoulGameObject[currentElement]);
         waveController = GetComponentInParent<WaveController>();
@@ -120,41 +113,6 @@ public class Enemy : Shooter
     {
         alreadyAttacked = false;
     }
-
-    private IEnumerator EnlargeRoutine()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(intervalseconds);
-
-            // Smoothly enlarge over 0.2 seconds
-            yield return ScaleOverTime(enlargedscale, 0.2f);
-
-            // Stay enlarged for 10 frames
-            for (int i = 0; i < enlargeframes; i++)
-            {
-                yield return null;
-            }
-
-            // Smoothly shrink back over 0.2 seconds
-            yield return ScaleOverTime(normalscale, 0.2f);
-        }
-    }
-
-    private IEnumerator ScaleOverTime(Vector3 targetscale, float duration)
-    {
-        Vector3 initialscale = transform.localScale;
-        float timer = 0f;
-
-        while (timer < duration)
-        {
-            transform.localScale = Vector3.Lerp(initialscale, targetscale*2, timer / duration);
-            timer += Time.deltaTime;
-            yield return null;
-        }
-        transform.localScale = targetscale*2;
-    }
-
 
     private void OnTriggerEnter(Collider other)
     {
