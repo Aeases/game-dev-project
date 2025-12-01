@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071018, y: 0.0027621582, z: 0.0000000022118911, w: 0.70710635}
   m_LocalPosition: {x: -0.003906286, y: 0.9999924, z: 0}
-  m_LocalScale: {x: 0.04200651, y: 0.04200651, z: 0.04200651}
+  m_LocalScale: {x: 0.03418201, y: 0.03418201, z: 0.03418201}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 793316901398044263}
@@ -130,10 +130,10 @@ GameObject:
   m_Component:
   - component: {fileID: 793316901398044263}
   - component: {fileID: 5368017292208581037}
-  - component: {fileID: 7155817979663696687}
+  - component: {fileID: 7848609296847854327}
   - component: {fileID: 2432589551710203035}
   m_Layer: 7
-  m_Name: Enemy
+  m_Name: Boss
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -176,7 +176,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7155817979663696687
+--- !u!114 &7848609296847854327
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -185,15 +185,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 7690306485705516092}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1dcc3087d7a5914fbde041920cbc58d, type: 3}
+  m_Script: {fileID: 11500000, guid: 0aafebea3e345f44ba3b998ce7b77866, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  speed: 4
-  attack: 5
+  maxHealth: 250
+  speed: 5
+  attack: 25
   currentElement: 1
-  electricCooldown: 0.47
-  currentHealth: 100
+  electricCooldown: 0.5
+  currentHealth: 0
   damageTextPrefab: {fileID: 0}
   dmgText: {fileID: 0}
   _player: {fileID: 0}
@@ -204,8 +204,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   walkPointRange: 0
-  attackDelay: 3
-  enemyType: 3
+  attackDelay: 0
+  enemyType: 0
   sightRange: 15
   attackRange: 5
   playerInSightRange: 0

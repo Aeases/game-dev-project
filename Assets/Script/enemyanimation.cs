@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEditor;
-using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
 
@@ -20,7 +19,6 @@ public class enemyanimation : MonoBehaviour
     public float wiggleFrequency2 = 13f;
     private Vector3 startPosition;
     private Quaternion startRotation;
-    public int enlargeframes = 50;
     public float intervalseconds = 1f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

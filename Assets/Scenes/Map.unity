@@ -5017,6 +5017,10 @@ MonoBehaviour:
       enemyElement: 2
       enemyType: 10
       spawnpoint: {fileID: 29231778}
+    - enemy: {fileID: 7848609296847854327, guid: 52052c662be57c62d85633ac27220b73, type: 3}
+      enemyElement: 1
+      enemyType: 0
+      spawnpoint: {fileID: 577004124}
     - enemy: {fileID: 7155817979663696687, guid: 527035dc587579ee79e2a0f9c6cded3c, type: 3}
       enemyElement: 1
       enemyType: 2
@@ -13505,7 +13509,7 @@ Transform:
   m_GameObject: {fileID: 1970028199}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.482, z: 5.175}
+  m_LocalPosition: {x: -3.91, y: 0.482, z: -6.92}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

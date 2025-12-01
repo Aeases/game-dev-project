@@ -11,12 +11,6 @@ public class Boss : Enemy
             base.Start(); // This sets health to max health, and loads initial element bullet
             StartCoroutine(bossShoot2());
         }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
     }
 
 
