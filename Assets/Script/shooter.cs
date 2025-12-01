@@ -2,28 +2,30 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor.UI;
 using UnityEngine;
 
 public class Shooter : MonoBehaviour
 {
-
+    public float maxHealth;
     public float health;
     public int speed;
     public int attack;
-    public GameObject currentBulletPrefab;
-    protected int shootPattern = 0;
     public float electricCooldown = 0.5f;   // Cooldown (avoid spamming)       
     private float electricCooldownTimer = 0f;
-    public enum elementType
+
+
+    protected GameObject currentBulletPrefab;
+    protected static readonly Dictionary<elementType, string> elementToBulletGameObject = new Dictionary<elementType, string>
     {
-        Normal,
-        Fire,
-        Water,
-        Grass,
-        Electric
-    }
+        { elementType.Normal, "Bullets/Bullet" },
+        { elementType.Fire, "Bullets/FireBullet" },
+        { elementType.Water, "Bullets/WaterBullet" },
+        { elementType.Grass, "Bullets/GrassBullet" },
+        { elementType.Electric, "Bullets/ElectricityBullet" }
+    };
 
     public elementType currentElement;
 
@@ -34,10 +36,62 @@ public class Shooter : MonoBehaviour
         shoot(currentElement);
     }
 
+
+
+    public void takeDamage(bullet collidingBullet)
+    {
+        float baseDamage = collidingBullet.baseDamage;
+        float finalDamage = baseDamage;
+        switch (currentElement) // Elemental Reaction
+        {
+            case elementType.Fire:
+                if (collidingBullet.bulletElement == elementType.Water)
+                {
+                    finalDamage = baseDamage * 1.3f;
+                }
+                if (collidingBullet.bulletElement == elementType.Grass)
+                {
+                    finalDamage = baseDamage * 0.7f;
+                }
+                break;
+            case elementType.Water:
+                if (collidingBullet.bulletElement == elementType.Electric)
+                {
+                    finalDamage = baseDamage * 1.3f;
+                }
+                if (collidingBullet.bulletElement == elementType.Fire)
+                {
+                    finalDamage = baseDamage * 0.7f;
+                }
+                break;
+            case elementType.Grass:
+                if (collidingBullet.bulletElement == elementType.Fire)
+                {
+                    finalDamage = baseDamage * 1.3f;
+                }
+                if (collidingBullet.bulletElement == elementType.Electric)
+                {
+                    finalDamage = baseDamage * 0.7f;
+                }
+                break;
+            case elementType.Electric:
+                if (collidingBullet.bulletElement == elementType.Grass)
+                {
+                    finalDamage = baseDamage * 1.3f;
+                }
+                if (collidingBullet.bulletElement == elementType.Water)
+                {
+                    finalDamage = baseDamage * 0.7f;
+                }
+                break;
+        }
+        health -= finalDamage;
+    }
+
     public void shoot(elementType element)
     {
         bool amEnemy = CompareTag("Enemy");
-        GameObject spawnedBullet = null;
+        GameObject spawnedBullet;
 
 
         // ShootPattern: 0 for normal, 1 for fire, 2 for water, 3 for grass, 4 for electricity
@@ -46,6 +100,7 @@ public class Shooter : MonoBehaviour
             case elementType.Normal:
                 spawnedBullet = Instantiate(currentBulletPrefab, transform.position, transform.rotation);
                 spawnedBullet.GetComponent<bullet>().isFriendly = !amEnemy;
+                spawnedBullet.GetComponent<bullet>().baseDamage = attack;
                 break;
             case elementType.Fire:
                 for (int i = 0; i < 4; i++)
@@ -54,6 +109,7 @@ public class Shooter : MonoBehaviour
                     Quaternion bulletRot = transform.rotation * Quaternion.Euler(0f, offsetAngle, 0f);
                     spawnedBullet = Instantiate(currentBulletPrefab, transform.position, bulletRot);
                     spawnedBullet.GetComponent<bullet>().isFriendly = !amEnemy;
+                    spawnedBullet.GetComponent<bullet>().baseDamage = attack;
                 }
                 break;
             case elementType.Water:
@@ -63,6 +119,7 @@ public class Shooter : MonoBehaviour
                     Quaternion bulletRot = transform.rotation * Quaternion.Euler(0f, offsetAngle, 0f);
                     spawnedBullet = Instantiate(currentBulletPrefab, transform.position, bulletRot);
                     spawnedBullet.GetComponent<bullet>().isFriendly = !amEnemy;
+                    spawnedBullet.GetComponent<bullet>().baseDamage = attack;
                 }
                 break;
             case elementType.Grass:
@@ -72,6 +129,7 @@ public class Shooter : MonoBehaviour
                     Quaternion bulletRot = transform.rotation * Quaternion.Euler(0f, offsetAngle, 0f);
                     spawnedBullet = Instantiate(currentBulletPrefab, transform.position, bulletRot);
                     spawnedBullet.GetComponent<bullet>().isFriendly = !amEnemy;
+                    spawnedBullet.GetComponent<bullet>().baseDamage = attack;
                 }
                 break;
             case elementType.Electric:
@@ -91,6 +149,7 @@ public class Shooter : MonoBehaviour
         {
             GameObject bullet = Instantiate(currentBulletPrefab, transform.position, transform.rotation);
             bullet.GetComponent<bullet>().isFriendly = isFriendly;
+            bullet.GetComponent<bullet>().baseDamage = attack;
             yield return new WaitForSeconds(delay);
         }
     }

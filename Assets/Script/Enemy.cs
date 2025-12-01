@@ -1,5 +1,6 @@
 using JetBrains.Annotations;
 using NUnit.Framework;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEditor;
@@ -24,6 +25,15 @@ public class Enemy : Shooter
     // Attacking
     public float attackDelay;
 
+    private GameObject soulType;
+    private static readonly Dictionary<elementType, string> elementToSoulGameObject = new Dictionary<elementType, string>
+    {
+        { elementType.Fire, "Souls/FireSoul" },
+        { elementType.Water, "Souls/WaterSoul" },
+        { elementType.Grass, "Souls/GrassSoul" },
+        { elementType.Electric, "Souls/ElectricitySoul" }
+    };
+
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
 
@@ -31,7 +41,6 @@ public class Enemy : Shooter
 
 
     private WaveController waveController = null;
-    public GameObject soulType;
     private void Awake()
     {
         _player = GameObject.Find("Player").transform;
@@ -42,10 +51,11 @@ public class Enemy : Shooter
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        currentBulletPrefab = Resources.Load<GameObject>(elementToBulletGameObject[currentElement]);
         health = 100f;
         attack = 5;
         speed = 4;
-        currentElement = elementType.Normal;
+        soulType = Resources.Load<GameObject>(elementToSoulGameObject[currentElement]);
         waveController = GetComponentInParent<WaveController>();
     }
 
@@ -105,7 +115,6 @@ public class Enemy : Shooter
         alreadyAttacked = false;
     }
 
-
     private void OnTriggerEnter(Collider other)
     {
   
@@ -116,54 +125,8 @@ public class Enemy : Shooter
             if (bulletCol.isFriendly == true)
             {
                 Destroy(other.gameObject);
-                float baseDamage = PlayerControl.Instance.attack;
-                float finalDamage = baseDamage;
-                switch (currentElement) // Elemental Reaction
-                {
-                    case elementType.Fire:
-                        if (other.gameObject.CompareTag("WaterBullet"))
-                        {
-                            finalDamage = baseDamage * 1.3f;
-                        }
-                        if (other.gameObject.CompareTag("GrassBullet"))
-                        {
-                            finalDamage = baseDamage * 0.7f;
-                        }
-                        break;
-                    case elementType.Water:
-                        if (other.gameObject.CompareTag("ElectricityBullet"))
-                        {
-                            finalDamage = baseDamage * 1.3f;
-                        }
-                        ;
-                        if (other.gameObject.CompareTag("FireBullet"))
-                        {
-                            finalDamage = baseDamage * 0.7f;
-                        }
-                        break;
-                    case elementType.Grass:
-                        if (other.gameObject.CompareTag("FireBullet"))
-                        {
-                            finalDamage = baseDamage * 1.3f;
-                        }
-                        if (other.gameObject.CompareTag("ElectricityBullet"))
-                        {
-                            finalDamage = baseDamage * 0.7f;
-                        }
-                        break;
-                    case elementType.Electric:
-                        if (other.gameObject.CompareTag("GrassBullet"))
-                        {
-                            finalDamage = baseDamage * 1.3f;
-                        }
-                        if (other.gameObject.CompareTag("WaterBullet"))
-                        {
-                            finalDamage = baseDamage * 0.7f;
-                        }
-                        break;
-                }
-                health -= finalDamage;
-                }
+                takeDamage(bulletCol);
+            }
         }
     }
 
