@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class OpenShop : MonoBehaviour
 {
     [SerializeField] private GameObject shopUI;
+    public GameObject shopPressE;
     public static bool isShopOpen { get; private set; } = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -20,7 +21,6 @@ public class OpenShop : MonoBehaviour
     }
     void openShop()
     {
-        Destroy(gameObject);
         shopUI.gameObject.SetActive(true);
         Time.timeScale = 0f;
         isShopOpen = true;

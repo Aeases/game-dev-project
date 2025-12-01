@@ -64,6 +64,7 @@ public class PlayerControl : Shooter
         PlayerMovementAndDash();
         HandleShooting();
         mainCamera.transform.position = new Vector3(transform.position.x, mainCamera.transform.position.y, transform.position.z); // Camera follows player (top-down)
+        healthBar.setMaxHealth(maxHealth);
         healthBar.setHealth(health);
     }
 

@@ -66,7 +66,7 @@ public class Enemy : Shooter
         if (!playerInSightRange && !playerInAttackRange) Rushing();
         if (playerInSightRange && !playerInAttackRange) Chase();
         if (playerInSightRange && playerInAttackRange) Attack();
-
+        
         
     }
 
