@@ -18,7 +18,7 @@ public class Enemy : Shooter
 
 
     // Rushing
-    public Vector3 towerPoint;
+    public Transform towerPoint;
     bool walkPointSet;
     public float walkPointRange;
 
@@ -45,6 +45,7 @@ public class Enemy : Shooter
     {
         _player = GameObject.Find("Player").transform;
         _agent = GetComponent<NavMeshAgent>();
+        towerPoint = GameObject.Find("towerpoint").transform;
     } 
 
 
@@ -79,9 +80,9 @@ public class Enemy : Shooter
 
     private void Rushing()
     {
-        _agent.SetDestination(towerPoint);
+        _agent.SetDestination(towerPoint.position);
 
-        Vector3 distanceToWalkPoint = transform.position - towerPoint;
+        Vector3 distanceToWalkPoint = transform.position - towerPoint.position;
 
         
     }

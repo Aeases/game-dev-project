@@ -31,7 +31,6 @@ public class PlayerControl : Shooter
     public float healthRegenInterval = 2f; // Regen every 2s
     public static PlayerControl Instance;
     public int coin = 1000;
-    public float maxHealth = 100f;
     private CharacterController characterController;
     private Coroutine healthRegenOverTime;
     [Header("HealthBar")]
@@ -59,6 +58,8 @@ public class PlayerControl : Shooter
         HandleShooting();
         PlayerMovement();
         mainCamera.transform.position = new Vector3(transform.position.x, mainCamera.transform.position.y, transform.position.z); // Camera follows player (top-down)
+        healthBar.setMaxHealth(maxHealth);
+        healthBar.setHealth(currentHealth);
     }
 
 void PlayerMovement()

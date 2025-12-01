@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 370855413592908936}
   - component: {fileID: 7968188505472035072}
   - component: {fileID: 6185219389358044757}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -234,7 +234,7 @@ MonoBehaviour:
   healthRegenInterval: 2
   coin: 1000
   maxHealth: 100
-  healthBar: {fileID: 0}
+  healthBar: {fileID: 4185216533610683497}
 --- !u!136 &7968188505472035072
 CapsuleCollider:
   m_ObjectHideFlags: 0

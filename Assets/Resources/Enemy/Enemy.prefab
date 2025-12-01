@@ -124,7 +124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   speed: 4
-  attack: 5
+  attack: 15
   currentElement: 0
   electricCooldown: 0.47
   currentHealth: 100
@@ -136,11 +136,11 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 64
-  towerPoint: {x: 69.04, y: 0.64, z: -0.02}
+  towerPoint: {fileID: 0}
   walkPointRange: 0
   attackDelay: 3
-  sightRange: 5
-  attackRange: 1
+  sightRange: 15
+  attackRange: 5
   playerInSightRange: 0
   playerInAttackRange: 0
 --- !u!195 &2432589551710203035
