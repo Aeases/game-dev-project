@@ -859,6 +859,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2140485620}
     - target: {fileID: 370855413592908936, guid: 767a43fab6fb87a24a5c4d5aedd4bda3, type: 3}
+      propertyPath: coin
+      value: 1800
+      objectReference: {fileID: 0}
+    - target: {fileID: 370855413592908936, guid: 767a43fab6fb87a24a5c4d5aedd4bda3, type: 3}
       propertyPath: shop
       value: 
       objectReference: {fileID: 1765874981}
@@ -928,6 +932,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7763654380763907084, guid: 767a43fab6fb87a24a5c4d5aedd4bda3, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7763654380763907084, guid: 767a43fab6fb87a24a5c4d5aedd4bda3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7763654380763907084, guid: 767a43fab6fb87a24a5c4d5aedd4bda3, type: 3}
+      propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:

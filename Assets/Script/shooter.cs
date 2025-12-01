@@ -160,37 +160,6 @@ public class Shooter : MonoBehaviour
             yield return new WaitForSeconds(delay);
         }
     }
-
-    //public void bossShoot()
-    //{
-    //    bool amEnemy = CompareTag("Enemy");
-    //    GameObject spawnedBullet;
-    //    for (int i = 0; i < 31; i++)
-    //    {
-    //        float offsetAngle = i * 12f;  
-    //        Quaternion bulletRot = transform.rotation * Quaternion.Euler(0f, offsetAngle, 0f);
-    //        spawnedBullet = Instantiate(currentBulletPrefab, transform.position, bulletRot);
-    //        spawnedBullet.GetComponent<bullet>().isFriendly = !amEnemy;
-    //        spawnedBullet.GetComponent<bullet>().baseDamage = attack;
-    //    }
-    //}
     
-    protected virtual IEnumerator bossShoot2()
-    {
-        while (true)
-        {
-            bool amEnemy = CompareTag("Enemy");
-            GameObject spawnedBullet;
-            for (int i = 0; i < 31; i++)
-            {
-                float offsetAngle = i * 12f;
-                Quaternion bulletRot = transform.rotation * Quaternion.Euler(0f, offsetAngle, 0f);
-                spawnedBullet = Instantiate(currentBulletPrefab, transform.position, bulletRot);
-                spawnedBullet.GetComponent<bullet>().isFriendly = !amEnemy;
-                spawnedBullet.GetComponent<bullet>().baseDamage = attack;
-            }
-            yield return new WaitForSeconds(5f);
-        }
-    }
 }
 

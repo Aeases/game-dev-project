@@ -5191,7 +5191,7 @@ MonoBehaviour:
       enemyElement: 2
       enemyType: 10
       spawnpoint: {fileID: 29231778}
-    - enemy: {fileID: 7155817979663696687, guid: fa2feb293fdedbd0cbe657b351407967, type: 3}
+    - enemy: {fileID: 7155817979663696687, guid: 527035dc587579ee79e2a0f9c6cded3c, type: 3}
       enemyElement: 1
       enemyType: 2
       spawnpoint: {fileID: 29231778}
@@ -5199,26 +5199,26 @@ MonoBehaviour:
     remainingEnemies: 0
     timeToNextEnemy: 4
   - enemies:
-    - enemy: {fileID: 0}
-      enemyElement: 0
+    - enemy: {fileID: 7155817979663696687, guid: 527035dc587579ee79e2a0f9c6cded3c, type: 3}
+      enemyElement: 1
+      enemyType: 1
+      spawnpoint: {fileID: 29231778}
+    - enemy: {fileID: 7155817979663696687, guid: 527035dc587579ee79e2a0f9c6cded3c, type: 3}
+      enemyElement: 1
+      enemyType: 8
+      spawnpoint: {fileID: 996622509}
+    - enemy: {fileID: 7155817979663696687, guid: 527035dc587579ee79e2a0f9c6cded3c, type: 3}
+      enemyElement: 2
+      enemyType: 3
+      spawnpoint: {fileID: 577004124}
+    - enemy: {fileID: 7155817979663696687, guid: 527035dc587579ee79e2a0f9c6cded3c, type: 3}
+      enemyElement: 2
       enemyType: 0
-      spawnpoint: {fileID: 0}
-    - enemy: {fileID: 0}
-      enemyElement: 0
-      enemyType: 0
-      spawnpoint: {fileID: 0}
-    - enemy: {fileID: 0}
-      enemyElement: 0
-      enemyType: 0
-      spawnpoint: {fileID: 0}
-    - enemy: {fileID: 0}
-      enemyElement: 0
-      enemyType: 0
-      spawnpoint: {fileID: 0}
-    - enemy: {fileID: 0}
-      enemyElement: 0
-      enemyType: 0
-      spawnpoint: {fileID: 0}
+      spawnpoint: {fileID: 577004124}
+    - enemy: {fileID: 7848609296847854327, guid: 52052c662be57c62d85633ac27220b73, type: 3}
+      enemyElement: 4
+      enemyType: 9
+      spawnpoint: {fileID: 996622509}
     timeToNextWave: 15
     remainingEnemies: 0
     timeToNextEnemy: 2
@@ -11991,6 +11991,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7763654380763907084, guid: 767a43fab6fb87a24a5c4d5aedd4bda3, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7763654380763907084, guid: 767a43fab6fb87a24a5c4d5aedd4bda3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7763654380763907084, guid: 767a43fab6fb87a24a5c4d5aedd4bda3, type: 3}
+      propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

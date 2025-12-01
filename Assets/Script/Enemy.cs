@@ -11,28 +11,6 @@ using System.Collections;
 
 public class Enemy : Shooter
 {
-    public GameObject damageTextPrefab;
-    public DmgText dmgText;
-
-    private NavMeshAgent _agent;
-    public Transform _player;
-    public LayerMask whatIsGround, whatIsPlayer;
-    // Rushing
-    protected Transform towerPoint;
-    bool walkPointSet;
-    public float walkPointRange;
-
-    // Attacking
-    public float attackDelay;
-
-    protected GameObject soulType;
-    private static readonly Dictionary<elementType, string> elementToSoulGameObject = new Dictionary<elementType, string>
-    {
-        { elementType.Fire, "Souls/FireSoul" },
-        { elementType.Water, "Souls/WaterSoul" },
-        { elementType.Grass, "Souls/GrassSoul" },
-        { elementType.Electric, "Souls/ElectricitySoul" }
-    };
 
     public enum EnemyType
     {
@@ -51,8 +29,30 @@ public class Enemy : Shooter
 
     public EnemyType enemyType;
 
+    public GameObject damageTextPrefab;
+    public DmgText dmgText;
+
+    private NavMeshAgent _agent;
+    public Transform _player;
+    public LayerMask whatIsGround, whatIsPlayer;
+    // Rushing
+    protected Transform towerPoint;
+
+    // Attacking
+    public float attackDelay;
+
+    protected GameObject soulType;
+    private static readonly Dictionary<elementType, string> elementToSoulGameObject = new Dictionary<elementType, string>
+    {
+        { elementType.Fire, "Souls/FireSoul" },
+        { elementType.Water, "Souls/WaterSoul" },
+        { elementType.Grass, "Souls/GrassSoul" },
+        { elementType.Electric, "Souls/ElectricitySoul" }
+    };
+
+
     public float sightRange, attackRange;
-    public bool playerInSightRange, playerInAttackRange;
+    protected bool playerInSightRange, playerInAttackRange;
 
     protected bool alreadyAttacked;
 

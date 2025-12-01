@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 7848609296847854327}
   - component: {fileID: 2432589551710203035}
   m_Layer: 7
-  m_Name: Boss
+  m_Name: HighRateOfFireBoss
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -188,9 +188,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0aafebea3e345f44ba3b998ce7b77866, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 200
-  speed: 5
-  attack: 5
+  maxHealth: 250
+  speed: 3
+  attack: 1
   currentElement: 1
   electricCooldown: 0.5
   currentHealth: 0
@@ -204,10 +204,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   walkPointRange: 0
-  attackDelay: 3.5
+  attackDelay: 0
   enemyType: 0
   sightRange: 15
-  attackRange: 5
+  attackRange: 13
   playerInSightRange: 0
   playerInAttackRange: 0
 --- !u!195 &2432589551710203035
