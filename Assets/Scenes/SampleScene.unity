@@ -970,12 +970,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1dcc3087d7a5914fbde041920cbc58d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  maxHealth: 100
   speed: 0
   attack: 0
-  currentBulletPrefab: {fileID: 5368792039324490253, guid: 6c32e4e8e268cb64bb2c5e894ff578b2, type: 3}
+  currentElement: 1
   electricCooldown: 0.5
-  currentElement: 0
+  currentHealth: 0
   damageTextPrefab: {fileID: 0}
   dmgText: {fileID: 0}
   whatIsGround:
@@ -991,7 +991,6 @@ MonoBehaviour:
   attackRange: 0
   playerInSightRange: 0
   playerInAttackRange: 0
-  soulType: {fileID: 0}
 --- !u!1 &308412062
 GameObject:
   m_ObjectHideFlags: 0
@@ -1661,12 +1660,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1dcc3087d7a5914fbde041920cbc58d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  maxHealth: 100
   speed: 0
   attack: 0
-  currentBulletPrefab: {fileID: 5368792039324490253, guid: 6c32e4e8e268cb64bb2c5e894ff578b2, type: 3}
+  currentElement: 4
   electricCooldown: 0.5
-  currentElement: 0
+  currentHealth: 0
   damageTextPrefab: {fileID: 0}
   dmgText: {fileID: 0}
   whatIsGround:
@@ -1682,7 +1681,6 @@ MonoBehaviour:
   attackRange: 0
   playerInSightRange: 0
   playerInAttackRange: 0
-  soulType: {fileID: 6987828712085359657, guid: 1e429f2d4117a964bb13cccda3d96b15, type: 3}
 --- !u!65 &485287623
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3520,12 +3518,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1dcc3087d7a5914fbde041920cbc58d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  maxHealth: 100
   speed: 0
   attack: 0
-  currentBulletPrefab: {fileID: 5368792039324490253, guid: 6c32e4e8e268cb64bb2c5e894ff578b2, type: 3}
+  currentElement: 3
   electricCooldown: 0.5
-  currentElement: 0
+  currentHealth: 0
   damageTextPrefab: {fileID: 0}
   dmgText: {fileID: 0}
   whatIsGround:
@@ -3541,7 +3539,6 @@ MonoBehaviour:
   attackRange: 0
   playerInSightRange: 0
   playerInAttackRange: 0
-  soulType: {fileID: 6473368998347351359, guid: d311ed7cc2456c84ca3d30ed8a8f6d10, type: 3}
 --- !u!65 &1202710210
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3664,12 +3661,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27211385c17763d4dbe13f1f76224257, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 46
+  maxHealth: 100
   speed: 5
   attack: 10
-  currentBulletPrefab: {fileID: 5368792039324490253, guid: 6c32e4e8e268cb64bb2c5e894ff578b2, type: 3}
-  electricCooldown: 0.5
   currentElement: 0
+  electricCooldown: 0.5
+  currentHealth: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -3688,7 +3685,6 @@ MonoBehaviour:
   healthRegen: 0
   healthRegenInterval: 2
   coin: 1000
-  maxHealth: 100
   healthBar: {fileID: 308412064}
 --- !u!65 &1253581840
 BoxCollider:
@@ -5062,12 +5058,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1dcc3087d7a5914fbde041920cbc58d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  maxHealth: 100
   speed: 0
   attack: 0
-  currentBulletPrefab: {fileID: 5368792039324490253, guid: 6c32e4e8e268cb64bb2c5e894ff578b2, type: 3}
+  currentElement: 2
   electricCooldown: 0.5
-  currentElement: 0
+  currentHealth: 0
   damageTextPrefab: {fileID: 0}
   dmgText: {fileID: 0}
   whatIsGround:
@@ -5083,7 +5079,6 @@ MonoBehaviour:
   attackRange: 0
   playerInSightRange: 0
   playerInAttackRange: 0
-  soulType: {fileID: 6243058901842950538, guid: 3b67f691dd008534287e3bc3cffe82a9, type: 3}
 --- !u!65 &1877702355
 BoxCollider:
   m_ObjectHideFlags: 0
