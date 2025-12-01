@@ -4,6 +4,8 @@ public class bullet : MonoBehaviour
 {
     private Rigidbody rb;
     public GameObject player;
+    public float baseDamage;
+    public elementType bulletElement;
     public bool isFriendly;
     public float speed = 2;
     public float existTime = 10f; 

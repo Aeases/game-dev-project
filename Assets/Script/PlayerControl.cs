@@ -141,6 +141,18 @@ public class PlayerControl : Shooter
         {
             shop.gameObject.SetActive(true);
         }
+
+  
+        var bulletCol = other.GetComponent<bullet>();
+
+        if (bulletCol != null)
+        {
+            if (bulletCol.isFriendly == false)
+            {
+                Destroy(other.gameObject);
+                takeDamage(bulletCol);
+            }
+        }
     }
 
     private void OnTriggerStay(Collider other) // Eat to switch 
