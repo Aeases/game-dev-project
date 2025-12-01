@@ -20,12 +20,15 @@ public class enemyanimation : MonoBehaviour
     private Vector3 startPosition;
     private Quaternion startRotation;
     public float intervalseconds = 1f;
+
+    private GameObject parentObject;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         // StartCoroutine(EnlargeRoutine());
         startRotation = transform.localRotation;
         startPosition = transform.localPosition;
+        parentObject = this.transform.parent.gameObject;
     }
 
     // Update is called once per frame
@@ -42,5 +45,6 @@ public class enemyanimation : MonoBehaviour
         float wiggleZ = Mathf.Sin(Time.time * wiggleFrequency2) * wiggleLeftRight;
         transform.localPosition = startPosition + new Vector3(wiggleX, 0f, wiggleZ);
     }
+
 
 }

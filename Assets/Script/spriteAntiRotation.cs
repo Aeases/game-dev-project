@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class SpriteAntiRotation : MonoBehaviour
 {
+
     private GameObject parentObject;
     private Quaternion originalRotation;
-
     void Start()
     {
         parentObject = this.transform.parent.gameObject;

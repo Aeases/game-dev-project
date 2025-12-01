@@ -15,6 +15,7 @@ public class Shooter : MonoBehaviour
     public int attack = 10;
     
     public elementType currentElement;
+    protected SpriteRenderer spriteRenderer;
     public float electricCooldown = 0.5f;   // Cooldown (avoid spamming)       
     private float electricCooldownTimer = 0f;
     public float currentHealth;
@@ -41,6 +42,7 @@ public class Shooter : MonoBehaviour
     {
         currentBulletPrefab = Resources.Load<GameObject>(elementToBulletGameObject[currentElement]);
         currentHealth = maxHealth;
+        spriteRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();
     }
 
     public void takeDamage(bullet collidingBullet)

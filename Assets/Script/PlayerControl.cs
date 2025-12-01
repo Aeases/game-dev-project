@@ -33,10 +33,9 @@ public class PlayerControl : Shooter
     public static PlayerControl Instance;
     public int coin = 1000;
     private CharacterController characterController;
-    public float shrinkScale = 0.1f;
-    public float normalScale = 1.5f;
+    public float shrinkScale = 0.8f;
     public float shrinkSpeed = 10f;
-    private Vector3 targetScale;
+    private Vector3 targetScale = Vector3.one;
     private Coroutine healthRegenOverTime;
     [Header("HealthBar")]
     public HealthBar healthBar;
@@ -47,7 +46,6 @@ public class PlayerControl : Shooter
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected override void Start()
     {  
-        targetScale = Vector3.one * normalScale; // set initial size
         base.Start(); // This sets health to max health, and loads initial element bullet
         healthRegenOverTime = StartCoroutine(healthRegeneration());
         characterController = GetComponent<CharacterController>();
@@ -75,6 +73,8 @@ void PlayerMovement()
 {
     Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
     characterController.Move(move * Time.deltaTime * speed);
+
+
     // Update cooldown timer
     if (coolDownTimer > 0)
     {
@@ -115,20 +115,28 @@ void PlayerMovement()
             }
         }
     }
-    
-    
+
+
     void HandleShooting()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            shoot();
-            targetScale = Vector3.one * shrinkScale;
+            StartCoroutine(ShootSequence());
         }
-        else
-        {
-            targetScale = Vector3.one * normalScale;
-        }
+
         transform.localScale = Vector3.Lerp(transform.localScale, targetScale, Time.deltaTime * shrinkSpeed);
+    }
+
+    IEnumerator ShootSequence()
+    {
+        shoot();
+        targetScale = Vector3.one * shrinkScale;
+        spriteRenderer.sprite = Resources.Load<Sprite>("Images/Player/Shoot");
+
+        yield return new WaitForSeconds(0.3f);
+
+        spriteRenderer.sprite = Resources.Load<Sprite>("Images/Player/Walk");
+        targetScale = Vector3.one;
     }
 
     void RotateToMouse()

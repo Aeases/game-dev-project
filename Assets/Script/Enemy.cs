@@ -75,7 +75,7 @@ public class Enemy : Shooter
     protected override void Start()
     {
         base.Start(); // This sets health to max health, and loads initial element bullet
-        gameObject.GetComponentInChildren<SpriteRenderer>().sprite = Resources.Load<Sprite>($"Images/Enemies/{currentElement}{enemyType}");
+        spriteRenderer.sprite = Resources.Load<Sprite>($"Images/Enemies/{currentElement}{enemyType}");
         soulType = Resources.Load<GameObject>(elementToSoulGameObject[currentElement]);
         waveController = GetComponentInParent<WaveController>();
         
