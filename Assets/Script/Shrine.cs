@@ -17,7 +17,7 @@ public class Shrine : Shooter
 
         if (bulletCol != null)
         {
-            if (bulletCol.isFriendly == true)
+            if (bulletCol.isFriendly == false)
             {
                 Destroy(other.gameObject);
                 takeDamage(bulletCol);
