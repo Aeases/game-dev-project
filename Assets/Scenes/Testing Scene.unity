@@ -176,9 +176,17 @@ PrefabInstance:
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7155817979663696687, guid: 527035dc587579ee79e2a0f9c6cded3c, type: 3}
+      propertyPath: enemyType
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7155817979663696687, guid: 527035dc587579ee79e2a0f9c6cded3c, type: 3}
       propertyPath: towerPoint
       value: 
       objectReference: {fileID: 1341665256}
+    - target: {fileID: 7155817979663696687, guid: 527035dc587579ee79e2a0f9c6cded3c, type: 3}
+      propertyPath: currentElement
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7690306485705516092, guid: 527035dc587579ee79e2a0f9c6cded3c, type: 3}
       propertyPath: m_Name
       value: Enemy
