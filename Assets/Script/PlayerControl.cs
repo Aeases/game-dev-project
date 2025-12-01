@@ -6,6 +6,7 @@ using System.Runtime.InteropServices;
 using Unity.VisualScripting;
 using System.Collections;
 using System;
+using UnityEngine.SceneManagement;
 
 public class PlayerControl : Shooter
 {
@@ -54,6 +55,11 @@ public class PlayerControl : Shooter
     // Update is called once per frame
     void Update()
     {
+        if (currentHealth <= 0)
+        {
+            currentHealth = maxHealth;
+            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
+        }
         if (OpenShop.isShopOpen)
         {
             return;
