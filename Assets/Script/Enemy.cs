@@ -15,10 +15,10 @@ public class Enemy : Shooter
     public DmgText dmgText;
 
     private NavMeshAgent _agent;
-    private Transform _player;
+    public Transform _player;
     public LayerMask whatIsGround, whatIsPlayer;
     // Rushing
-    public Transform towerPoint;
+    protected Transform towerPoint;
     bool walkPointSet;
     public float walkPointRange;
 
@@ -54,7 +54,7 @@ public class Enemy : Shooter
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
 
-    private bool alreadyAttacked;
+    protected bool alreadyAttacked;
 
 
     private WaveController waveController = null;
@@ -132,7 +132,7 @@ public class Enemy : Shooter
         _agent.SetDestination(_player.position);
     }
 
-    private void ResetAttack()
+    protected virtual void ResetAttack()
     {
         alreadyAttacked = false;
     }

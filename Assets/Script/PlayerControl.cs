@@ -121,7 +121,7 @@ void PlayerMovement()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            bossShoot();
+            shoot();
             targetScale = Vector3.one * shrinkScale;
         }
         else
