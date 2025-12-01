@@ -18,7 +18,7 @@ public class SpriteAntiRotation : MonoBehaviour
     {
         if (parentObject.transform != null)
         {
-            transform.rotation = originalRotation;
+            transform.rotation = Quaternion.Inverse(parentObject.transform.rotation) * transform.rotation;
         }
     }
 }
