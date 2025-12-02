@@ -44,7 +44,7 @@ public class OpenShop : MonoBehaviour
                 }
                 if (Input.GetKeyDown(KeyCode.Escape))
                 {
-                    Debug.Log("pressed pasue");
+                    Debug.Log("pressed paused");
                     currentState = MenuState.InPauseMenu;
                     openPauseMenu();
                 }
