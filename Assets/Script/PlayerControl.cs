@@ -44,6 +44,7 @@ public class PlayerControl : Shooter
     public HealthBar healthBar;
     public float fireRate = 0.6f;   // how often it can shoot while held
     private float nextTimeToFire = 0f;
+    AudioManager audioManager;
     private void Awake()
     {
         Instance = this;
@@ -52,6 +53,8 @@ public class PlayerControl : Shooter
         {
             theShrine = GameObject.Find("Shrine").GetComponent<Shrine>();
         }
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected override void Start()
@@ -144,6 +147,7 @@ public class PlayerControl : Shooter
     IEnumerator Dash()
     {
         {
+            audioManager.PlaySFX(audioManager.dash);
             float startTime = Time.time;
             isDashing = true;
             // Vector3 dashDirection = transform.forward; (if we want to change it so it faces the mouse to dash)
@@ -236,6 +240,7 @@ public class PlayerControl : Shooter
                 eat.gameObject.SetActive(false);
                 addHealth(25);
                 changeElement(elementType.Fire);
+                audioManager.PlaySFX(audioManager.eat);
 
             }
         }
@@ -248,7 +253,7 @@ public class PlayerControl : Shooter
                 eat.gameObject.SetActive(false);
                 addHealth(25);
                 changeElement(elementType.Water);
-
+                audioManager.PlaySFX(audioManager.eat);
             }
         }
         if (other.CompareTag("ElecSoul"))
@@ -260,6 +265,7 @@ public class PlayerControl : Shooter
                 eat.gameObject.SetActive(false);
                 addHealth(25);
                 changeElement(elementType.Electric);
+                audioManager.PlaySFX(audioManager.eat);
 
             }
         }
@@ -272,6 +278,7 @@ public class PlayerControl : Shooter
                 eat.gameObject.SetActive(false);
                 addHealth(25);
                 changeElement(elementType.Grass);
+                audioManager.PlaySFX(audioManager.eat);
 
             }
         }

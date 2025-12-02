@@ -20,6 +20,7 @@ TagManager:
   - WaterSoul
   - GrassSoul
   - ElecSoul
+  - Audio
   layers:
   - Default
   - TransparentFX
