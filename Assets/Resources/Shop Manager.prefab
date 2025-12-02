@@ -437,7 +437,7 @@ GameObject:
   - component: {fileID: 4951279781179520849}
   - component: {fileID: 6660823633307418720}
   - component: {fileID: 4126441482491958572}
-  - component: {fileID: 9073795287657972896}
+  - component: {fileID: 4117373231053058058}
   m_Layer: 5
   m_Name: StoreSign (1)
   m_TagString: Untagged
@@ -454,14 +454,14 @@ RectTransform:
   m_GameObject: {fileID: 734459678597370169}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1}
-  m_LocalScale: {x: 0.355, y: 0.79, z: 0.34}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.43000004, y: 0.9569015, z: 0.41183102}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3281609309420276606}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -474, y: 450}
+  m_AnchoredPosition: {x: -449, y: 415}
   m_SizeDelta: {x: 1920, y: 1215}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6660823633307418720
@@ -502,7 +502,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!95 &9073795287657972896
+--- !u!95 &4117373231053058058
 Animator:
   serializedVersion: 7
   m_ObjectHideFlags: 0
@@ -512,7 +512,7 @@ Animator:
   m_GameObject: {fileID: 734459678597370169}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9743c6898367283f385e1300bd1c1fa8, type: 2}
+  m_Controller: {fileID: 9100000, guid: cf10eb1deb3c4d7749e81373559a0846, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -536,6 +536,7 @@ GameObject:
   - component: {fileID: 2601665854280393670}
   - component: {fileID: 6175441814335283694}
   - component: {fileID: 697846225291167441}
+  - component: {fileID: 93172996358526246}
   m_Layer: 5
   m_Name: Repair Temple
   m_TagString: Untagged
@@ -559,7 +560,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -182, y: 169}
+  m_AnchoredPosition: {x: -182, y: -259}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2601665854280393670
@@ -656,6 +657,28 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!95 &93172996358526246
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 757072719911874915}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3cf501da19c2a33df9e6bdd279e0030b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1550452248005343642
 GameObject:
   m_ObjectHideFlags: 0
@@ -1639,6 +1662,7 @@ GameObject:
   - component: {fileID: 5878206694486066065}
   - component: {fileID: 5090018448137287784}
   - component: {fileID: 3465554308824163345}
+  - component: {fileID: 8794952954312031273}
   m_Layer: 5
   m_Name: StoreSign
   m_TagString: Untagged
@@ -1703,6 +1727,28 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &8794952954312031273
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5226286235880810499}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 248288a29bf909f80ae8e961f7ba33b6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5451334065792176119
 GameObject:
   m_ObjectHideFlags: 0
@@ -3148,6 +3194,7 @@ GameObject:
   - component: {fileID: 461108587981266587}
   - component: {fileID: 2502894595330811270}
   - component: {fileID: 1720250738903707400}
+  - component: {fileID: 4113858102270194501}
   m_Layer: 5
   m_Name: Kitsune Statue
   m_TagString: Untagged
@@ -3171,7 +3218,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -699, y: 187}
+  m_AnchoredPosition: {x: -699, y: -255}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &461108587981266587
@@ -3268,6 +3315,28 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!95 &4113858102270194501
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9103526225684389187}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2fac8d402118c3a679323a0c3c11abc9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &9182255493370377000
 GameObject:
   m_ObjectHideFlags: 0
