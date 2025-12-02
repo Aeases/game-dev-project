@@ -8798,6 +8798,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5527680275848561798, guid: af9cbf608fd9712cb95a3dc750eadda7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6811640409720123568, guid: af9cbf608fd9712cb95a3dc750eadda7, type: 3}
       propertyPath: m_Name
       value: Shop Manager
