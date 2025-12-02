@@ -3,7 +3,12 @@ using UnityEngine;
 public class Shrine : Shooter
 {
     public HealthBar healthBar;
+    public static Shrine Instance;
 
+    private void Awake()
+    {
+        Instance = this;
+    }
     // Update is called once per frame
     void Update()
     {

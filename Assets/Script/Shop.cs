@@ -6,12 +6,12 @@ using TMPro;
 public class Shop : MonoBehaviour
 {
     private PlayerControl p;
-
+    private Shrine s;
     public TextMeshProUGUI coinText;
     public TextMeshProUGUI healthText;
     public TextMeshProUGUI healthRegenText;
     public TextMeshProUGUI attackText;
-    public TextMeshProUGUI speedText;
+    public TextMeshProUGUI fireRateText;
 
     private void Awake()
     {
@@ -19,6 +19,11 @@ public class Shop : MonoBehaviour
         if (p == null)
         {
             Debug.LogError("PlayerControl.Instance is missing");
+        }
+        s = Shrine.Instance;
+        if (s == null)
+        {
+            Debug.LogError("Shrine.Instance is missing");
         }
     }
     void Start()
@@ -28,7 +33,7 @@ public class Shop : MonoBehaviour
         p.maxHealth = PlayerPrefs.GetFloat("maxHealth", 100f);
         p.healthRegen = PlayerPrefs.GetFloat("HealthRegen", 0);
         p.attack = PlayerPrefs.GetInt("Attack", 10);
-        p.speed = PlayerPrefs.GetInt("Speed", 5);
+        p.fireRate = PlayerPrefs.GetFloat("FireRate", 0.8f);
 
         UpdateUI();
     }
@@ -85,15 +90,30 @@ public class Shop : MonoBehaviour
             print("Not enough gold");
         }
     }
-    public void buySpeed()
+    public void buyFireRate()
     {
         if (p.coin >= 100)
         {
             p.coin -= 100;
             coinText.text = p.coin.ToString();
 
-            p.speed += 3;
-            speedText.text = p.speed.ToString();
+            p.fireRate -= 0.05f;
+            fireRateText.text = p.fireRate.ToString();
+        }
+        else
+        {
+            print("Not enough gold");
+        }
+    }
+
+    public void repairTemple()
+    {
+        if (p.coin >= 100)
+        {
+            p.coin -= 100;
+            coinText.text = p.coin.ToString();
+
+            p.currentHealth += 100;
 
 
         }
@@ -121,7 +141,7 @@ public class Shop : MonoBehaviour
         p.maxHealth = 100f;
         p.healthRegen = 0f;
         p.attack = 10;
-        p.speed = 5;
+        p.fireRate = 0.8f;
     }
 
     public void UpdateUI()
@@ -130,7 +150,7 @@ public class Shop : MonoBehaviour
         healthText.text = p.maxHealth.ToString(); 
         healthRegenText.text = p.healthRegen.ToString();
         attackText.text = p.attack.ToString();
-        speedText.text = p.speed.ToString();
+        fireRateText.text = p.fireRate.ToString();
     }
     
     public void SaveAll()

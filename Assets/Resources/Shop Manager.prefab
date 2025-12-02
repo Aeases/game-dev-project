@@ -159,6 +159,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2046706932393065424}
+      - m_Target: {fileID: 2046706932393065424}
         m_TargetAssemblyTypeName: Shop, Assembly-CSharp
         m_MethodName: buyHealth
         m_Mode: 1
@@ -721,9 +722,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6811640409720123568}
+      - m_Target: {fileID: 2046706932393065424}
         m_TargetAssemblyTypeName: Shop, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: repairTemple
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1026,6 +1027,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 8025405011250084551}
+        m_TargetAssemblyTypeName: OpenShop, Assembly-CSharp
+        m_MethodName: pauseMenuResume
       - m_Target: {fileID: 8025405011250084551}
         m_TargetAssemblyTypeName: OpenShop, Assembly-CSharp
         m_MethodName: pauseMenuResume
@@ -1347,6 +1351,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 2046706932393065424}
       - m_Target: {fileID: 2046706932393065424}
         m_TargetAssemblyTypeName: Shop, Assembly-CSharp
         m_MethodName: buyHealthRegen
@@ -2273,6 +2278,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 8025405011250084551}
+        m_TargetAssemblyTypeName: OpenShop, Assembly-CSharp
+        m_MethodName: closeShop
       - m_Target: {fileID: 8025405011250084551}
         m_TargetAssemblyTypeName: OpenShop, Assembly-CSharp
         m_MethodName: closeShop
@@ -3507,7 +3515,7 @@ MonoBehaviour:
   healthText: {fileID: 0}
   healthRegenText: {fileID: 0}
   attackText: {fileID: 0}
-  speedText: {fileID: 0}
+  fireRateText: {fileID: 0}
 --- !u!114 &8025405011250084551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4554,6 +4562,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2046706932393065424}
+      - m_Target: {fileID: 2046706932393065424}
         m_TargetAssemblyTypeName: Shop, Assembly-CSharp
         m_MethodName: buyAttack
         m_Mode: 1
@@ -4977,8 +4986,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2046706932393065424}
+      - m_Target: {fileID: 2046706932393065424}
         m_TargetAssemblyTypeName: Shop, Assembly-CSharp
-        m_MethodName: buySpeed
+        m_MethodName: buyFireRate
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
