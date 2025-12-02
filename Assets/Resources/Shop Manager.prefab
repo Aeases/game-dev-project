@@ -159,6 +159,17 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2046706932393065424}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 2046706932393065424}
         m_TargetAssemblyTypeName: Shop, Assembly-CSharp
         m_MethodName: buyHealth
@@ -1030,6 +1041,15 @@ MonoBehaviour:
       - m_Target: {fileID: 8025405011250084551}
         m_TargetAssemblyTypeName: OpenShop, Assembly-CSharp
         m_MethodName: pauseMenuResume
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 8025405011250084551}
         m_TargetAssemblyTypeName: OpenShop, Assembly-CSharp
         m_MethodName: pauseMenuResume
@@ -1352,6 +1372,17 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2046706932393065424}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 2046706932393065424}
         m_TargetAssemblyTypeName: Shop, Assembly-CSharp
         m_MethodName: buyHealthRegen
@@ -2281,6 +2312,15 @@ MonoBehaviour:
       - m_Target: {fileID: 8025405011250084551}
         m_TargetAssemblyTypeName: OpenShop, Assembly-CSharp
         m_MethodName: closeShop
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 8025405011250084551}
         m_TargetAssemblyTypeName: OpenShop, Assembly-CSharp
         m_MethodName: closeShop
@@ -2841,6 +2881,7 @@ RectTransform:
   - {fileID: 2807814978070602340}
   - {fileID: 2678458442336264834}
   - {fileID: 6032661152897290048}
+  - {fileID: 4850443700276992971}
   m_Father: {fileID: 1265889100499566135}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -4315,17 +4356,17 @@ RectTransform:
   m_GameObject: {fileID: 7556788586920987750}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.71, y: 1.71, z: 1.71}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7626377338930884592}
   - {fileID: 720845959213403524}
   - {fileID: 5127757167631286776}
-  m_Father: {fileID: 1265889100499566135}
+  m_Father: {fileID: 3281609309420276606}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -37.26, y: 224.98}
+  m_AnchoredPosition: {x: 1355, y: 1110}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &7722683775859736139
@@ -4661,6 +4702,17 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2046706932393065424}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 2046706932393065424}
         m_TargetAssemblyTypeName: Shop, Assembly-CSharp
         m_MethodName: buyAttack
@@ -5085,6 +5137,17 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2046706932393065424}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 2046706932393065424}
         m_TargetAssemblyTypeName: Shop, Assembly-CSharp
         m_MethodName: buyFireRate
@@ -5309,7 +5372,6 @@ RectTransform:
   - {fileID: 1847135226722969352}
   - {fileID: 8180036307883115136}
   - {fileID: 716542356462321933}
-  - {fileID: 4850443700276992971}
   m_Father: {fileID: 4131724309959183728}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
