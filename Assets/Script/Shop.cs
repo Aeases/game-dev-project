@@ -135,12 +135,12 @@ public class Shop : MonoBehaviour
     
     public void SaveAll()
     {
-        PlayerPrefs.SetInt("Coin", p.coin);
-        PlayerPrefs.SetFloat("Health", p.currentHealth);
-        PlayerPrefs.SetFloat("maxHealth", p.maxHealth);
-        PlayerPrefs.SetFloat("HealthRegen", p.healthRegen);
-        PlayerPrefs.SetInt("Attack", p.attack);
-        PlayerPrefs.SetInt("Speed", p.speed);
-        PlayerPrefs.Save();
+        // PlayerPrefs.SetInt("Coin", p.coin);
+        // PlayerPrefs.SetFloat("Health", p.currentHealth);
+        // PlayerPrefs.SetFloat("maxHealth", p.maxHealth);
+        // PlayerPrefs.SetFloat("HealthRegen", p.healthRegen);
+        // PlayerPrefs.SetInt("Attack", p.attack);
+        // PlayerPrefs.SetInt("Speed", p.speed);
+        // PlayerPrefs.Save();
     }
 }

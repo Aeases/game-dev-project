@@ -33,6 +33,7 @@ public class OpenShop : MonoBehaviour
         switch(currentState)
         {
             case MenuState.UnPaused:
+                Time.timeScale = 1f;
                 if (Input.GetKeyDown(KeyCode.E) && PlayerControl.Instance.shop.activeInHierarchy) {
                     currentState = MenuState.InShop;
                     openShop();
@@ -50,6 +51,7 @@ public class OpenShop : MonoBehaviour
                 }
                 break;
             case MenuState.InShop:
+                Time.timeScale = 0f;
                 if (Input.GetKeyDown(KeyCode.Escape))
                 {
                     currentState = MenuState.UnPaused;
@@ -57,18 +59,16 @@ public class OpenShop : MonoBehaviour
                 }
                 break;
             case MenuState.InWinMenu:
+                Time.timeScale = 0f;
                 if (Input.GetKeyDown(KeyCode.Escape))
                 {
                     currentState = MenuState.UnPaused;
-                    SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
-                    while (WaveController.gameWon == true)
-                    {
-                        Debug.Log("Busy waiting");
-                    }
                     closeWinScreen();
+                    SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
                 }
                 break;
             case MenuState.InPauseMenu:
+                Time.timeScale = 0f;
                 if (Input.GetKeyDown(KeyCode.Escape))
                 {
                     currentState = MenuState.UnPaused;
@@ -86,34 +86,28 @@ public class OpenShop : MonoBehaviour
     void openShop()
     {
         shopUI.gameObject.SetActive(true);
-        Time.timeScale = 0f;
     }
 
     public void closeShop()
     {
         shopUI.gameObject.SetActive(false);
-        Time.timeScale = 1f;
     }
 
     void openPauseMenu()
     {
-        Time.timeScale = 0f;
     }
     void closePauseMenu()
     {
-        Time.timeScale = 1f;
     }
 
     void openWinScreen()
     {
         // gameWonUI.SetActive(true);
-        Time.timeScale = 0f;
     }
 
     void closeWinScreen()
     {
         // gameWonUI.SetActive(false);
-        Time.timeScale = 1f;
     }
 
     

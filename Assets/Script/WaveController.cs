@@ -22,6 +22,7 @@ public class WaveController : MonoBehaviour
 
     void Start()
     {
+        gameWon = false;
         for (int i = 0; i < waves.Length; i++)
         {
             waves[i].remainingEnemies = waves[i].enemies.Length;
