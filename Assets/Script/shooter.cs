@@ -19,6 +19,12 @@ public class Shooter : MonoBehaviour
     public float electricCooldown = 0.5f;   // Cooldown (avoid spamming)       
     private float electricCooldownTimer = 0f;
     public float currentHealth;
+    AudioManager audioManager;
+
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
 
 
     protected GameObject currentBulletPrefab;
@@ -93,6 +99,7 @@ public class Shooter : MonoBehaviour
                 break;
         }
         currentHealth -= finalDamage;
+        audioManager.PlaySFX(audioManager.hurt);
     }
 
     public void shoot(elementType element)

@@ -15,15 +15,22 @@ public class WaveController : MonoBehaviour
     public static bool gameWon {get; private set; } = false;
     [HideInInspector] private int currentWave = 0;
     private float countdown = 0;
+
+    AudioManager audioManager;
     private bool readyToCountdown = true;
 
     // this is not a reference, can be used for remaining enemeies or something
     [HideInInspector] public int remainingEnemies = 0;
 
-    
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
 
     void Start()
     {
+        audioManager.StopMusic();
+        audioManager.PlayMusic(audioManager.background);
         gameWon = false;
         for (int i = 0; i < waves.Length; i++)
         {
@@ -37,6 +44,8 @@ public class WaveController : MonoBehaviour
 
     private IEnumerator SpawnWave()
     {
+        audioManager.StopMusic();
+        audioManager.PlayMusic(audioManager.fight);
         if (currentWave > waves.Length) yield break;
 
 
@@ -83,6 +92,8 @@ public class WaveController : MonoBehaviour
         }
         if (waves[currentWave].remainingEnemies == 0)
         {
+            audioManager.StopMusic();
+            audioManager.PlayMusic(audioManager.background);
             readyToCountdown = true;
             StartCoroutine(waveComplete());
             fifteenSecondsUI.SetActive(true);
@@ -112,7 +123,7 @@ public class WaveController : MonoBehaviour
 public class Wave
 {
     public WaveEnemy[] enemies;
-    public float timeToNextWave = 15;
+    public float timeToNextWave = 22;
     [HideInInspector] public int remainingEnemies;
     public float timeToNextEnemy = 1;
 }
