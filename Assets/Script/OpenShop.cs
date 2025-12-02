@@ -23,7 +23,7 @@ public class OpenShop : MonoBehaviour
         UnPaused
     }
 
-    public static MenuState currentState {get; private set; } = MenuState.UnPaused;
+    public static MenuState currentState {get; set; } = MenuState.UnPaused;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -40,7 +40,6 @@ public class OpenShop : MonoBehaviour
             case MenuState.UnPaused:
                 Time.timeScale = 1f;
                 if (Input.GetKeyDown(KeyCode.E) && PlayerControl.Instance.shop.activeInHierarchy) {
-                    currentState = MenuState.InShop;
                     openShop();
                 }
                 if (Input.GetKeyDown(KeyCode.Escape))
@@ -61,7 +60,6 @@ public class OpenShop : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Escape))
                 {
                     closeShop();
-                    currentState = MenuState.UnPaused;
                     break;
                 }
                 break;
@@ -92,12 +90,14 @@ public class OpenShop : MonoBehaviour
     }
     void openShop()
     {
+        currentState = MenuState.InShop;
         shopUI.gameObject.SetActive(true);
     }
 
     public void closeShop()
     {
         shopUI.gameObject.SetActive(false);
+        currentState = MenuState.UnPaused;
     }
 
     void openPauseMenu()
