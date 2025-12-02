@@ -10,7 +10,7 @@ public class WaveController : MonoBehaviour
     [SerializeField] public Wave[] waves;
     [SerializeField] public GameObject[] spawnpoints;
     [SerializeField] public GameObject gameWonUI;
-    private bool gameWon = false;
+    public static bool gameWon {get; private set; } = false;
     [HideInInspector] private int currentWave = 0;
     private float countdown = 0;
     private bool readyToCountdown = true;
@@ -56,8 +56,6 @@ public class WaveController : MonoBehaviour
             if (gameWon == false)
             {
                 gameWon = true;
-                Time.timeScale = 0f;
-                gameWonUI.SetActive(true);
             }
             else
             {

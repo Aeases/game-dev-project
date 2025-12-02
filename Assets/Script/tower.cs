@@ -160,7 +160,6 @@ public class tower : Shooter
         }
 
         currentTarget = nearestEnemy;
-        Debug.Log("nearest enemy: " + nearestEnemy.name);
     }
 
     private void RotateTowardTarget()
@@ -208,7 +207,6 @@ public class tower : Shooter
             playerInRange = false;
             nearbyPlayer = null;
         }
-        Debug.Log("player in range: " + playerInRange);
     }
 
     public bool BuyTower() // Buy/initialize the tower when player interacts with empty tower spot
@@ -222,7 +220,6 @@ public class tower : Shooter
         if (normalBulletPrefab != null) currentBulletPrefab = normalBulletPrefab;
 
         enabled = true; // Enable the tower
-        Debug.Log("buy tower logic");
         return true;
     }
 
@@ -233,7 +230,6 @@ public class tower : Shooter
 
         currentLevel++;
         attackDelay = attackDelaysByLevel[currentLevel - 1]; // Array is 0-indexed
-        Debug.Log("upgrade logic");
         return true;
     }
 

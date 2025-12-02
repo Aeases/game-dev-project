@@ -8,6 +8,7 @@ public class OpenShop : MonoBehaviour
 {
     [SerializeField] private GameObject shopUI;
     [SerializeField] private GameObject pauseUI;
+    [SerializeField] private GameObject gameWonUI;
 
     public enum MenuState
     {
@@ -19,8 +20,6 @@ public class OpenShop : MonoBehaviour
 
     public static MenuState currentState {get; private set; } = MenuState.UnPaused;
 
-    public GameObject shopPressE;
-    public static bool isShopOpen { get; private set; } = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -40,26 +39,37 @@ public class OpenShop : MonoBehaviour
                 }
                 if (Input.GetKeyDown(KeyCode.Escape))
                 {
+                    Debug.Log("pressed pasue");
                     currentState = MenuState.InPauseMenu;
                     openPauseMenu();
                 }
+                if (WaveController.gameWon == true)
+                {
+                    currentState = MenuState.InWinMenu;
+                    openWinScreen();
+                }
                 break;
             case MenuState.InShop:
-                if (Input.GetKey(KeyCode.Escape))
+                if (Input.GetKeyDown(KeyCode.Escape))
                 {
                     currentState = MenuState.UnPaused;
                     closeShop();
                 }
                 break;
             case MenuState.InWinMenu:
-                if (Input.GetKey(KeyCode.Escape))
+                if (Input.GetKeyDown(KeyCode.Escape))
                 {
                     currentState = MenuState.UnPaused;
                     SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
+                    while (WaveController.gameWon == true)
+                    {
+                        Debug.Log("Busy waiting");
+                    }
+                    closeWinScreen();
                 }
                 break;
             case MenuState.InPauseMenu:
-                if (Input.GetKey(KeyCode.Escape))
+                if (Input.GetKeyDown(KeyCode.Escape))
                 {
                     currentState = MenuState.UnPaused;
                     closePauseMenu();
@@ -77,22 +87,34 @@ public class OpenShop : MonoBehaviour
     {
         shopUI.gameObject.SetActive(true);
         Time.timeScale = 0f;
-        isShopOpen = true;
     }
 
-    void openPauseMenu()
-    {
-        return;
-    }
-    void closePauseMenu()
-    {
-        return;
-    }
-    
     public void closeShop()
     {
         shopUI.gameObject.SetActive(false);
         Time.timeScale = 1f;
-        isShopOpen = false;
     }
+
+    void openPauseMenu()
+    {
+        Time.timeScale = 0f;
+    }
+    void closePauseMenu()
+    {
+        Time.timeScale = 1f;
+    }
+
+    void openWinScreen()
+    {
+        // gameWonUI.SetActive(true);
+        Time.timeScale = 0f;
+    }
+
+    void closeWinScreen()
+    {
+        // gameWonUI.SetActive(false);
+        Time.timeScale = 1f;
+    }
+
+    
 }

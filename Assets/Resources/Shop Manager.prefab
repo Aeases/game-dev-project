@@ -322,7 +322,6 @@ GameObject:
   - component: {fileID: 716542356462321933}
   - component: {fileID: 4055144540078749250}
   - component: {fileID: 7272446208893039602}
-  - component: {fileID: 5719504051731565870}
   - component: {fileID: 4425665203168116849}
   m_Layer: 5
   m_Name: 'Eat Interaction Text '
@@ -449,20 +448,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &5719504051731565870
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1550452248005343642}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98cc2a3e9a62ad7459e07bdd97a33058, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shopUI: {fileID: 3309316746197271967}
-  shopPressE: {fileID: 2681139936116319732}
 --- !u!114 &4425665203168116849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -893,7 +878,6 @@ GameObject:
   - component: {fileID: 8180036307883115136}
   - component: {fileID: 2451555163621151199}
   - component: {fileID: 7578146466957757544}
-  - component: {fileID: 1553642393173293505}
   - component: {fileID: 6332266036180515248}
   m_Layer: 5
   m_Name: Shop Interaction Text
@@ -1020,20 +1004,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &1553642393173293505
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2681139936116319732}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98cc2a3e9a62ad7459e07bdd97a33058, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shopUI: {fileID: 3309316746197271967}
-  shopPressE: {fileID: 2681139936116319732}
 --- !u!114 &6332266036180515248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1968,7 +1938,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1553642393173293505}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: OpenShop, Assembly-CSharp
         m_MethodName: closeShop
         m_Mode: 1
@@ -2574,6 +2544,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4131724309959183728}
   - component: {fileID: 2046706932393065424}
+  - component: {fileID: 8025405011250084551}
   m_Layer: 0
   m_Name: Shop Manager
   m_TagString: Untagged
@@ -2614,6 +2585,21 @@ MonoBehaviour:
   healthRegenText: {fileID: 2045065495549281464}
   attackText: {fileID: 7193066503071255010}
   speedText: {fileID: 7026659051053868387}
+--- !u!114 &8025405011250084551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6811640409720123568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98cc2a3e9a62ad7459e07bdd97a33058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shopUI: {fileID: 3309316746197271967}
+  pauseUI: {fileID: 0}
+  gameWonUI: {fileID: 0}
 --- !u!1 &7104881286253530120
 GameObject:
   m_ObjectHideFlags: 0
