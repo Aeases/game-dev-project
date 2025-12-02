@@ -41,16 +41,19 @@ public class PlayerControl : Shooter
     private Coroutine healthRegenOverTime;
     [Header("HealthBar")]
     public HealthBar healthBar;
+    public float fireRate = 5f;   // how often it can shoot while held
+    private float nextTimeToFire = 0f;
     private void Awake()
     {
-        Instance = this;  
+        Instance = this;
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected override void Start()
-    {  
+    {
         base.Start(); // This sets health to max health, and loads initial element bullet
         healthRegenOverTime = StartCoroutine(healthRegeneration());
         characterController = GetComponent<CharacterController>();
+        speed = 4;
     }
 
     // Update is called once per frame
@@ -76,34 +79,34 @@ public class PlayerControl : Shooter
         healthBar.setHealth(currentHealth);
     }
 
-void PlayerMovement()
-{
-    Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-    characterController.Move(move * Time.deltaTime * speed);
-
-
-    // Update cooldown timer
-    if (coolDownTimer > 0)
+    void PlayerMovement()
     {
-        coolDownTimer -= Time.deltaTime;
-    }
+        Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        characterController.Move(move * Time.deltaTime * speed);
 
-    if (Input.GetKeyDown(KeyCode.LeftShift) && coolDownTimer <= 0)
-    {
-        coolDownTimer = dashCoolDown;
-        dashTimer = dashCoolDown; // Reset dash timer
-        StartCoroutine(Dash());
-    }
 
-    if (isDashing == true)
-    {
-        dashTimer -= Time.deltaTime; // Duration of dashing
-        if (dashTimer <= 0f)
+        // Update cooldown timer
+        if (coolDownTimer > 0)
         {
-            isDashing = false;
+            coolDownTimer -= Time.deltaTime;
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) && coolDownTimer <= 0)
+        {
+            coolDownTimer = dashCoolDown;
+            dashTimer = dashCoolDown; // Reset dash timer
+            StartCoroutine(Dash());
+        }
+
+        if (isDashing == true)
+        {
+            dashTimer -= Time.deltaTime; // Duration of dashing
+            if (dashTimer <= 0f)
+            {
+                isDashing = false;
+            }
         }
     }
-}
     IEnumerator Dash()
     {
         {
@@ -126,8 +129,9 @@ void PlayerMovement()
 
     void HandleShooting()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetMouseButton(0) && Time.time >= nextTimeToFire)
         {
+            nextTimeToFire = Time.time + fireRate;
             StartCoroutine(ShootSequence());
         }
 
@@ -172,7 +176,7 @@ void PlayerMovement()
             shop.gameObject.SetActive(true);
         }
 
-  
+
         var bulletCol = other.GetComponent<bullet>();
 
         if (bulletCol != null)
@@ -197,7 +201,7 @@ void PlayerMovement()
                 Destroy(other.gameObject);
                 eat.gameObject.SetActive(false);
                 changeElement(elementType.Fire);
-                
+
             }
         }
         if (other.CompareTag("WaterSoul"))
@@ -208,7 +212,7 @@ void PlayerMovement()
                 Destroy(other.gameObject);
                 eat.gameObject.SetActive(false);
                 changeElement(elementType.Water);
-                
+
             }
         }
         if (other.CompareTag("ElecSoul"))
@@ -219,7 +223,7 @@ void PlayerMovement()
                 Destroy(other.gameObject);
                 eat.gameObject.SetActive(false);
                 changeElement(elementType.Electric);
-               
+
             }
         }
         if (other.CompareTag("GrassSoul"))
@@ -230,7 +234,7 @@ void PlayerMovement()
                 Destroy(other.gameObject);
                 eat.gameObject.SetActive(false);
                 changeElement(elementType.Grass);
-          
+
             }
         }
     }
