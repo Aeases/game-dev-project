@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
@@ -46,6 +47,7 @@ public class OpenShop : MonoBehaviour
                 {
                     Debug.Log("pressed paused");
                     currentState = MenuState.InPauseMenu;
+
                     openPauseMenu();
                 }
                 if (WaveController.gameWon == true)
@@ -100,9 +102,18 @@ public class OpenShop : MonoBehaviour
 
     void openPauseMenu()
     {
+        pauseUI.gameObject.SetActive(true);
     }
     void closePauseMenu()
     {
+        pauseUI.gameObject.SetActive(false);
+    }
+
+    public void pauseMenuResume()
+    {
+        Time.timeScale = 1f;
+        currentState = MenuState.UnPaused;
+        pauseUI.gameObject.SetActive(false);
     }
 
     void openWinScreen()

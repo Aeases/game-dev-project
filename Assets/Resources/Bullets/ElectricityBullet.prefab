@@ -99,7 +99,7 @@ MonoBehaviour:
   baseDamage: 0
   bulletElement: 0
   isFriendly: 0
-  speed: 38
+  speed: 26.1
   existTime: 0
 --- !u!1 &8675103209824340787
 GameObject:
