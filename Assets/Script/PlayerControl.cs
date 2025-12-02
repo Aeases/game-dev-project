@@ -61,7 +61,7 @@ public class PlayerControl : Shooter
             currentHealth = maxHealth;
             SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
         }
-        if (OpenShop.isShopOpen)
+        if (OpenShop.currentState != OpenShop.MenuState.UnPaused)
         {
             return;
         }
