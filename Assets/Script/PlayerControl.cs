@@ -70,6 +70,17 @@ public class PlayerControl : Shooter
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
     }
 
+    public void addHealth(float health)
+    {
+        if (currentHealth + health <= maxHealth)
+        {
+            currentHealth += health;
+        } else
+        {
+            currentHealth = maxHealth;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -223,6 +234,7 @@ public class PlayerControl : Shooter
             {
                 Destroy(other.gameObject);
                 eat.gameObject.SetActive(false);
+                addHealth(25);
                 changeElement(elementType.Fire);
 
             }
@@ -234,6 +246,7 @@ public class PlayerControl : Shooter
             {
                 Destroy(other.gameObject);
                 eat.gameObject.SetActive(false);
+                addHealth(25);
                 changeElement(elementType.Water);
 
             }
@@ -245,6 +258,7 @@ public class PlayerControl : Shooter
             {
                 Destroy(other.gameObject);
                 eat.gameObject.SetActive(false);
+                addHealth(25);
                 changeElement(elementType.Electric);
 
             }
@@ -256,6 +270,7 @@ public class PlayerControl : Shooter
             {
                 Destroy(other.gameObject);
                 eat.gameObject.SetActive(false);
+                addHealth(25);
                 changeElement(elementType.Grass);
 
             }
