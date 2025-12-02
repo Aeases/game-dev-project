@@ -11,6 +11,7 @@ public class WaveController : MonoBehaviour
     [SerializeField] public GameObject[] spawnpoints;
     [SerializeField] public GameObject gameWonUI;
     [SerializeField] public GameObject fifteenSecondsUI;
+    [SerializeField] public GameObject waveCompleteUI;
     public static bool gameWon {get; private set; } = false;
     [HideInInspector] private int currentWave = 0;
     private float countdown = 0;
@@ -37,6 +38,8 @@ public class WaveController : MonoBehaviour
     private IEnumerator SpawnWave()
     {
         if (currentWave > waves.Length) yield break;
+
+
 
         for (int i = 0; i < waves[currentWave].enemies.Length; i++)
         {
@@ -81,9 +84,11 @@ public class WaveController : MonoBehaviour
         if (waves[currentWave].remainingEnemies == 0)
         {
             readyToCountdown = true;
+            StartCoroutine(waveComplete());
             fifteenSecondsUI.SetActive(true);
             currentWave += 1;
         }
+
 
         
     }
@@ -91,6 +96,13 @@ public class WaveController : MonoBehaviour
     public void EnemyKilled()
     {
         waves[currentWave].remainingEnemies -= 1;
+    }
+
+    private IEnumerator waveComplete()
+    {
+        waveCompleteUI.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        waveCompleteUI.SetActive(false);
     }
 
 
