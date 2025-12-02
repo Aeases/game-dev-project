@@ -450,6 +450,7 @@ MonoBehaviour:
   shrinkScale: 0.8
   shrinkSpeed: 10
   healthBar: {fileID: 4185216533610683497}
+  fireRate: 0.6
 --- !u!136 &7968188505472035072
 CapsuleCollider:
   m_ObjectHideFlags: 0
