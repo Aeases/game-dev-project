@@ -41,8 +41,7 @@ public class OpenShop : MonoBehaviour
                 Time.timeScale = 1f;
                 if (Input.GetKeyDown(KeyCode.E) && PlayerControl.Instance.shop.activeInHierarchy) {
                     openShop();
-                }
-                if (Input.GetKeyDown(KeyCode.Escape))
+                } else if (Input.GetKeyDown(KeyCode.Escape))
                 {
                     Debug.Log("pressed paused");
                     currentState = MenuState.InPauseMenu;
