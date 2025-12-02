@@ -18,6 +18,7 @@ public class WaveController : MonoBehaviour
 
     AudioManager audioManager;
     private bool readyToCountdown = true;
+    public static WaveController Instance;
 
     // this is not a reference, can be used for remaining enemeies or something
     [HideInInspector] public int remainingEnemies = 0;

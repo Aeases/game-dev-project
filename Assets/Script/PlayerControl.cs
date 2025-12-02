@@ -209,7 +209,7 @@ public class PlayerControl : Shooter
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Shop"))
+        if (other.CompareTag("Shop") && WaveController.Instance.fifteenSecondsUI.activeInHierarchy)
         {
             shop.gameObject.SetActive(true);
         }
