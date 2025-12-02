@@ -111,7 +111,6 @@ public class OpenShop : MonoBehaviour
 
     public void pauseMenuResume()
     {
-        Time.timeScale = 1f;
         currentState = MenuState.UnPaused;
         pauseUI.gameObject.SetActive(false);
     }

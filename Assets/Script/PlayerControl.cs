@@ -41,7 +41,7 @@ public class PlayerControl : Shooter
     private Coroutine healthRegenOverTime;
     [Header("HealthBar")]
     public HealthBar healthBar;
-    public float fireRate = 5f;   // how often it can shoot while held
+    public float fireRate = 0.6f;   // how often it can shoot while held
     private float nextTimeToFire = 0f;
     private void Awake()
     {
