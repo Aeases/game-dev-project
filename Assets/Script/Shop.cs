@@ -64,7 +64,7 @@ public class Shop : MonoBehaviour
             p.coin -= 100;
             coinText.text = p.coin.ToString();
 
-            p.healthRegen += 0.2f;
+            p.healthRegen += 5f;
             healthText.text = p.healthRegen.ToString();
 
   
@@ -97,7 +97,7 @@ public class Shop : MonoBehaviour
             p.coin -= 100;
             coinText.text = p.coin.ToString();
 
-            p.fireRate -= 0.05f;
+            p.fireRate -= 0.10f;
             fireRateText.text = p.fireRate.ToString();
         }
         else

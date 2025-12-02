@@ -14,6 +14,7 @@ public class OpenShop : MonoBehaviour
     [SerializeField] private GameObject pauseUI;
     [SerializeField] private GameObject gameWonUI;
     [SerializeField] private Animator Table;
+    
 
     public enum MenuState
     {

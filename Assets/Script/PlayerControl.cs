@@ -33,7 +33,7 @@ public class PlayerControl : Shooter
     public float healthRegen = 0f;
     public float healthRegenInterval = 2f; // Regen every 2s
     public static PlayerControl Instance;
-    public int coin = 1000;
+    public float coin = 1000f;
     private CharacterController characterController;
     private Shrine theShrine;
     public float shrinkScale = 0.8f;
@@ -44,6 +44,7 @@ public class PlayerControl : Shooter
     public HealthBar healthBar;
     public float fireRate = 0.6f;   // how often it can shoot while held
     private float nextTimeToFire = 0f;
+    public TextMeshProUGUI coinText;
     AudioManager audioManager;
     private void Awake()
     {
@@ -99,6 +100,8 @@ public class PlayerControl : Shooter
                 gameOver();
             }
         }
+
+        UpdateUI();
 
 
         if (OpenShop.currentState != OpenShop.MenuState.UnPaused)
@@ -209,7 +212,7 @@ public class PlayerControl : Shooter
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Shop") && WaveController.Instance.fifteenSecondsUI.activeInHierarchy)
+        if (other.CompareTag("Shop"))
         {
             shop.gameObject.SetActive(true);
         }
@@ -314,5 +317,11 @@ public class PlayerControl : Shooter
             yield return wait;
         }
     }
+
+    public void UpdateUI()
+    {
+        coinText.text = coin.ToString();
+    }
+    
 
 }
