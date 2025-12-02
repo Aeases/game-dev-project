@@ -35,6 +35,7 @@ public class PlayerControl : Shooter
     public static PlayerControl Instance;
     public int coin = 1000;
     private CharacterController characterController;
+    private Shrine theShrine;
     public float shrinkScale = 0.8f;
     public float shrinkSpeed = 10f;
     private Vector3 targetScale = Vector3.one;
@@ -46,6 +47,11 @@ public class PlayerControl : Shooter
     private void Awake()
     {
         Instance = this;
+
+        if (GameObject.Find("Shrine") != null)
+        {
+            theShrine = GameObject.Find("Shrine").GetComponent<Shrine>();
+        }
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected override void Start()
@@ -53,7 +59,15 @@ public class PlayerControl : Shooter
         base.Start(); // This sets health to max health, and loads initial element bullet
         healthRegenOverTime = StartCoroutine(healthRegeneration());
         characterController = GetComponent<CharacterController>();
+
         speed = 4;
+    }
+
+
+    void gameOver()
+    {
+        currentHealth = maxHealth;
+        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
     }
 
     // Update is called once per frame
@@ -61,9 +75,18 @@ public class PlayerControl : Shooter
     {
         if (currentHealth <= 0)
         {
-            currentHealth = maxHealth;
-            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
+            gameOver();
         }
+
+        if (theShrine != null)
+        {
+            if (theShrine.currentHealth <= 0)
+            {
+                gameOver();
+            }
+        }
+
+
         if (OpenShop.currentState != OpenShop.MenuState.UnPaused)
         {
             return;
