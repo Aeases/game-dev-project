@@ -5,7 +5,7 @@ using System.Collections;
 public class tower : Shooter
 {
     private bool isBuilt = false; // Tower starts as empty/unbuilt
-    public int currentLevel = 1; // Tower level (1, 2, or 3)
+    public int currentLevel = 0; // Tower level (1, 2, or 3)
     public float[] attackDelaysByLevel = {1.0f, 0.5f, 0.033f}; // Level 1 = slowest, Level 2 = medium, Level 3 = fastest
     public float attackDelay = 0.1f;
 
@@ -41,12 +41,16 @@ public class tower : Shooter
     public TextMeshProUGUI mText;
     private bool showingInsufficient = false;
 
+    [Header("Tower Levels Visuals")]
+    public GameObject[] levelVisuals; // drag in level0..3 here in order (0,1,2,3)
+
     protected override void Start()
     {
         base.Start();
         isBuilt = false; // Tower starts unbuilt/empty
         enabled = true; // Enable to check for player interaction even when not built
         HideAllPopups();
+        UpdateTowerVisual();
     }
 
     void Update()
@@ -66,7 +70,6 @@ public class tower : Shooter
                     if (nearbyPlayer.coin >= towerCost)
                     {
                         nearbyPlayer.coin -= towerCost;
-                        isBuilt = true;
                         BuyTower();
                         HideAllPopups();
                     }
@@ -142,6 +145,7 @@ public class tower : Shooter
                     Attack();
             }
         }
+        LockVisualRotation();
     }
     private void FindNearestEnemy()
     {
@@ -209,27 +213,29 @@ public class tower : Shooter
         }
     }
 
-    public bool BuyTower() // Buy/initialize the tower when player interacts with empty tower spot
+    public bool BuyTower()
     {
-        if (isBuilt) return false; // Already built
+        if (isBuilt) return false;
 
         isBuilt = true;
-        currentLevel = 1;
-        attackDelay = attackDelaysByLevel[0]; // Level 1 = slowest
-        
+        currentLevel = 1;  // first actual level
+        attackDelay = attackDelaysByLevel[currentLevel - 1];
         if (normalBulletPrefab != null) currentBulletPrefab = normalBulletPrefab;
 
-        enabled = true; // Enable the tower
+        UpdateTowerVisual();
+        enabled = true; 
         return true;
     }
 
-    public bool UpgradeLevel() // Upgrade tower to next level (1 -> 2 -> 3)
+    public bool UpgradeLevel()
     {
-        if (!isBuilt) return false; // Not built yet
-        if (currentLevel >= 3) return false; // Already max level
+        if (!isBuilt) return false;
+        if (currentLevel >= 3) return false;
 
         currentLevel++;
-        attackDelay = attackDelaysByLevel[currentLevel - 1]; // Array is 0-indexed
+        attackDelay = attackDelaysByLevel[currentLevel - 1]; 
+
+        UpdateTowerVisual();
         return true;
     }
 
@@ -315,5 +321,34 @@ public class tower : Shooter
         yield return new WaitForSeconds(sec);
         HideInsufficientPopup();
         showingInsufficient = false;
+    }
+    private void UpdateTowerVisual()
+    {
+        if (levelVisuals == null || levelVisuals.Length == 0)
+            return;
+
+        for (int i = 0; i < levelVisuals.Length; i++)
+            if (levelVisuals[i] != null)
+                levelVisuals[i].SetActive(false);
+
+        int index = Mathf.Clamp(currentLevel, 0, levelVisuals.Length - 1);
+
+        if (levelVisuals[index] != null)
+            levelVisuals[index].SetActive(true);
+
+        Debug.Log("Tower visual update called, current level: " + currentLevel);
+    }
+    private void LockVisualRotation()
+    {
+        if (levelVisuals == null) return;
+
+        for (int i = 0; i < levelVisuals.Length; i++)
+        {
+            if (levelVisuals[i] != null)
+            {
+                // reset rotation every frame so they ignore parent rotation
+                levelVisuals[i].transform.rotation = Quaternion.identity;
+            }
+        }
     }
 }
