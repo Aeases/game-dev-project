@@ -5227,7 +5227,7 @@ MonoBehaviour:
       enemyElement: 2
       enemyType: 8
       spawnpoint: {fileID: 996622509}
-    - enemy: {fileID: 7155817979663696687, guid: 527035dc587579ee79e2a0f9c6cded3c, type: 3}
+    - enemy: {fileID: 7848609296847854327, guid: 52052c662be57c62d85633ac27220b73, type: 3}
       enemyElement: 2
       enemyType: 3
       spawnpoint: {fileID: 577004124}
@@ -5249,18 +5249,18 @@ MonoBehaviour:
       spawnpoint: {fileID: 996622509}
     timeToNextWave: 22
     remainingEnemies: 0
-    timeToNextEnemy: 4
+    timeToNextEnemy: 12
   - enemies:
     - enemy: {fileID: 7155817979663696687, guid: 527035dc587579ee79e2a0f9c6cded3c, type: 3}
       enemyElement: 3
       enemyType: 3
       spawnpoint: {fileID: 577004124}
     - enemy: {fileID: 7155817979663696687, guid: 527035dc587579ee79e2a0f9c6cded3c, type: 3}
-      enemyElement: 1
-      enemyType: 1
+      enemyElement: 3
+      enemyType: 6
       spawnpoint: {fileID: 577004124}
     - enemy: {fileID: 7155817979663696687, guid: 527035dc587579ee79e2a0f9c6cded3c, type: 3}
-      enemyElement: 4
+      enemyElement: 3
       enemyType: 5
       spawnpoint: {fileID: 577004124}
     - enemy: {fileID: 7155817979663696687, guid: 527035dc587579ee79e2a0f9c6cded3c, type: 3}
@@ -5271,20 +5271,24 @@ MonoBehaviour:
       enemyElement: 1
       enemyType: 2
       spawnpoint: {fileID: 29231778}
-    timeToNextWave: 22
-    remainingEnemies: 0
-    timeToNextEnemy: 6
-  - enemies:
     - enemy: {fileID: 7155817979663696687, guid: 527035dc587579ee79e2a0f9c6cded3c, type: 3}
       enemyElement: 1
+      enemyType: 4
+      spawnpoint: {fileID: 29231778}
+    timeToNextWave: 22
+    remainingEnemies: 0
+    timeToNextEnemy: 4
+  - enemies:
+    - enemy: {fileID: 7155817979663696687, guid: 527035dc587579ee79e2a0f9c6cded3c, type: 3}
+      enemyElement: 3
       enemyType: 1
       spawnpoint: {fileID: 29231778}
     - enemy: {fileID: 7155817979663696687, guid: 527035dc587579ee79e2a0f9c6cded3c, type: 3}
-      enemyElement: 1
+      enemyElement: 3
       enemyType: 8
       spawnpoint: {fileID: 996622509}
     - enemy: {fileID: 7155817979663696687, guid: 527035dc587579ee79e2a0f9c6cded3c, type: 3}
-      enemyElement: 2
+      enemyElement: 3
       enemyType: 3
       spawnpoint: {fileID: 577004124}
     - enemy: {fileID: 7155817979663696687, guid: 527035dc587579ee79e2a0f9c6cded3c, type: 3}
@@ -5292,63 +5296,71 @@ MonoBehaviour:
       enemyType: 0
       spawnpoint: {fileID: 577004124}
     - enemy: {fileID: 7848609296847854327, guid: 52052c662be57c62d85633ac27220b73, type: 3}
-      enemyElement: 4
+      enemyElement: 2
       enemyType: 9
       spawnpoint: {fileID: 996622509}
+    - enemy: {fileID: 7848609296847854327, guid: 52052c662be57c62d85633ac27220b73, type: 3}
+      enemyElement: 2
+      enemyType: 0
+      spawnpoint: {fileID: 29231778}
+    - enemy: {fileID: 7848609296847854327, guid: 52052c662be57c62d85633ac27220b73, type: 3}
+      enemyElement: 2
+      enemyType: 6
+      spawnpoint: {fileID: 577004124}
     timeToNextWave: 22
     remainingEnemies: 0
     timeToNextEnemy: 2
   - enemies:
     - enemy: {fileID: 7155817979663696687, guid: 527035dc587579ee79e2a0f9c6cded3c, type: 3}
-      enemyElement: 1
-      enemyType: 1
+      enemyElement: 4
+      enemyType: 3
       spawnpoint: {fileID: 29231778}
     - enemy: {fileID: 7155817979663696687, guid: 527035dc587579ee79e2a0f9c6cded3c, type: 3}
-      enemyElement: 1
+      enemyElement: 4
       enemyType: 8
       spawnpoint: {fileID: 996622509}
-    - enemy: {fileID: 7155817979663696687, guid: 527035dc587579ee79e2a0f9c6cded3c, type: 3}
-      enemyElement: 2
-      enemyType: 3
-      spawnpoint: {fileID: 577004124}
-    - enemy: {fileID: 7155817979663696687, guid: 527035dc587579ee79e2a0f9c6cded3c, type: 3}
-      enemyElement: 2
-      enemyType: 0
-      spawnpoint: {fileID: 577004124}
     - enemy: {fileID: 7848609296847854327, guid: 52052c662be57c62d85633ac27220b73, type: 3}
       enemyElement: 4
-      enemyType: 9
+      enemyType: 3
+      spawnpoint: {fileID: 996622509}
+    - enemy: {fileID: 7848609296847854327, guid: 52052c662be57c62d85633ac27220b73, type: 3}
+      enemyElement: 2
+      enemyType: 7
+      spawnpoint: {fileID: 996622509}
+    - enemy: {fileID: 7848609296847854327, guid: 52052c662be57c62d85633ac27220b73, type: 3}
+      enemyElement: 4
+      enemyType: 5
+      spawnpoint: {fileID: 996622509}
+    - enemy: {fileID: 7848609296847854327, guid: 52052c662be57c62d85633ac27220b73, type: 3}
+      enemyElement: 4
+      enemyType: 10
       spawnpoint: {fileID: 996622509}
     timeToNextWave: 22
     remainingEnemies: 0
-    timeToNextEnemy: 2
+    timeToNextEnemy: 1.7
   - enemies:
-    - enemy: {fileID: 7155817979663696687, guid: 527035dc587579ee79e2a0f9c6cded3c, type: 3}
+    - enemy: {fileID: 7848609296847854327, guid: 52052c662be57c62d85633ac27220b73, type: 3}
       enemyElement: 1
-      enemyType: 1
+      enemyType: 10
       spawnpoint: {fileID: 29231778}
-    - enemy: {fileID: 7155817979663696687, guid: 527035dc587579ee79e2a0f9c6cded3c, type: 3}
-      enemyElement: 1
+    - enemy: {fileID: 7848609296847854327, guid: 52052c662be57c62d85633ac27220b73, type: 3}
+      enemyElement: 2
       enemyType: 8
       spawnpoint: {fileID: 996622509}
-    - enemy: {fileID: 7155817979663696687, guid: 527035dc587579ee79e2a0f9c6cded3c, type: 3}
-      enemyElement: 2
-      enemyType: 3
-      spawnpoint: {fileID: 577004124}
-    - enemy: {fileID: 7155817979663696687, guid: 527035dc587579ee79e2a0f9c6cded3c, type: 3}
-      enemyElement: 2
-      enemyType: 0
+    - enemy: {fileID: 7848609296847854327, guid: 52052c662be57c62d85633ac27220b73, type: 3}
+      enemyElement: 3
+      enemyType: 5
       spawnpoint: {fileID: 577004124}
     - enemy: {fileID: 7848609296847854327, guid: 52052c662be57c62d85633ac27220b73, type: 3}
       enemyElement: 4
-      enemyType: 9
+      enemyType: 3
       spawnpoint: {fileID: 996622509}
     timeToNextWave: 22
     remainingEnemies: 0
-    timeToNextEnemy: 2
+    timeToNextEnemy: 13
   spawnpoints: []
   gameWonUI: {fileID: 0}
-  fifteenSecondsUI: {fileID: 0}
+  fifteenSecondsUI: {fileID: 1032369395}
   waveCompleteUI: {fileID: 0}
   remainingEnemies: 0
 --- !u!4 &803915874
@@ -5635,6 +5647,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1609993485}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &947370835 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6999648560643478205, guid: 767a43fab6fb87a24a5c4d5aedd4bda3, type: 3}
+  m_PrefabInstance: {fileID: 1351696609}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6581a900b60ecc429e660626c03d806, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &957129770
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5734,7 +5757,7 @@ PrefabInstance:
     - target: {fileID: 4571495510249645384, guid: 0fd66b17380d03fde91b0f03fb85591b, type: 3}
       propertyPath: healthBar
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 947370835}
     - target: {fileID: 8131315777325213131, guid: 0fd66b17380d03fde91b0f03fb85591b, type: 3}
       propertyPath: m_Name
       value: Shrine
@@ -7203,6 +7226,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1609993485}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!1 &1032369395 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1552352694299508910, guid: 767a43fab6fb87a24a5c4d5aedd4bda3, type: 3}
+  m_PrefabInstance: {fileID: 1351696609}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1073079350
 GameObject:
   m_ObjectHideFlags: 0
@@ -9819,6 +9847,10 @@ PrefabInstance:
       propertyPath: eat
       value: 
       objectReference: {fileID: 822742575}
+    - target: {fileID: 370855413592908936, guid: 767a43fab6fb87a24a5c4d5aedd4bda3, type: 3}
+      propertyPath: coin
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 370855413592908936, guid: 767a43fab6fb87a24a5c4d5aedd4bda3, type: 3}
       propertyPath: shop
       value: 

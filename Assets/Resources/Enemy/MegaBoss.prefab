@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071018, y: 0.0027621582, z: 0.0000000022118911, w: 0.70710635}
   m_LocalPosition: {x: -0.003906286, y: 0.9999924, z: 0}
-  m_LocalScale: {x: 0.048986237, y: 0.048986237, z: 0.048986237}
+  m_LocalScale: {x: 0.06240847, y: 0.06240847, z: 0.06240847}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 793316901398044263}
@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 7848609296847854327}
   - component: {fileID: 2432589551710203035}
   m_Layer: 7
-  m_Name: Boss
+  m_Name: MegaBoss
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -188,7 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0aafebea3e345f44ba3b998ce7b77866, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 200
+  maxHealth: 300
   speed: 5
   attack: 5
   currentElement: 1

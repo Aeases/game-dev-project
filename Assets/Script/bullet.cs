@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class bullet : MonoBehaviour
@@ -14,7 +15,21 @@ public class bullet : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.AddForce(transform.forward * speed, ForceMode.VelocityChange);
+        WaitThenExecute();
     }
+
+    private IEnumerator WaitThenExecute()
+    {
+        yield return new WaitForSeconds(existTime);
+        despawnBullet();
+    }
+
+
+    private void despawnBullet()
+    {
+        Destroy(gameObject);
+    }
+
 
     // Update is called once per frame
     void Update()

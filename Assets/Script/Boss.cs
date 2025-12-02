@@ -31,6 +31,7 @@ public class Boss : Enemy
                 spawnedBullet = Instantiate(currentBulletPrefab, transform.position, bulletRot);
                 spawnedBullet.GetComponent<bullet>().isFriendly = !amEnemy;
                 spawnedBullet.GetComponent<bullet>().baseDamage = attack;
+                spawnedBullet.GetComponent<bullet>().speed = 1.55f;
             }
             yield return new WaitForSeconds(5f);
         }

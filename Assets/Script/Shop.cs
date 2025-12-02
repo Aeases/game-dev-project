@@ -29,8 +29,8 @@ public class Shop : MonoBehaviour
     void Start()
     {
         p.coin = PlayerPrefs.GetInt("Coin", 1000);
-        p.currentHealth = PlayerPrefs.GetFloat("Health", 100f);
-        p.maxHealth = PlayerPrefs.GetFloat("maxHealth", 100f);
+        p.currentHealth = PlayerPrefs.GetFloat("Health", 230f);
+        p.maxHealth = PlayerPrefs.GetFloat("maxHealth", 230f);
         p.healthRegen = PlayerPrefs.GetFloat("HealthRegen", 0);
         p.attack = PlayerPrefs.GetInt("Attack", 10);
         p.fireRate = PlayerPrefs.GetFloat("FireRate", 0.8f);
@@ -42,9 +42,9 @@ public class Shop : MonoBehaviour
 
     public void buyHealth()
     {
-        if (p.coin >= 100)
+        if (p.coin >= 50)
         {
-            p.coin -= 100;
+            p.coin -= 50;
             coinText.text = p.coin.ToString();
 
             p.maxHealth += 10;
@@ -59,9 +59,9 @@ public class Shop : MonoBehaviour
     }
     public void buyHealthRegen()
     {
-        if (p.coin >= 100)
+        if (p.coin >= 50)
         {
-            p.coin -= 100;
+            p.coin -= 50;
             coinText.text = p.coin.ToString();
 
             p.healthRegen += 5f;
@@ -76,9 +76,9 @@ public class Shop : MonoBehaviour
     }
     public void buyAttack()
     {
-        if (p.coin >= 100)
+        if (p.coin >= 50)
         {
-            p.coin -= 100;
+            p.coin -= 50;
             coinText.text = p.coin.ToString();
 
             p.attack += 2;
@@ -92,9 +92,9 @@ public class Shop : MonoBehaviour
     }
     public void buyFireRate()
     {
-        if (p.coin >= 100)
+        if (p.coin >= 50)
         {
-            p.coin -= 100;
+            p.coin -= 50;
             coinText.text = p.coin.ToString();
 
             p.fireRate -= 0.10f;
@@ -108,9 +108,9 @@ public class Shop : MonoBehaviour
 
     public void repairTemple()
     {
-        if (p.coin >= 100)
+        if (p.coin >= 50)
         {
-            p.coin -= 100;
+            p.coin -= 50;
             coinText.text = p.coin.ToString();
 
             p.currentHealth += 100;
