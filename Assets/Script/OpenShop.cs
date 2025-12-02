@@ -4,11 +4,15 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
+
+
 public class OpenShop : MonoBehaviour
+
 {
     [SerializeField] private GameObject shopUI;
     [SerializeField] private GameObject pauseUI;
     [SerializeField] private GameObject gameWonUI;
+    [SerializeField] private Animator Table;
 
     public enum MenuState
     {
