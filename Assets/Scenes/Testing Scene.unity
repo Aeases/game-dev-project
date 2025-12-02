@@ -1334,6 +1334,8 @@ MonoBehaviour:
   - {fileID: 1185082616}
   - {fileID: 1380815700}
   - {fileID: 514035408}
+  gameWonUI: {fileID: 0}
+  fifteenSecondsUI: {fileID: 0}
   remainingEnemies: 0
 --- !u!4 &1413505028
 Transform:
@@ -1598,6 +1600,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Text (TMP)
       objectReference: {fileID: 0}
+    - target: {fileID: 3454838692746716694, guid: 64018ba6500dccb47b07a6ca904ab038, type: 3}
+      propertyPath: m_text
+      value: ffffffffffffffffffffffffff
+      objectReference: {fileID: 0}
     - target: {fileID: 4214208885786908635, guid: 64018ba6500dccb47b07a6ca904ab038, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1691,6 +1697,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3281609309420276606, guid: af9cbf608fd9712cb95a3dc750eadda7, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4131724309959183728, guid: af9cbf608fd9712cb95a3dc750eadda7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

@@ -10,6 +10,7 @@ public class WaveController : MonoBehaviour
     [SerializeField] public Wave[] waves;
     [SerializeField] public GameObject[] spawnpoints;
     [SerializeField] public GameObject gameWonUI;
+    [SerializeField] public GameObject fifteenSecondsUI;
     public static bool gameWon {get; private set; } = false;
     [HideInInspector] private int currentWave = 0;
     private float countdown = 0;
@@ -72,6 +73,7 @@ public class WaveController : MonoBehaviour
         if (countdown <= 0)
         {
             readyToCountdown = false;
+            fifteenSecondsUI.SetActive(false);
 
             countdown = waves[currentWave].timeToNextWave;
             StartCoroutine(SpawnWave());
@@ -79,6 +81,7 @@ public class WaveController : MonoBehaviour
         if (waves[currentWave].remainingEnemies == 0)
         {
             readyToCountdown = true;
+            fifteenSecondsUI.SetActive(true);
             currentWave += 1;
         }
 
