@@ -1,10 +1,14 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using UnityEditor.Rendering.Universal;
 
 public class tower : Shooter
 {
     private bool isBuilt = false; // Tower starts as empty/unbuilt
+    public GameObject buySprite;
+    public GameObject upgradeSprite;
+
     public int currentLevel = 1; // Tower level (1, 2, or 3)
     public float[] attackDelaysByLevel = {1.0f, 0.5f, 0.033f}; // Level 1 = slowest, Level 2 = medium, Level 3 = fastest
     public float attackDelay = 0.1f;
@@ -260,23 +264,27 @@ public class tower : Shooter
     private void ShowBuyPopup()
     {
         buy.SetActive(true);
+        buySprite.SetActive(true);
         bText.text = "Press E to Buy Tower (" + towerCost + " Souls)";
     }
 
     private void HideBuyPopup()
     {
         buy.SetActive(false);
+        buySprite.SetActive(false);
     }
 
     private void ShowUpgradePopup()
     {
         upgrade.SetActive(true);
+        upgradeSprite.SetActive(true);
         gText.text = "Press E to Upgrade Tower (" + upgradeCost + " Souls)";
     }
 
     private void HideUpgradePopup()
     {
         upgrade.SetActive(false);
+        upgradeSprite.SetActive(false);
     }
 
     private void ShowInsufficientPopup()
