@@ -55,7 +55,7 @@ public class OpenShop : MonoBehaviour
                 }
                 break;
             case MenuState.InShop:
-                Time.timeScale = 0f;
+                Time.timeScale = 1f;
                 if (Input.GetKeyDown(KeyCode.Escape))
                 {
                     currentState = MenuState.UnPaused;

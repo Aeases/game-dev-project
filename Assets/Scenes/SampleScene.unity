@@ -2790,6 +2790,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floatHeight: 10
   speed: 2
+--- !u!1 &932686201 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5527680275848561798, guid: af9cbf608fd9712cb95a3dc750eadda7, type: 3}
+  m_PrefabInstance: {fileID: 1412864573}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &953108660
 GameObject:
   m_ObjectHideFlags: 0
@@ -3351,6 +3356,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shop Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 8025405011250084551, guid: af9cbf608fd9712cb95a3dc750eadda7, type: 3}
+      propertyPath: shopUI
+      value: 
+      objectReference: {fileID: 932686201}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
