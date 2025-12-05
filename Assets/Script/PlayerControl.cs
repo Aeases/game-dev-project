@@ -45,7 +45,7 @@ public class PlayerControl : Shooter
     public float fireRate = 0.6f;   // how often it can shoot while held
     private float nextTimeToFire = 0f;
     public TextMeshProUGUI coinText;
-    AudioManager audioManager;
+    public AudioManager audioManager;
     private void Awake()
     {
         Instance = this;
